@@ -1,11 +1,19 @@
-"""Genera la planilla relacional de Líneas/Sublíneas/Áreas/Modos/Salidas/Labs/Investigadores/Temas
-para el nuevo régimen del MAD-map. Estructura: 1 hoja por entidad + hojas de relación m:n,
-más sello formativo y matriz de proximidad temática.
+"""Siembra la planilla relacional desde cero (uso ocasional, no rutinario).
 
-Re-ejecutar este script REGENERA la planilla desde cero. Los ajustes manuales hechos en
-las hojas (p. ej. cambios de afinidad o estado en 18_Proximidad_Tematica) se PIERDEN.
-Para que los cambios sobrevivan, reflejarlos en PROXIMIDAD_PARES o SELLO_VARIANTES de
-este mismo archivo.
+ADVERTENCIA: este script REGENERA mad-map-data-v2.xlsx desde el código Python.
+Los ajustes manuales hechos en las hojas (p.ej. cambios en celdas, afinidades,
+o filas agregadas) se PIERDEN al re-correrlo. Solo usarlo cuando se quiere
+reconstruir la planilla por completo desde el código.
+
+Para ediciones cotidianas: editar el .xlsx directamente con Excel/Numbers/
+LibreOffice y commitearlo. Esa es la fuente única de verdad del branch xlsx.
+
+Para volver a aplicar dropdowns/named ranges sobre un xlsx ya editado, sin
+sembrar nada, usar tools/apply_dropdowns.py — preserva los datos.
+
+Estructura: 1 hoja por entidad + hojas de relación m:n, más sello formativo
+y matriz de proximidad temática. Al final del seed se aplican los selectores
+desplegables (data validation) y los rangos con nombre dinámicos.
 """
 from pathlib import Path
 from openpyxl import Workbook
@@ -15,7 +23,8 @@ from openpyxl.comments import Comment
 from openpyxl.worksheet.table import Table, TableStyleInfo
 from openpyxl.worksheet.datavalidation import DataValidation
 
-OUTPUT = str(Path(__file__).parent / "mad-map-data-v2.xlsx")
+# El xlsx vive en la raíz del repo; este script (en tools/) sube un nivel.
+OUTPUT = str(Path(__file__).resolve().parent.parent / "mad-map-data-v2.xlsx")
 
 # ---------------------------------------------------------------------------
 # Datos de referencia
@@ -1388,6 +1397,21 @@ for i, (label, formula) in enumerate(extra_counts):
     ws_res.cell(row=r, column=2).border = BORDER
 
 wb.save(OUTPUT)
+
+# Aplicar selectores desplegables y rangos con nombre dinámicos sobre el
+# xlsx recién sembrado. La lógica vive en tools/apply_dropdowns.py para
+# poder re-aplicarse sobre un xlsx editado a mano sin tener que re-sembrarlo.
+import importlib.util
+import sys
+_spec = importlib.util.spec_from_file_location(
+    "apply_dropdowns",
+    Path(__file__).parent / "apply_dropdowns.py",
+)
+_apply = importlib.util.module_from_spec(_spec)
+sys.modules["apply_dropdowns"] = _apply
+_spec.loader.exec_module(_apply)
+_apply.main()
+
 print(f"OK: {OUTPUT}")
 print(f"  Líneas: {len(LINEAS)}")
 print(f"  Sublíneas: {len(SUBLINEAS)}")

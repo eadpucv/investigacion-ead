@@ -29,6 +29,7 @@
 
       <h3>Aristas</h3>
       <label><input type="checkbox" data-toggle-edge="jerarquica" checked> Pertenencia a línea</label>
+      <label><input type="checkbox" data-toggle-edge="proximidad_semantica" checked> Proximidad temática</label>
       <label><input type="checkbox" data-toggle-edge="coautoria"> Coautoría (perfil → sublínea)</label>
       <label><input type="checkbox" data-toggle-edge="coinvestigacion" checked> Coinvestigación</label>
       <label><input type="checkbox" data-toggle-edge="sosten_lab"> Sostén por laboratorio</label>
@@ -67,28 +68,23 @@
     </main>
   </div>
 
-  <script src="data-loader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="xlsx-loader.js"></script>
   <script src="graph.js"></script>
   <script>
-    const SHEET_ID = '1Vbua3waIfGyszVnu3vr6qv2KvwVqK1zIHnZIrIEaFzQ';
-    const FALLBACK_JSON = 'mad-map-data.json';
+    const XLSX_URL = './mad-map-data-v2.xlsx';
 
     const graph = new MadMapGraph({
       surface: 'narrativa',
-      allowedEdges: ['jerarquica', 'coautoria', 'coinvestigacion', 'sosten_lab'],
-      defaultEdges: ['jerarquica', 'coinvestigacion'],
+      allowedEdges: ['jerarquica', 'proximidad_semantica', 'coautoria',
+                     'coinvestigacion', 'sosten_lab'],
+      defaultEdges: ['jerarquica', 'proximidad_semantica', 'coinvestigacion'],
       allowPerfiles: true,
       defaultShowPerfiles: false,
       defaultEnvolventes: ['area'],
       allowedFilters: ['linea','area','modo'],
     });
     window.graph = graph;
-
-    fetch(FALLBACK_JSON).then(r => r.json()).then(d => {
-      if (d.sello && d.sello.texto) {
-        document.getElementById('sello-loader').textContent = d.sello.texto;
-      }
-    }).catch(() => {});
 
     document.querySelectorAll('input[data-toggle-envolvente]').forEach(el =>
       el.addEventListener('change', () => graph.toggleEnvolvente(el.dataset.toggleEnvolvente)));
@@ -108,7 +104,11 @@
 
     document.getElementById('search').addEventListener('input', (e) => graph.setSearch(e.target.value));
 
-    graph.loadFromSheets(SHEET_ID, FALLBACK_JSON);
+    graph.loadFromXlsx(XLSX_URL).catch(err => {
+      console.error('[MadMap] no se pudo cargar el xlsx:', err);
+      document.getElementById('sello-loader').textContent =
+        'No se pudo cargar mad-map-data-v2.xlsx. Verifica que el archivo esté en la raíz del sitio.';
+    });
   </script>
 </body>
 </html>

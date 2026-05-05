@@ -18,8 +18,6 @@ La estructura preserva continuidad institucional con las áreas del postgrado �
 | Teoría e historia de la arquitectura y el diseño | *desde dónde se piensa* | 10 | 9 |
 | Oficio, tecnologías y aprendizaje proyectual | *con qué se hace y cómo se transmite* | 18 | 14 |
 
----
-
 ## Personas, interacción y sistemas inclusivos
 
 *Condición que aborda:* de quién habita.
@@ -34,9 +32,9 @@ Esta línea concentra la investigación que se ocupa del sujeto que habita y de 
 
 Esta línea es cultivada por **3 profesores** del cuerpo académico de la Escuela de Arquitectura y Diseño:
 
-- Herbert Spencer (Forma, Cultura y Tecnología)
-- Katherine Exss (Forma, Cultura y Tecnología)
-- Marcelo Araya (Forma, Cultura y Tecnología)
+- Herbert Spencer González (Forma, Cultura y Tecnología)
+- Katherine Exss Cid (Forma, Cultura y Tecnología)
+- Marcelo Araya Aravena (Forma, Cultura y Tecnología)
 
 ### Consolidación y sostenibilidad
 
@@ -45,8 +43,6 @@ La línea está consolidada por la convergencia de **3 profesores** activos que 
 La afiliación principal del cuerpo académico se concentra en el área **Forma, Cultura y Tecnología**, lo que da continuidad institucional con la estructura del postgrado y profundidad disciplinar.
 
 La línea cuenta con vínculos directos a **2 laboratorios** (Aconcagua Fablab, Núcleo de Accesibilidad e Inclusión), que operacionalizan la investigación, la transferencia y la formación, garantizando continuidad y proyección institucional.
-
----
 
 ## Habitar, infraestructura y ecologías territoriales
 
@@ -63,16 +59,16 @@ Esta línea articula la investigación sobre el lugar del habitar. Cubre la ciud
 Esta línea es cultivada por **11 profesores** del cuerpo académico de la Escuela de Arquitectura y Diseño:
 
 - Emanuela Di Felice (Extensión, Ciudad y Habitabilidad)
-- Jorge Ferrada (Extensión, Ciudad y Habitabilidad)
-- Álvaro Mercado (Extensión, Ciudad y Habitabilidad)
-- Iván Ivelic (Extensión, Ciudad y Habitabilidad)
-- Adriana Marín (Extensión, Ciudad y Habitabilidad)
-- Daniela Salgado (Forma, Cultura y Tecnología)
-- Marcelo Araya (Forma, Cultura y Tecnología)
-- Andrés Garcés (Extensión, Ciudad y Habitabilidad)
-- David Luza (Extensión, Ciudad y Habitabilidad)
-- Katherine Exss (Forma, Cultura y Tecnología)
-- Lorena Herrera (Extensión, Ciudad y Habitabilidad)
+- Jorge Ferrada Herrera (Extensión, Ciudad y Habitabilidad)
+- Álvaro Mercado Jara (Extensión, Ciudad y Habitabilidad)
+- Iván Ivelic Yanes (Extensión, Ciudad y Habitabilidad)
+- Adriana Marín Toro (Extensión, Ciudad y Habitabilidad)
+- Daniela Salgado Cofré (Forma, Cultura y Tecnología)
+- Marcelo Araya Aravena (Forma, Cultura y Tecnología)
+- Andrés Garcés Alzamora (Extensión, Ciudad y Habitabilidad)
+- David Luza Cornejo (Extensión, Ciudad y Habitabilidad)
+- Katherine Exss Cid (Forma, Cultura y Tecnología)
+- Lorena Herrera Ponce (Extensión, Ciudad y Habitabilidad)
 
 ### Consolidación y sostenibilidad
 
@@ -81,8 +77,6 @@ La línea está consolidada por la convergencia de **11 profesores** activos que
 El cuerpo académico se distribuye entre **2 áreas** del postgrado (Extensión, Ciudad y Habitabilidad, Forma, Cultura y Tecnología), lo que da soporte transversal a la línea y abre puentes con otras líneas del programa.
 
 La línea cuenta con vínculos directos a **2 laboratorios** (Personas y territorios, Urbanismo afectivo), que operacionalizan la investigación, la transferencia y la formación, garantizando continuidad y proyección institucional.
-
----
 
 ## Teoría e historia de la arquitectura y el diseño
 
@@ -99,14 +93,14 @@ Esta línea sostiene la investigación que actualiza la tradición disciplinar y
 Esta línea es cultivada por **9 profesores** del cuerpo académico de la Escuela de Arquitectura y Diseño:
 
 - Anna Braghini (Educación, Espacio y Aprendizaje)
-- Sylvia Arriagada (Forma, Cultura y Tecnología)
-- Óscar Andrade (Educación, Espacio y Aprendizaje)
-- Jaime Reyes (Educación, Espacio y Aprendizaje)
-- Juan Carlos Jeldes (Forma, Cultura y Tecnología)
-- Ursula Exss (Educación, Espacio y Aprendizaje)
-- Arturo Chicano (Forma, Cultura y Tecnología)
-- David Luza (Extensión, Ciudad y Habitabilidad)
-- Iván Ivelic (Extensión, Ciudad y Habitabilidad)
+- Sylvia Arriagada Cordero (Forma, Cultura y Tecnología)
+- Óscar Andrade Castro (Educación, Espacio y Aprendizaje)
+- Jaime Reyes Gil (Educación, Espacio y Aprendizaje)
+- Juan Carlos Jeldes Pontio (Forma, Cultura y Tecnología)
+- Ursula Exss Cid (Educación, Espacio y Aprendizaje)
+- Arturo Chicano Jiménez (Forma, Cultura y Tecnología)
+- David Luza Cornejo (Extensión, Ciudad y Habitabilidad)
+- Iván Ivelic Yanes (Extensión, Ciudad y Habitabilidad)
 
 ### Consolidación y sostenibilidad
 
@@ -115,8 +109,6 @@ La línea está consolidada por la convergencia de **9 profesores** activos que 
 El cuerpo académico se distribuye entre **3 áreas** del postgrado (Educación, Espacio y Aprendizaje, Extensión, Ciudad y Habitabilidad, Forma, Cultura y Tecnología), lo que da soporte transversal a la línea y abre puentes con otras líneas del programa.
 
 La línea cuenta con vínculos directos a **1 laboratorio** (Patrimonio moderno), que operacionalizan la investigación, la transferencia y la formación, garantizando continuidad y proyección institucional.
-
----
 
 ## Oficio, tecnologías y aprendizaje proyectual
 
@@ -132,20 +124,20 @@ Esta línea reúne las investigaciones que indagan en cómo la disciplina se hac
 
 Esta línea es cultivada por **14 profesores** del cuerpo académico de la Escuela de Arquitectura y Diseño:
 
-- Rodrigo Saavedra (Educación, Espacio y Aprendizaje)
-- Arturo Chicano (Forma, Cultura y Tecnología)
-- Ursula Exss (Educación, Espacio y Aprendizaje)
-- Juan Carlos Jeldes (Forma, Cultura y Tecnología)
-- Marcelo Araya (Forma, Cultura y Tecnología)
-- Michèle Wilkomirsky (Educación, Espacio y Aprendizaje)
-- Adriana Marín (Extensión, Ciudad y Habitabilidad)
-- Alfred Thiers (Extensión, Ciudad y Habitabilidad)
-- Daniela Salgado (Forma, Cultura y Tecnología)
-- Herbert Spencer (Forma, Cultura y Tecnología)
-- Jaime Reyes (Educación, Espacio y Aprendizaje)
-- Katherine Exss (Forma, Cultura y Tecnología)
-- Sylvia Arriagada (Forma, Cultura y Tecnología)
-- Óscar Andrade (Educación, Espacio y Aprendizaje)
+- Rodrigo Saavedra Venegas (Educación, Espacio y Aprendizaje)
+- Arturo Chicano Jiménez (Forma, Cultura y Tecnología)
+- Ursula Exss Cid (Educación, Espacio y Aprendizaje)
+- Juan Carlos Jeldes Pontio (Forma, Cultura y Tecnología)
+- Marcelo Araya Aravena (Forma, Cultura y Tecnología)
+- Michèle Wilkomirsky Uribe (Educación, Espacio y Aprendizaje)
+- Adriana Marín Toro (Extensión, Ciudad y Habitabilidad)
+- Alfred Thiers Jusan (Extensión, Ciudad y Habitabilidad)
+- Daniela Salgado Cofré (Forma, Cultura y Tecnología)
+- Herbert Spencer González (Forma, Cultura y Tecnología)
+- Jaime Reyes Gil (Educación, Espacio y Aprendizaje)
+- Katherine Exss Cid (Forma, Cultura y Tecnología)
+- Sylvia Arriagada Cordero (Forma, Cultura y Tecnología)
+- Óscar Andrade Castro (Educación, Espacio y Aprendizaje)
 
 ### Consolidación y sostenibilidad
 
@@ -154,8 +146,6 @@ La línea está consolidada por la convergencia de **14 profesores** activos que
 El cuerpo académico se distribuye entre **3 áreas** del postgrado (Educación, Espacio y Aprendizaje, Extensión, Ciudad y Habitabilidad, Forma, Cultura y Tecnología), lo que da soporte transversal a la línea y abre puentes con otras líneas del programa.
 
 La línea cuenta con vínculos directos a **1 laboratorio** (Aconcagua Fablab), que operacionalizan la investigación, la transferencia y la formación, garantizando continuidad y proyección institucional.
-
----
 
 ## Cobertura del cuerpo académico
 
@@ -170,4 +160,4 @@ De los **22 profesores** del cuerpo académico, **22** tienen al menos una subl�
 
 ## Procedencia
 
-Documento generado automáticamente desde la planilla institucional del programa. Las relaciones investigador↔sublínea provienen de los temas declarados por cada profesor en su perfil Casiopea o ANID, consolidados y curados por el equipo del doctorado. Para regenerar este documento tras editar la planilla, ejecutar `python3 build_doc.py`.
+Documento generado automáticamente desde mad-map-data-v2.xlsx, la fuente única de verdad del programa. Las relaciones investigador↔sublínea provienen de los temas declarados por cada profesor en su perfil Casiopea o ANID, consolidados y curados por el equipo del doctorado. Para regenerar este documento tras editar la planilla, ejecutar `python3 tools/build_doc.py`.
