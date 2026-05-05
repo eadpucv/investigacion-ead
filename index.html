@@ -40,9 +40,12 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="xlsx-loader.js"></script>
   <script>
-    fetch('mad-map-data.json')
-      .then(r => r.json())
+    // El sello formativo viene de la hoja 17_Sello del xlsx (variante con
+    // "ELEGIDO" en la columna Foco). Reusamos el loader compartido.
+    window.MadMapDataLoader.loadFromXlsx('./mad-map-data-v2.xlsx')
       .then(d => {
         if (d.sello) {
           document.getElementById('sello-foco').textContent = d.sello.foco || '';
@@ -50,7 +53,8 @@
         }
       })
       .catch(err => {
-        document.getElementById('sello-texto').textContent = 'No se pudo cargar el sello formativo. Verifica que mad-map-data.json esté disponible.';
+        document.getElementById('sello-texto').textContent =
+          'No se pudo cargar el sello formativo. Verifica que mad-map-data-v2.xlsx esté en la raíz del sitio.';
         console.error(err);
       });
   </script>

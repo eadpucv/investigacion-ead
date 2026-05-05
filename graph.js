@@ -1,7 +1,8 @@
 // graph.js — visualización compartida por las 3 superficies de Investigación e[ad].
 //
-// MVP: usa D3 force-directed (Modelo I) como placeholder.
-// Iteración 1b: reemplazar por proyección de embedding semántico (Modelo IV).
+// Layout: D3 force-directed. Las posiciones se recalculan al vuelo desde las
+// aristas leídas en mad-map-data-v2.xlsx (la fuente única de verdad). No hay
+// embedding ni posiciones bakeadas; el layout es organico por construcción.
 //
 // Uso desde un HTML:
 //   const graph = new MadMapGraph({
@@ -12,7 +13,7 @@
 //     defaultEnvolventes: ['area'],
 //     allowedFilters: ['linea','area','modo'],   // qué filtros mostrar
 //   });
-//   graph.load('mad-map-data.json');
+//   graph.loadFromXlsx('./mad-map-data-v2.xlsx');
 
 class MadMapGraph {
   constructor(config) {
@@ -47,27 +48,10 @@ class MadMapGraph {
     this.edges = [];
   }
 
-  async load(jsonUrl) {
-    const res = await fetch(jsonUrl);
-    this.data = await res.json();
-    this._initWithData();
-  }
-
-  // Modelo "Sheets-en-vivo": fetcha desde Google Sheets vía gviz.
-  // Si falla (sheet inaccesible, red caída), cae al JSON local si se provee.
-  async loadFromSheets(sheetId, fallbackJsonUrl) {
-    try {
-      this.data = await window.MadMapDataLoader.loadFromSheets(sheetId);
-    } catch (err) {
-      console.warn('[MadMap] fallo al leer Google Sheets:', err);
-      if (fallbackJsonUrl) {
-        console.warn('[MadMap] fallback a JSON local:', fallbackJsonUrl);
-        const res = await fetch(fallbackJsonUrl);
-        this.data = await res.json();
-      } else {
-        throw err;
-      }
-    }
+  // Carga el modelo desde un archivo .xlsx local (fuente única de verdad).
+  // Requiere que SheetJS y xlsx-loader.js esten cargados antes que graph.js.
+  async loadFromXlsx(xlsxUrl) {
+    this.data = await window.MadMapDataLoader.loadFromXlsx(xlsxUrl);
     this._initWithData();
   }
 
@@ -115,25 +99,19 @@ class MadMapGraph {
     const nodes = [];
     const nodeIndex = {};
 
-    // Helper para copiar la posición bakeada (Modelo IV) sin mutar la fuente
-    const copyPos = p => p ? { '2d': [...p['2d']], '3d': [...p['3d']] } : null;
-
     // Líneas
     for (const l of d.lineas) {
-      const n = { id: l.id, kind: 'linea', data: l, label: l.nombre,
-                  bakedPos: copyPos(l.position) };
+      const n = { id: l.id, kind: 'linea', data: l, label: l.nombre };
       nodes.push(n); nodeIndex[l.id] = n;
     }
     // Sublíneas
     for (const s of d.sublineas) {
-      const n = { id: s.id, kind: 'sublinea', data: s, label: s.nombre,
-                  bakedPos: copyPos(s.position) };
+      const n = { id: s.id, kind: 'sublinea', data: s, label: s.nombre };
       nodes.push(n); nodeIndex[s.id] = n;
     }
     // Investigadores
     for (const i of d.investigadores) {
-      const n = { id: i.id, kind: 'investigador', data: i, label: i.nombre,
-                  bakedPos: copyPos(i.position) };
+      const n = { id: i.id, kind: 'investigador', data: i, label: i.nombre };
       nodes.push(n); nodeIndex[i.id] = n;
     }
 
@@ -239,7 +217,7 @@ class MadMapGraph {
   }
 
   _initSimulation() {
-    // Modelo I refinado: force-directed orgánico con calibración por tipo.
+    // Force-directed orgánico con calibración por tipo.
     //
     // Lógica de los parámetros:
     //   - Las 4 líneas tienen carga muy alta (anclas naturales que se repelen
@@ -369,7 +347,8 @@ class MadMapGraph {
         .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
         .on('end', (event, d) => {
           if (!event.active) this.simulation.alphaTarget(0);
-          // Modelo I: al soltar, las fuerzas reacomodan; no fijamos posición.
+          // Al soltar, dejamos que las fuerzas reacomoden el grafo;
+          // no fijamos posición para preservar el carácter orgánico.
           d.fx = null; d.fy = null;
         }))
       .on('click', (event, d) => { event.stopPropagation(); this._selectNode(d); })

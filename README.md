@@ -1,6 +1,6 @@
 # Investigación e[ad]
 
-Mapa dinámico del cuerpo investigativo del **Doctorado en Arquitectura y Diseño** de la e[ad] PUCV. Las cuatro líneas troncales del programa, sus sublíneas y los profesores que las cultivan, en una visualización interactiva que se alimenta directamente de una planilla colaborativa.
+Mapa dinámico del cuerpo investigativo del **Doctorado en Arquitectura y Diseño** de la e[ad] PUCV. Las cuatro líneas troncales del programa, sus sublíneas y los profesores que las cultivan, en una visualización interactiva que se alimenta directamente de un único archivo Excel commiteado en el repositorio.
 
 > *La obra como argumento.* El doctorado forma investigadores para quienes la obra es origen y prueba de la tesis. La pregunta que esa obra está llamada a argumentar: **cómo reinventar el habitar humano**.
 
@@ -8,32 +8,35 @@ Mapa dinámico del cuerpo investigativo del **Doctorado en Arquitectura y Diseñ
 |---|---|
 | **Visualización** | [eadpucv.github.io/investigacion-ead](https://eadpucv.github.io/investigacion-ead/) |
 | **Documento institucional** | [lineas-investigacion.md](./lineas-investigacion.md) |
-| **Planilla colaborativa** | [Google Sheet](https://docs.google.com/spreadsheets/d/1Vbua3waIfGyszVnu3vr6qv2KvwVqK1zIHnZIrIEaFzQ/edit) |
+| **Fuente de datos** | [`mad-map-data-v2.xlsx`](./mad-map-data-v2.xlsx) en la raíz del repo |
 
 ## Cómo funciona
 
-Los datos —líneas, sublíneas, investigadores, temas, áreas, modos, salidas, laboratorios y sus relaciones m:n— viven en una planilla compartida de Google Sheets. La visualización los carga **en vivo** mediante la API `gviz`. No hay paso intermedio de regeneración: la planilla es la fuente de verdad y cualquier edición se refleja en la visualización con sólo refrescar el navegador.
+Toda la información del mapa vive en un único archivo `mad-map-data-v2.xlsx` versionado en este repositorio. La visualización lo carga **directamente en el navegador** usando SheetJS, sin pasos intermedios: no hay JSON precomputado, no hay scripts Python que ejecutar, no hay servicios externos.
 
+```mermaid
+flowchart LR
+    A[mad-map-data-v2.xlsx<br/>fuente unica de verdad] --> B[xlsx-loader.js<br/>SheetJS en el navegador]
+    B --> C[graph.js<br/>D3 force-directed]
+    C --> D[superficies HTML]
+    A -.commit.-> E[git]
 ```
-Google Sheet  ──gviz──►  data-loader.js  ──►  graph.js  ──►  superficies HTML
-   (editable)                (parser CSV +              (D3 force-directed)
-                              cómputo de aristas)
-```
 
-Para actualizar la visualización:
+Para actualizar la visualización el flujo completo es: editar el `.xlsx` en Excel/Numbers/LibreOffice, guardar, hacer commit y push, refrescar el navegador. La página descarga el archivo, lo parsea, deriva las relaciones y dibuja el grafo.
 
-1. Editar cualquier pestaña en el [Google Sheet](https://docs.google.com/spreadsheets/d/1Vbua3waIfGyszVnu3vr6qv2KvwVqK1zIHnZIrIEaFzQ/edit).
-2. Refrescar la página de la visualización (la caché de `gviz` puede demorar hasta unos minutos).
+## Trade-offs de esta arquitectura[^1]
+
+[^1]: Decisión deliberada: simplicidad y portabilidad sobre edición concurrente.
+
+El precio de tener un archivo Excel commiteado como base de datos es que dos personas no pueden editarlo a la vez sin generar conflicto de merge en git. A cambio se obtiene un repositorio totalmente autocontenido: cualquiera con `git clone` tiene la versión completa de los datos y puede levantar el sitio localmente con un servidor HTTP estático. Cero servicios externos, cero credenciales, cero dependencias de red en tiempo de visualización.
+
+La segunda consecuencia es que el layout cambia entre cargas. El motor force-directed parte de posiciones aleatorias y converge a un equilibrio que no es único; al recargar la página los nodos quedan reacomodados de forma similar pero no idéntica. Esto se eligió a propósito frente a la alternativa de un embedding estructural por PCA, que añadía complejidad inorgánica sin producir lecturas significativamente mejores.
 
 ## Las tres superficies
 
-Las tres páginas comparten el mismo motor (`graph.js`) pero exponen controles, aristas y nodos distintos según su audiencia:
+Las tres páginas comparten el mismo motor (`graph.js`) pero exponen controles, aristas y nodos distintos según su audiencia. *Cartografía* es la vista pública para postulantes: muestra las cuatro líneas y sus sublíneas como territorio temático, sin perfiles individuales. *Narrativa* está pensada para evaluadores y CNA: activa la capa de profesores y dos vistas predefinidas, *cobertura por línea* y *perfiles por área*. *Exploración* es la herramienta interna del equipo del doctorado, con todos los controles disponibles, los siete tipos de aristas como toggles y filtros completos por línea, área, modo, salida, laboratorio e investigador.
 
-- [**Cartografía**](https://hspencer.github.io/mad-map/cartografia.html) · *postulantes* — las 4 líneas y sus sublíneas como territorio temático, sin perfiles individuales.
-- [**Narrativa**](https://hspencer.github.io/mad-map/narrativa.html) · *evaluadores · CNA* — activa la capa de profesores y dos vistas predefinidas: *cobertura por línea* y *perfiles por área*.
-- [**Exploración**](https://hspencer.github.io/mad-map/exploracion.html) · *equipo del doctorado* — todos los controles: los siete tipos de aristas como toggles, filtros completos por línea/área/modo/salida/laboratorio/investigador, y búsqueda.
-
-Cada superficie tiene una columna lateral de controles y una zona principal con el grafo. Click en cualquier nodo abre el panel de detalle al lado derecho. Hover muestra tooltip con el nombre. Drag reposiciona temporalmente; soltarlo deja que las fuerzas reacomoden.
+Cada superficie tiene una columna lateral de controles y una zona principal con el grafo. Click en cualquier nodo abre el panel de detalle al lado derecho. Hover muestra tooltip con el nombre. Drag reposiciona temporalmente; al soltar las fuerzas reacomodan.
 
 ## Documento institucional
 
@@ -42,142 +45,106 @@ Cada superficie tiene una columna lateral de controles y una zona principal con 
 Para regenerarlo después de una edición significativa de la planilla:
 
 ```bash
-python3 build_data.py     # snapshot Google Sheet → JSON local
-python3 build_doc.py      # JSON → lineas-investigacion.md
+python3 tools/build_doc.py
 ```
 
-(Sólo es necesario regenerar cuando cambia el cuerpo académico, las sublíneas o las descripciones de las líneas; no para cada edición menor del Sheet.)
-
----
+(Sólo es necesario regenerar cuando cambia el cuerpo académico, las sublíneas o las descripciones de las líneas; no para cada edición menor del archivo.)
 
 ## Guía para editores de la planilla
 
-Todo lo que ves en las visualizaciones viene directamente de la [planilla colaborativa de Google Sheets](https://docs.google.com/spreadsheets/d/1Vbua3waIfGyszVnu3vr6qv2KvwVqK1zIHnZIrIEaFzQ/edit). Esta sección explica cómo se construye el layout de cada vista, qué define la cercanía entre nodos y cómo cada pestaña de la planilla incide en lo que se ve.
+Todo lo que ves en las visualizaciones viene directamente de [`mad-map-data-v2.xlsx`](./mad-map-data-v2.xlsx). Esta sección explica cómo se construye el layout de cada vista, qué define la cercanía entre nodos y cómo cada hoja del archivo incide en lo que se ve.
 
-### Las tres superficies
+### Las hojas de relación referencian por nombre, no por ID
 
-| | |
-|---|---|
-| ![Portada](docs/screenshots/index.png) | **Portada** — tres tarjetas de entrada. El sello formativo aparece como encabezado. |
-| ![Cartografía](docs/screenshots/cartografia.png) | **Cartografía** (postulantes) — sólo líneas y sublíneas. Aristas por defecto: pertenencia a línea + proximidad temática. Envolventes de área activadas. |
-| ![Narrativa con perfiles](docs/screenshots/narrativa-perfiles.png) | **Narrativa** (evaluadores · CNA) — vista "Perfiles por área": investigadores como cuadrados grises conectados a las sublíneas que cultivan. |
-| ![Exploración](docs/screenshots/exploracion.png) | **Exploración** (equipo) — todos los filtros disponibles. Vista por defecto: sólo aristas jerárquicas, 4 polos bien definidos. |
+En las hojas de relación (`02_Sublineas`, `08_Temas`, `10_Lab_Linea`, `11_Lab_Salida`, `12_Investigador_Lab`, `13_Investigador_Modo`, `14_Linea_Modo`, `18_Proximidad_Tematica`) las columnas referenciales guardan el **nombre** de la entidad, no su código. Las celdas tienen **listas desplegables dinámicas** que muestran los nombres de las entidades existentes. Al editar una sublínea no escribes `LIN-01`, sino que eliges "Personas, interacción y sistemas inclusivos" del menú; al asignar un investigador a un laboratorio eliges "Herbert Spencer González" en vez de `INV-HSG`.
 
----
+Las hojas primarias (`01_Lineas`, `03_Areas`, `04_Modos`, `05_Salidas`, `06_Laboratorios`, `07_Investigadores`) **conservan** una columna `id` interna (clave estable que el motor del grafo usa internamente). Esa columna existe pero el editor humano no la necesita para armar referencias: solo la verá si pone atención. El loader de la visualización resuelve los nombres a IDs internos al cargar.
+
+Si dos entidades tuvieran el mismo nombre (no debería suceder), el loader emite un warning en la consola del navegador y usa la primera ocurrencia. Si una celda referencial guarda un nombre que ya no existe en la hoja entidad, el loader lo reporta y omite la fila para no propagar referencias rotas a la visualización.
+
+### IDs internos de investigadores
+
+La columna `id` de `07_Investigadores` usa iniciales del nombre completo: `INV-HSG` para Herbert Spencer González, `INV-MWU` para Michèle Wilkomirsky Uribe. Es la única hoja primaria donde el ID no es totalmente opaco. Los editores no necesitan tocar esta columna para armar referencias en otras hojas (eso ya se hace por nombre con dropdowns), pero si en algún momento aparece, el código identifica a la persona sin ambigüedad.
+
+Al agregar un nuevo investigador, asígnale un ID con iniciales siguiendo la misma convención. Si dudas sobre cómo construir el ID o quieres regenerar uno antiguo, ejecuta:
+
+```bash
+python3 tools/rename_investigador_ids.py --dry-run    # muestra el mapping
+python3 tools/rename_investigador_ids.py              # aplica el mapping
+```
+
+El script solo migra IDs con formato antiguo `INV-NN`; respeta los IDs ya en formato de iniciales. En caso de colisión (dos personas con mismas iniciales), agrega sufijo numérico (`INV-XYZ2`, `INV-XYZ3`).
+
+Si en algún momento el `.xlsx` se reabre y los dropdowns se pierden (algunas conversiones a otros formatos los borran), se pueden volver a aplicar sin tocar los datos:
+
+```bash
+python3 tools/apply_dropdowns.py
+```
+
+Este script reconfigura los rangos con nombre dinámicos (`LineaNombres`, `SublineaNombres`, `AreaNombres`, `ModoNombres`, `SalidaNombres`, `LabNombres`, `InvestigadorNombres`) y reaplica la validación de datos a las columnas referenciales. Es idempotente: se puede correr cuantas veces sea necesario.
 
 ### Cómo se construye el layout espacial
 
-El layout es un **grafo force-directed** (biblioteca D3, v7). No hay coordenadas fijas: cada nodo tiene una masa y cada arista actúa como un resorte. El motor de física corre hasta que el sistema se estabiliza.
+El layout es un **grafo force-directed** (biblioteca D3 v7). No hay coordenadas fijas: cada nodo tiene una masa y cada arista actúa como un resorte. El motor de física corre hasta que el sistema se estabiliza.
 
-#### Los tres tipos de nodo y su masa
+Hay tres tipos de nodo. Las **líneas troncales** se dibujan como círculos rojos grandes y reciben repulsión muy alta (−1 000); con sólo cuatro líneas y esa carga, ocupan naturalmente las cuatro esquinas del espacio. Las **sublíneas** son círculos negros medianos con repulsión media (−180); orbitan alrededor de su línea-madre y crecen en tamaño con el número de investigadores que las cultivan. Los **investigadores** son cuadrados grises ligeros (−60); cuando la capa de perfiles está activa, se interponen entre las sublíneas que cultivan.
 
-| Tipo | Forma visual | Repulsión (carga) | Rol en el layout |
-|---|---|---|---|
-| **Línea troncal** | Círculo rojo grande | −1 000 | Ancla de polo. Con sólo 4 líneas y repulsión alta, se separan y ocupan las cuatro esquinas del espacio. |
-| **Sublínea** | Círculo negro mediano | −180 | Orbita alrededor de su línea-madre. El tamaño crece con el número de investigadores que la cultivan. |
-| **Investigador/a** | Cuadrado gris | −60 | Ligero, se interpone entre las sublíneas que cultiva cuando la capa de perfiles está activa. |
+Cada tipo de arista es un resorte con distancia natural y rigidez propias. Activar un tipo de arista equivale a añadir una fuerza de atracción entre los nodos que cumplen esa relación: esos nodos se acercan en pantalla.
 
-La repulsión de las líneas es tan alta respecto a las sublíneas que, incluso sin activar aristas, las 4 líneas se dispersan formando 4 polos. Las sublíneas quedan orbitando a distancia moderada; los investigadores flotan cerca de sus sublíneas.
-
-#### Las 7 aristas como fuerzas de atracción
-
-Cada tipo de arista es un resorte con distancia natural y rigidez propias. **Activar un tipo de arista = añadir una fuerza de atracción** entre los nodos que cumplen esa relación. El resultado es que esos nodos se acercan en pantalla.
-
-| Letra | Nombre | Qué la genera (pestaña del Sheet) | Distancia natural | Rigidez | Lectura visual |
+| Letra | Nombre | Qué la genera | Distancia | Rigidez | Lectura |
 |---|---|---|---|---|---|
-| **a** | Jerárquica | `02_Sublineas` → columna `linea_id` | 45 px | 0.85 (alta) | Mantiene cada sublínea pegada a su línea-madre. Define los 4 clusters base. |
-| **b** | Coautoría | `08_Temas` + `09_Sublinea_Tema` | 70 px | 0.35 | Une investigador con sublínea. Al activar perfiles, los investigadores se enclavan entre sus sublíneas. |
-| **c** | Coinvestigación | Derivada de (b): dos sublíneas con investigador compartido | 130 px | 0.15 | Atrae sublíneas que comparten investigador, potencialmente entre líneas distintas. Revela cuerpos académicos transversales. |
-| **d** | Sostén de lab | `10_Lab_Linea` | 130 px | 0.35 | Une laboratorio con línea. Revela qué infraestructura institucional sostiene qué territorio temático. |
-| **e** | Afinidad por lab | Derivada de (d): sublíneas cuyas líneas-madre comparten lab | 200 px | 0.04 (baja) | Señal suave de afinidad institucional entre sublíneas. Influencia mínima en el layout. |
-| **f** | Coincidencia de modo | `14_Linea_Modo` (sólo nivel `predominante`) | 220 px | 0.02 (muy baja) | Atracción casi imperceptible entre sublíneas de líneas con el mismo modo predominante de investigar. Útil como capa de fondo. |
-| **g** | Proximidad semántica | `18_Proximidad_Tematica` | 90 px | 0.45 | La arista más expresiva después de la jerárquica. Acerca sublíneas con afinidad temática declarada, cruzando fronteras de línea. |
+| a | Jerárquica | `02_Sublineas` → `línea` | 45 px | 0.85 | Pega cada sublínea a su línea-madre. Define los 4 clusters base. |
+| b | Coautoría | `08_Temas` (sublínea ↔ investigador ↔ tema) | 70 px | 0.35 | Une investigador con sublínea. Los perfiles se enclavan entre sus sublíneas. |
+| c | Coinvestigación | Derivada de (b) | 130 px | 0.15 | Atrae sublíneas que comparten investigador. Revela cuerpos transversales. |
+| d | Sostén de lab | `10_Lab_Linea` | 130 px | 0.35 | Une laboratorio con línea. |
+| e | Afinidad por lab | Derivada de (d) | 200 px | 0.04 | Señal suave entre sublíneas con lab compartido. |
+| f | Coincidencia de modo | `14_Linea_Modo` (`predominante`) | 220 px | 0.02 | Atracción casi imperceptible entre sublíneas con mismo modo predominante. |
+| g | Proximidad semántica | `18_Proximidad_Tematica` | 90 px | 0.45 | La más expresiva después de la jerárquica. |
 
-> **Clave de lectura:** dos sublíneas cercanas en pantalla comparten muchas aristas activas. La distancia no es semántica en sentido estricto —es gravitacional: más resortes = mayor atracción.
+Dos sublíneas cercanas en pantalla comparten muchas aristas activas. La distancia no es semántica en sentido estricto: es gravitacional, más resortes implican mayor atracción.
 
----
+### Lo que cada hoja afecta en el layout
 
-### Lo que cada pestaña del Sheet afecta en el layout
-
-| Pestaña | Qué controla | Efecto inmediato al refrescar |
+| Hoja | Qué controla | Efecto al refrescar |
 |---|---|---|
 | `01_Lineas` | Nombres y descripciones de las 4 líneas | Etiquetas y panel de detalle de los 4 nodos rojos |
-| `02_Sublineas` | Qué sublíneas existen y a qué línea pertenecen | Aristas jerárquicas **(a)** y los 4 clusters |
+| `02_Sublineas` | Sublíneas con su línea y área (referenciadas por nombre) | Aristas jerárquicas (a) y los 4 clusters |
 | `03_Areas` | Las 3 áreas del programa (ECH, EAA, FCT) | Qué sublíneas caben bajo cada envolvente de área |
-| `04_Modos` | Modos de investigar | Envolventes de modo; aristas **(f)** si se activan |
-| `05_Salidas` | Salidas (industria / academia / estado) | Envolventes de salida; disponibles como filtro en Exploración |
-| `06_Laboratorios` | Laboratorios del programa | Aristas **(d)** y **(e)** |
+| `04_Modos` | Modos de investigar | Envolventes de modo; aristas (f) si se activan |
+| `05_Salidas` | Salidas (industria / academia / estado) | Envolventes de salida; filtro en Exploración |
+| `06_Laboratorios` | Laboratorios del programa | Aristas (d) y (e) |
 | `07_Investigadores` | Cuerpo académico | Nodos cuadrados; tamaño de sublíneas que cultivan |
-| `08_Temas` | Temas de investigación por investigador | Base de las aristas **(b)** y **(c)** |
-| `09_Sublinea_Tema` | Qué tema se asocia a qué sublínea | Genera aristas **(b)** coautoría; modifica el tamaño de los nodos sublínea |
-| `10_Lab_Linea` | Qué laboratorio sostiene qué línea | Aristas **(d)** sostén; base de aristas **(e)** afinidad por lab |
-| `11_Lab_Salida` | Qué laboratorio produce qué tipo de salida | Filtros de salida en Exploración |
-| `12_Investigador_Lab` | Qué investigador trabaja en qué lab | Filtros de lab en Exploración |
-| `13_Investigador_Modo` | Modo de investigar de cada investigador | Filtros de modo en Exploración |
-| `14_Linea_Modo` | Modos predominantes/presentes por línea | Aristas **(f)** coincidencia de modo (sólo nivel `predominante`) |
-| `17_Sello` | Variante del sello formativo (marcar `ELEGIDO`) | Texto de carga animado en las superficies y encabezado de la portada (requiere regenerar snapshot, ver abajo) |
-| `18_Proximidad_Tematica` | Pares de sublíneas con afinidad temática | Aristas **(g)** proximidad semántica — las más expresivas después de la jerarquía |
+| `08_Temas` | Temas atribuidos: cada fila vincula sublínea + investigador + texto del tema | Base de las aristas (b) coautoría y (c) coinvestigación |
+| `10_Lab_Linea` | Lab que sostiene cada línea | Aristas (d); base de (e) |
+| `11_Lab_Salida` | Salidas que produce cada lab | Filtros de salida en Exploración |
+| `12_Investigador_Lab` | Vínculo investigador con lab | Filtros de lab en Exploración |
+| `13_Investigador_Modo` | Modo de cada investigador | Filtros de modo en Exploración |
+| `14_Linea_Modo` | Modos por línea | Aristas (f) sólo nivel `predominante` |
+| `17_Sello` | Variante del sello formativo (marcar `ELEGIDO`) | Texto de carga y encabezado de la portada |
+| `18_Proximidad_Tematica` | Pares de sublíneas con afinidad temática | Aristas (g), las más expresivas después de la jerarquía |
 
-> Para la pestaña `18_Proximidad_Tematica`: las filas con columna `estado = DESCARTADO` se ignoran. Las demás deben estar en pares simétricos (A↔B y B↔A con el mismo valor de `afinidad`).
+Para la hoja `18_Proximidad_Tematica`: las filas con columna `estado = DESCARTADO` se ignoran. Las demás deben estar en pares simétricos (A↔B y B↔A con el mismo valor de `afinidad`).
 
----
-
-### ¿Hay que ejecutar scripts? ¿Cuándo y en qué orden?
-
-**En la mayoría de los casos: no.** Edita la planilla, refresca el navegador, y los cambios se reflejan en las tres superficies. La única demora es la caché de `gviz`, que puede tardar hasta unos minutos.
-
-Los scripts son necesarios sólo en dos situaciones:
-
-#### 1. Actualizar el snapshot local (fallback offline + sello de la portada)
-
-La portada (`index.html`) carga el sello desde el archivo local `mad-map-data.json`, no desde Sheets en vivo. Si cambias la variante elegida en `17_Sello` y quieres que la portada refleje el cambio, regenera el snapshot:
+## Correr el sitio localmente
 
 ```bash
-python3 build_data.py
+python3 -m http.server 8765
+# abrir http://localhost:8765/
 ```
 
-Este script también actualiza el fallback que usan las tres superficies cuando Google Sheets no es accesible.
+No requiere instalar nada: SheetJS y D3 se cargan desde CDN/local, y el archivo `.xlsx` está en el repo.
 
-#### 2. Regenerar el documento institucional
+## Roadmap y contrato del sistema
 
-Si cambian las descripciones de líneas, el cuerpo académico o las sublíneas, regenera el documento formal:
-
-```bash
-# Paso 1: actualizar snapshot local desde la planilla
-python3 build_data.py
-
-# Paso 2: generar el documento desde el snapshot
-python3 build_doc.py
-```
-
-El resultado es [`lineas-investigacion.md`](./lineas-investigacion.md), pensado para audiencia institucional (CNA, comité doctoral).
-
-> **Orden:** siempre `build_data.py` antes de `build_doc.py`. El documento se genera desde el JSON local, no directamente desde Sheets.
-
-#### Resumen de scripts
-
-| Script | Para qué | Necesita red |
-|---|---|---|
-| `python3 build_data.py` | Regenera `mad-map-data.json` desde la planilla | Sí (lee Google Sheets) |
-| `python3 build_doc.py` | Regenera `lineas-investigacion.md` desde el JSON local | No |
-| `python3 build_xlsx.py` | Inicializa/actualiza la estructura del `.xlsx` legacy | No |
-| `python3 -m http.server 8765` | Corre el sitio localmente en `localhost:8765` | No |
-
----
-
-## Especificación
-
-La especificación formal del comportamiento del sistema (entidades, superficies, reglas, invariantes) está en [`mad-map.allium`](./mad-map.allium), en formato Allium v3.
+El estado del sistema, los próximos pasos accionables y las invariantes que se garantizan están en [`roadmap.md`](./roadmap.md). Reemplaza al spec formal anterior (`mad-map.allium`) y se mantiene en Markdown para edición cotidiana.
 
 ## Versiones
 
 | Branch | Modelo de datos | Estado |
 |---|---|---|
-| `main` | Google Sheets en vivo (`gviz`) | **Activa** |
-| `v2` | Pipeline Python local con snapshot `.xlsx` | Snapshot del mapa pre-Sheets |
-| `v1` | Mapa MAD legacy (Magíster) | Versión histórica con CSV publicado |
-
-Cualquiera puede consultarse con `git checkout v1` o `git checkout v2`.
+| `xlsx` | Excel commiteado, parseo en navegador | **Activa** |
+| `v2` | Iteración previa con pipeline Python local | Histórica |
+| `v1` | Mapa MAD legacy del Magíster | Histórica |
 
 ## Estructura del proyecto
 
@@ -188,30 +155,20 @@ Cualquiera puede consultarse con `git checkout v1` o `git checkout v2`.
 ├── narrativa.html              ← superficie evaluadores · CNA
 ├── exploracion.html            ← superficie equipo del doctorado
 ├── graph.js                    ← motor de visualización (D3 force-directed)
-├── data-loader.js              ← carga desde Google Sheets vía gviz
+├── xlsx-loader.js              ← carga el .xlsx directo con SheetJS
 ├── style.css                   ← estilos compartidos
 ├── d3.v7.min.js                ← biblioteca D3
+├── mad-map-data-v2.xlsx        ← fuente única de verdad (datos del mapa)
 ├── lineas-investigacion.md     ← documento institucional formal
-├── mad-map.allium              ← spec de comportamiento (Allium v3)
-├── mad-map-data.json           ← snapshot local (fallback offline)
-├── mad-map-data-v2.xlsx        ← snapshot local en formato xlsx
-├── build_data.py               ← (opcional) regenera JSON local desde xlsx
-├── build_doc.py                ← (opcional) regenera doc institucional
-├── build_xlsx.py               ← (opcional) inicializa estructura del .xlsx
-└── legacy.html                 ← visualización anterior del Magíster
+├── roadmap.md                  ← roadmap accionable
+├── mad-map.allium              ← especificación formal (Allium v3)
+└── tools/
+    ├── xlsx_loader.py              ← equivalente Python del xlsx-loader.js
+    ├── build_doc.py                ← regenera lineas-investigacion.md desde el .xlsx
+    ├── seed_xlsx.py                ← (sólo siembra inicial) reconstruye el .xlsx desde código
+    ├── apply_dropdowns.py          ← reaplica selectores desplegables sin tocar los datos
+    ├── rename_investigador_ids.py  ← migra IDs INV-NN a iniciales del nombre
+    └── migrate_to_names.py         ← migra hojas de relación de IDs a nombres legibles
 ```
 
-## Modo offline
-
-Si la red falla o el Sheet no es accesible, la visualización cae automáticamente al snapshot local `mad-map-data.json`. Para refrescar el snapshot:
-
-```bash
-python3 build_data.py
-```
-
-Para correr el sitio localmente:
-
-```bash
-python3 -m http.server 8765
-# abrir http://localhost:8765/
-```
+`tools/seed_xlsx.py` solo se usa si hay que reconstruir la planilla desde cero. Una vez sembrada, el `.xlsx` se edita a mano y ese script no debe volver a correrse: sobrescribe los cambios manuales.
