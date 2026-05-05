@@ -11,6 +11,9 @@ package-lock.json
 ~$*.xlsx
 ~$*.xls
 
+# Backups intermedios producidos por tools/clean_xlsx.py
+*.xlsx.tmp
+
 # Python
 __pycache__/
 *.pyc

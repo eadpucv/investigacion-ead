@@ -29,6 +29,7 @@
 
       <h3>Aristas</h3>
       <label><input type="checkbox" data-toggle-edge="jerarquica" checked> Pertenencia a línea</label>
+      <label><input type="checkbox" data-toggle-edge="proximidad_semantica" checked> Proximidad temática</label>
       <label><input type="checkbox" data-toggle-edge="coautoria"> Coautoría (perfil → sublínea)</label>
       <label><input type="checkbox" data-toggle-edge="coinvestigacion" checked> Coinvestigación</label>
       <label><input type="checkbox" data-toggle-edge="sosten_lab"> Sostén por laboratorio</label>
@@ -75,8 +76,9 @@
 
     const graph = new MadMapGraph({
       surface: 'narrativa',
-      allowedEdges: ['jerarquica', 'coautoria', 'coinvestigacion', 'sosten_lab'],
-      defaultEdges: ['jerarquica', 'coinvestigacion'],
+      allowedEdges: ['jerarquica', 'proximidad_semantica', 'coautoria',
+                     'coinvestigacion', 'sosten_lab'],
+      defaultEdges: ['jerarquica', 'proximidad_semantica', 'coinvestigacion'],
       allowPerfiles: true,
       defaultShowPerfiles: false,
       defaultEnvolventes: ['area'],

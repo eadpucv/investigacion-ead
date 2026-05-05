@@ -220,13 +220,21 @@ class MadMapGraph {
     // Force-directed orgánico con calibración por tipo.
     //
     // Lógica de los parámetros:
-    //   - Las 4 líneas tienen carga muy alta (anclas naturales que se repelen
-    //     y forman 4 polos en el canvas).
+    //   - Las 4 líneas tienen carga moderada (no son anclas equidistantes:
+    //     su posición emerge de las relaciones reales — sublíneas compartidas,
+    //     proximidad cruzada entre sus sublíneas, labs en común). Líneas con
+    //     muchas afinidades cruzadas se acercarán; líneas con pocas se
+    //     alejarán naturalmente.
     //   - Las sublíneas tienen carga media; los investigadores carga ligera
     //     (orbitan alrededor de las sublíneas que cultivan sin dominar).
     //   - La arista jerárquica es muy fuerte y corta (sublínea pegada a su
-    //     línea-madre); proximidad temática y coautoría son medias;
-    //     afinidad-lab y coincidencia-modo casi nulas (ruido informativo).
+    //     línea-madre); coautoría es media; afinidad-lab y coincidencia-modo
+    //     casi nulas (ruido informativo).
+    //   - La arista de proximidad semántica usa el valor de afinidad
+    //     declarado en la planilla como modulación de la fuerza: pares con
+    //     afinidad 0.9 se atraen casi tanto como una jerárquica; pares con
+    //     0.5 se atraen apenas. Así la curaduría de la matriz se traduce
+    //     en distancia visual real.
     //   - Collide previene overlap; alpha decay lento da tiempo a estabilizar.
 
     const { width, height } = this._currentSize();
@@ -251,18 +259,33 @@ class MadMapGraph {
       coincidencia_modo: 220,
     })[e.kind] ?? 100;
 
-    const linkStrength = (e) => ({
-      jerarquica: 0.85,
-      coautoria: 0.35,
-      proximidad_semantica: 0.45,
-      sosten_lab: 0.35,
-      coinvestigacion: 0.15,
-      afinidad_lab: 0.04,
-      coincidencia_modo: 0.02,
-    })[e.kind] ?? 0.1;
+    // linkStrength por tipo de arista. Caso especial proximidad_semantica:
+    // se calcula a partir del peso (afinidad declarada 0..1) para que la
+    // curaduría de la matriz se exprese visualmente.
+    //   weight 0.0 -> strength 0.20 (apenas une)
+    //   weight 0.5 -> strength 0.45 (igual al valor plano anterior, baseline)
+    //   weight 1.0 -> strength 0.70 (casi tan fuerte como una jerárquica)
+    const linkStrength = (e) => {
+      if (e.kind === 'proximidad_semantica') {
+        const w = typeof e.weight === 'number' ? e.weight : 0.5;
+        return 0.20 + 0.50 * Math.max(0, Math.min(1, w));
+      }
+      return ({
+        jerarquica: 0.85,
+        coautoria: 0.35,
+        sosten_lab: 0.35,
+        coinvestigacion: 0.15,
+        afinidad_lab: 0.04,
+        coincidencia_modo: 0.02,
+      })[e.kind] ?? 0.1;
+    };
 
+    // Carga por tipo de nodo. Las líneas bajaron de -1000 a -350 para que
+    // su posición no sea un polo equidistante artificial, sino el resultado
+    // de las atracciones que reciben de sus sublíneas. Aún tienen suficiente
+    // repulsión para no solaparse y para mantener separación legible.
     const chargeStrength = (n) => ({
-      linea: -1000,
+      linea: -350,
       sublinea: -180,
       investigador: -60,
     })[n.kind] ?? -200;

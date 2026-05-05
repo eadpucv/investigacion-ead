@@ -31,6 +31,12 @@ Limpieza de columnas espejo redundantes en `18_Proximidad_Tematica` (`sublinea_a
 
 Documento institucional `lineas-investigacion.md` regenerable con `python3 tools/build_doc.py`, que ahora lee el xlsx directo a través de `tools/xlsx_loader.py`.
 
+### Listo (continuación)
+
+Modulación de fuerza por afinidad declarada en `18_Proximidad_Tematica`. La fuerza del resorte para `proximidad_semantica` se calcula desde el campo `weight` (afinidad 0..1): pares con afinidad 0.9 se atraen casi tanto como una jerárquica; con 0.5 quedan en baseline; con 0.0 apenas se unen. La curaduría de la matriz se traduce visualmente en distancia.
+
+Repulsión de las líneas troncales reducida de −1000 a −350. Las 4 líneas dejan de ser polos artificiales equidistantes; su posición ahora emerge de las atracciones reales (sublíneas compartidas, proximidad cruzada, investigadores y labs en común). Ejemplo: *Habitar* y *Teoría e historia* quedarán visualmente más cerca que *Personas* y *Habitar*, porque el primer par tiene 9 pares de proximidad cruzada con afinidad acumulada 4.60 mientras el segundo apenas 1 par con 0.45.
+
 ### Próximos pasos prioritarios
 
 Estos son items vivos. Cada uno tiene estado, motivación, y un primer paso concreto si se decide abordar.
