@@ -1,0 +1,157 @@
+-- allium: 3
+-- datos.allium
+--
+-- Scope: Modelo de datos del mapa de investigación del programa de Doctorado en
+--        Arquitectura y Diseño (e[ad]) de la PUCV.
+-- Includes: Línea, Sublínea, Investigador, Laboratorio, Área, Modo, Salida,
+--           Tema, ProximidadTemática, y todas las relaciones entre ellos.
+-- Excludes:
+--   - Lógica de visualización (ver visualizacion.allium)
+--   - Carga de archivos XLSX (ver carga.allium)
+--   - Herramientas de construcción y migración (Python, uso interno)
+
+------------------------------------------------------------
+-- Enumerations
+------------------------------------------------------------
+
+enum EstadoProximidad { activa | descartada }
+
+enum TipoSalida { industria | academia | estado }
+
+enum TipoRelacion {
+    jerarquica         -- (a) Sublínea → Línea
+  | coautoria          -- (b) Investigador ↔ Sublínea (vía Tema)
+  | coinvestigacion    -- (c) Sublínea ↔ Sublínea (comparten investigador)
+  | sosten_lab         -- (d) Laboratorio → Línea
+  | afinidad_lab       -- (e) Sublínea ↔ Sublínea (comparten laboratorio)
+  | coincidencia_modo  -- (f) Sublínea ↔ Sublínea (comparten modo)
+  | proximidad_semantica -- (g) Sublínea ↔ Sublínea (afinidad curada con peso)
+}
+
+------------------------------------------------------------
+-- Entities and Variants
+------------------------------------------------------------
+
+entity Linea {
+    -- Las 4 líneas troncales del programa
+    nombre: String
+    descripcion: String?
+
+    sublineas: Sublinea with linea = this
+    laboratorios: Laboratorio with lineas = this
+    modos: Modo with lineas = this
+
+    investigadores: Investigador with linea_principal = this
+}
+
+entity Sublinea {
+    nombre: String
+    descripcion: String?
+    linea: Linea
+
+    temas: Tema with sublinea = this
+    investigadores: Investigador with sublineas = this
+
+    -- Derivadas: sublíneas que comparten investigadores (coinvestigación)
+    coinvestigadoras: Sublinea with sublineas = this
+
+    invariant NombreUnico {
+        -- Cada sublínea tiene un nombre único en el sistema
+        not exists Sublinea{ nombre: this.nombre }
+    }
+}
+
+entity Investigador {
+    nombre: String
+    linea_principal: Linea
+    sublineas: Sublinea with investigadores = this
+    laboratorios: Laboratorio with investigadores = this
+    modos: Modo with investigadores = this
+    casiopea_url: String?
+
+    temas: Tema with investigador = this
+}
+
+entity Tema {
+    -- Un tema es el vínculo entre un investigador y una sublínea
+    investigador: Investigador
+    sublinea: Sublinea
+    descripcion: String?
+}
+
+entity Laboratorio {
+    nombre: String
+    lineas: Linea with laboratorios = this
+    salidas: Salida with laboratorios = this
+    investigadores: Investigador with laboratorios = this
+}
+
+entity Area {
+    -- Las 3 áreas institucionales (ECH, EAA, FCT)
+    nombre: String
+    codigo: String    -- ECH | EAA | FCT
+
+    sublineas: Sublinea with area = this
+}
+
+entity Modo {
+    nombre: String
+    lineas: Linea with modos = this
+    investigadores: Investigador with modos = this
+}
+
+entity Salida {
+    tipo: TipoSalida
+    laboratorios: Laboratorio with salidas = this
+}
+
+entity ProximidadTematica {
+    -- Afinidad semántica curada entre dos sublíneas
+    origen: Sublinea
+    destino: Sublinea
+    peso: Decimal          -- 0.0 a 1.0; modula la fuerza del resorte
+    estado: EstadoProximidad
+
+    -- Derivada: peso traducido a fuerza de atracción visual
+    -- 0.0 → 0.20, 0.5 → 0.45, 1.0 → 0.70
+    fuerza: peso * 0.5 + 0.20
+
+    invariant PesoEnRango {
+        peso >= 0.0 and peso <= 1.0
+    }
+
+    invariant NoAutorreferencia {
+        origen != destino
+    }
+}
+
+------------------------------------------------------------
+-- Invariants
+------------------------------------------------------------
+
+invariant NombreInvestigadorUnico {
+    for a in Investigadors:
+        for b in Investigadors:
+            a != b implies a.nombre != b.nombre
+}
+
+invariant NombreSublineaUnico {
+    for a in Sublineas:
+        for b in Sublineas:
+            a != b implies a.nombre != b.nombre
+}
+
+invariant TemaNoDuplicado {
+    -- No puede haber dos temas que unan el mismo investigador con la misma sublínea
+    for a in Temas:
+        for b in Temas:
+            a != b implies not (a.investigador = b.investigador and a.sublinea = b.sublinea)
+}
+
+------------------------------------------------------------
+-- Open Questions
+------------------------------------------------------------
+
+open question "¿Debe Área ser una relación en Sublínea (1:1) o en Investigador (m:n)? Actualmente cada sublínea pertenece a un área."
+open question "¿El SelloFormativo (ELEGIDO) necesita modelarse como entidad o es suficiente un campo derivado en Investigador?"
+open question "¿Se requiere histórico de cambios en las relaciones Investigador↔Sublínea?"

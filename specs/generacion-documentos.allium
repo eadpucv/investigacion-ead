@@ -1,0 +1,106 @@
+-- allium: 3
+-- generacion-documentos.allium
+--
+-- Scope: Generación del documento institucional de líneas de investigación
+--        a partir del XLSX como fuente de verdad.
+-- Includes: El flujo de generación de lineas-investigacion.md, los datos que
+--           aporta el XLSX y el contexto editorial que complementa ese documento.
+-- Excludes:
+--   - Herramientas de migración de datos (seed_xlsx.py, migrate_to_names.py)
+--   - Validaciones internas del XLSX (clean_xlsx.py, apply_dropdowns.py)
+--   - Visualización en el navegador
+
+use "./datos.allium" as datos
+
+------------------------------------------------------------
+-- Value Types
+------------------------------------------------------------
+
+value ContextoEditorialLinea {
+    -- Texto narrativo que acompaña a cada línea en el documento institucional.
+    -- Este contenido NO está en el XLSX; es responsabilidad editorial del equipo.
+    condicion: String           -- "de quién habita", "dónde habitar", etc.
+    pregunta_nuclear: String    -- pregunta de investigación central de la línea
+    alcance: String             -- párrafo de alcance/descripción extendida
+    justificacion: String       -- por qué la línea es sustentable
+}
+
+------------------------------------------------------------
+-- Entities
+------------------------------------------------------------
+
+entity DocumentoInstitucional {
+    -- El documento lineas-investigacion.md generado
+    estado: desactualizado | generado
+
+    transitions estado {
+        desactualizado -> generado
+        generado -> desactualizado
+        terminal: generado
+    }
+
+    generado_en: Timestamp when estado = generado
+
+    invariant SiempreHayUnDocumento {
+        -- Solo existe una instancia del documento institucional
+        not exists DocumentoInstitucional{ estado: desactualizado }
+            or not exists DocumentoInstitucional{ estado: generado }
+    }
+}
+
+------------------------------------------------------------
+-- Rules
+------------------------------------------------------------
+
+rule GenerarDocumento {
+    when: GenerarDocumentoInstitucional()
+
+    ensures: DocumentoInstitucional.created(
+        estado: generado,
+        generado_en: now
+    )
+
+    @guidance
+        -- El documento se genera combinando:
+        --   1. Datos del XLSX (líneas, sublíneas, investigadores, laboratorios)
+        --      cargados vía xlsx_loader.py (mismo modelo que el loader JS)
+        --   2. Contexto editorial (ContextoEditorialLinea) definido en el script
+        --      build_doc.py como constantes Python (no en el XLSX)
+        --
+        -- El documento incluye:
+        --   - Para cada una de las 4 líneas: condición, pregunta nuclear, alcance,
+        --     cuerpo docente (recuento y nombres), sublíneas (recuento y listado),
+        --     laboratorios, justificación de sustentabilidad
+        --   - Tabla de cobertura: 22 investigadores × 4 líneas
+        --
+        -- Invocación: python3 tools/build_doc.py
+}
+
+rule MarcarDocumentoDesactualizado {
+    when: XlsxModificado()
+
+    for doc in DocumentoInstitucionals where estado = generado:
+        ensures: doc.estado = desactualizado
+
+    @guidance
+        -- Cuando el XLSX cambia (commit), el documento debe regenerarse.
+        -- Este trigger es conceptual; en la práctica el equipo corre build_doc.py
+        -- manualmente antes de entregar documentación a organismos externos.
+}
+
+------------------------------------------------------------
+-- Invariants
+------------------------------------------------------------
+
+invariant DocumentoRefleja Datos {
+    -- El documento generado debe derivar de los mismos datos que la visualización.
+    -- Ambos usan xlsx_loader (JS y Python respectivamente) sobre el mismo XLSX.
+    -- No existe un paso de transformación intermedio que pueda divergir.
+}
+
+------------------------------------------------------------
+-- Open Questions
+------------------------------------------------------------
+
+open question "¿El contexto editorial (preguntas nucleares, alcance) debería moverse al XLSX para tener una única fuente de verdad?"
+open question "¿Debería haber un check en CI que detecte cuando el XLSX cambió pero el .md no fue regenerado?"

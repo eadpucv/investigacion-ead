@@ -1,0 +1,143 @@
+-- allium: 3
+-- carga.allium
+--
+-- Scope: Carga y transformación del archivo XLSX que actúa como fuente única de
+--        verdad (Single Source of Truth) del mapa de investigación.
+-- Includes: Resolución de nombres a IDs, derivación de relaciones, manejo de
+--           referencias rotas, carga asíncrona en el navegador.
+-- Excludes:
+--   - Estructura interna del XLSX (hojas, columnas) — detalle de implementación
+--   - Herramientas Python de construcción/migración (uso interno, no dominio)
+--   - Lógica de visualización
+
+use "./datos.allium" as datos
+
+------------------------------------------------------------
+-- Value Types
+------------------------------------------------------------
+
+value ResultadoCarga {
+    lineas: Set<datos/Linea>
+    sublineas: Set<datos/Sublinea>
+    investigadores: Set<datos/Investigador>
+    laboratorios: Set<datos/Laboratorio>
+    areas: Set<datos/Area>
+    modos: Set<datos/Modo>
+    salidas: Set<datos/Salida>
+    temas: Set<datos/Tema>
+    proximidades: Set<datos/ProximidadTematica>
+    advertencias: Set<Advertencia>
+}
+
+value Advertencia {
+    tipo: referencia_rota | nombre_duplicado | hoja_ausente
+    contexto: String     -- descripción legible del problema
+}
+
+------------------------------------------------------------
+-- Entities
+------------------------------------------------------------
+
+entity SesionDeCarga {
+    -- Representa un intento de cargar el XLSX en el navegador
+    url: String
+    estado: pendiente | completada | fallida
+
+    transitions estado {
+        pendiente -> completada
+        pendiente -> fallida
+        terminal: completada, fallida
+    }
+
+    resultado: ResultadoCarga when estado = completada
+    error: String when estado = fallida
+}
+
+------------------------------------------------------------
+-- Rules
+------------------------------------------------------------
+
+-- Flujo principal: el navegador solicita el archivo XLSX
+rule IniciarCarga {
+    when: IniciarCargaXlsx(url)
+
+    ensures: SesionDeCarga.created(
+        url: url,
+        estado: pendiente
+    )
+}
+
+rule CargaCompletada {
+    when: sesion: SesionDeCarga.estado transitions_to completada
+
+    @guidance
+        -- La resolución de nombres a IDs se realiza aquí.
+        -- Cualquier referencia que no resuelva genera una Advertencia de tipo
+        -- referencia_rota y se omite del resultado (no falla la carga completa).
+        -- Las advertencias se emiten a consola; no se muestran en la UI por ahora.
+}
+
+rule CargaFallida {
+    when: sesion: SesionDeCarga.estado transitions_to fallida
+
+    @guidance
+        -- La carga falla si el archivo no se puede descargar o no es un XLSX válido.
+        -- Errores de referencia rotas dentro de hojas no fallan la carga completa;
+        -- producen Advertencias en el resultado.
+}
+
+-- Derivación de relaciones calculadas
+
+rule DerivarCoinvestigacion {
+    when: CargaCompletada(sesion)
+
+    @guidance
+        -- Para cada par de sublíneas (A, B): si comparten al menos un investigador
+        -- en común (vía Tema), se crea un arco de coinvestigacion entre ellas.
+        -- Este arco no existe explícitamente en el XLSX; se deriva en carga.
+}
+
+rule DerivarAfinidadLab {
+    when: CargaCompletada(sesion)
+
+    @guidance
+        -- Para cada par de sublíneas (A, B): si sus líneas madre comparten un
+        -- laboratorio, se crea un arco de afinidad_lab entre ellas.
+        -- Este arco no existe explícitamente en el XLSX; se deriva en carga.
+}
+
+rule DerivarCoincidenciaModo {
+    when: CargaCompletada(sesion)
+
+    @guidance
+        -- Para cada par de sublíneas (A, B): si sus líneas madre comparten un
+        -- modo predominante, se crea un arco de coincidencia_modo entre ellas.
+        -- Solo se usa el modo predominante (primero en la lista por línea).
+}
+
+------------------------------------------------------------
+-- Config
+------------------------------------------------------------
+
+config {
+    umbral_peso_proximidad_minimo: Decimal = 0.0
+    umbral_peso_proximidad_maximo: Decimal = 1.0
+    -- Sublíneas con estado=descartada en ProximidadTemática se excluyen de la carga
+}
+
+------------------------------------------------------------
+-- Invariants
+------------------------------------------------------------
+
+invariant CargaCompleta {
+    -- Una carga completada siempre tiene un resultado (nunca null)
+    for s in SesionDeCargas:
+        s.estado = completada implies s.resultado != null
+}
+
+------------------------------------------------------------
+-- Open Questions
+------------------------------------------------------------
+
+open question "¿Las advertencias de referencias rotas deberían mostrarse en la UI (no solo en consola)?"
+open question "¿Debería la carga cachear el resultado entre recargas de página para acelerar la inicialización?"

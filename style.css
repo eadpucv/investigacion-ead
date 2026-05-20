@@ -63,6 +63,13 @@ a:hover { text-decoration: underline; }
   display: block;
   margin-bottom: 0.6rem;
 }
+.portada .pregunta-troncal {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: var(--accent);
+}
+
 .tarjetas {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

@@ -1,0 +1,351 @@
+-- allium: 3
+-- visualizacion.allium
+--
+-- Scope: Motor de visualización de red de investigación y sus tres superficies.
+-- Includes: Estado del grafo, filtros, búsqueda, envolventes (convex hulls),
+--           panel de detalle, y las tres superficies de audiencia.
+-- Excludes:
+--   - Implementación del layout de fuerza (D3 internals)
+--   - Estilos visuales CSS
+--   - Modelo de datos (ver datos.allium)
+--   - Carga XLSX (ver carga.allium)
+
+use "./datos.allium" as datos
+use "./carga.allium" as carga
+
+------------------------------------------------------------
+-- Enumerations
+------------------------------------------------------------
+
+enum TipoEnvolvente { area | modo | salida }
+
+enum Superficie { cartografia | narrativa | exploracion }
+
+enum TipoPreset { cobertura_por_linea | perfiles_por_area }
+
+------------------------------------------------------------
+-- Value Types
+------------------------------------------------------------
+
+value FiltrosActivos {
+    lineas: Set<datos/Linea>
+    areas: Set<datos/Area>
+    modos: Set<datos/Modo>
+    salidas: Set<datos/Salida>
+    laboratorios: Set<datos/Laboratorio>
+    investigadores: Set<datos/Investigador>
+}
+
+value ConfigSuperficie {
+    superficie: Superficie
+    aristas_permitidas: Set<datos/TipoRelacion>
+    aristas_por_defecto: Set<datos/TipoRelacion>
+    permite_perfiles: Boolean
+    perfiles_por_defecto: Boolean
+    envolventes_por_defecto: Set<TipoEnvolvente>
+    filtros_permitidos: Set<String>   -- dimensiones habilitadas para esta superficie
+}
+
+------------------------------------------------------------
+-- Entities
+------------------------------------------------------------
+
+entity GrafoActivo {
+    -- Estado completo de la visualización en un momento dado
+    superficie: Superficie
+    aristas_activas: Set<datos/TipoRelacion>
+    envolventes_activas: Set<TipoEnvolvente>
+    mostrar_perfiles: Boolean
+    filtros: FiltrosActivos
+    busqueda: String?
+    nodo_seleccionado: NodoGrafo?
+
+    -- Derivadas de visibilidad
+    nodos_visibles: NodoGrafo with grafo = this
+    nodos_atenuados: NodoGrafo with grafo = this
+
+    invariant AristasPermitidas {
+        -- Las aristas activas siempre son subconjunto de las permitidas por la superficie
+        aristas_activas.all(a => a in config_superficie(superficie).aristas_permitidas)
+    }
+}
+
+entity NodoGrafo {
+    grafo: GrafoActivo
+    entidad_id: String        -- ID de la entidad subyacente (Linea, Sublinea, Investigador)
+    tipo: linea | sublinea | investigador
+    visible: Boolean
+    atenuado: Boolean         -- activo solo cuando hay búsqueda activa
+
+    invariant InvestigadorRequierePerfiles {
+        -- Los nodos de investigador solo son visibles si el grafo muestra perfiles
+        tipo = investigador implies (visible implies grafo.mostrar_perfiles)
+    }
+}
+
+------------------------------------------------------------
+-- Config
+------------------------------------------------------------
+
+config {
+    min_nodos_envolvente: Integer = 3   -- mínimo de nodos para renderizar un convex hull
+}
+
+------------------------------------------------------------
+-- Rules
+------------------------------------------------------------
+
+-- Inicialización
+
+rule InicializarGrafo {
+    when: GrafoInicializado(superficie, datos)
+
+    let cfg = config_superficie(superficie)
+
+    ensures: GrafoActivo.created(
+        superficie: superficie,
+        aristas_activas: cfg.aristas_por_defecto,
+        envolventes_activas: cfg.envolventes_por_defecto,
+        mostrar_perfiles: cfg.perfiles_por_defecto,
+        filtros: FiltrosActivos{},
+        busqueda: null,
+        nodo_seleccionado: null
+    )
+}
+
+-- Control de aristas
+
+rule ActivarArista {
+    when: ToggleArista(grafo, tipo_relacion)
+    requires: tipo_relacion in config_superficie(grafo.superficie).aristas_permitidas
+    requires: tipo_relacion not in grafo.aristas_activas
+
+    ensures: grafo.aristas_activas.add(tipo_relacion)
+}
+
+rule DesactivarArista {
+    when: ToggleArista(grafo, tipo_relacion)
+    requires: tipo_relacion in grafo.aristas_activas
+
+    ensures: grafo.aristas_activas.remove(tipo_relacion)
+}
+
+-- Control de envolventes (convex hulls)
+
+rule ActivarEnvolvente {
+    when: ToggleEnvolvente(grafo, tipo)
+    requires: tipo not in grafo.envolventes_activas
+
+    ensures: grafo.envolventes_activas.add(tipo)
+}
+
+rule DesactivarEnvolvente {
+    when: ToggleEnvolvente(grafo, tipo)
+    requires: tipo in grafo.envolventes_activas
+
+    ensures: grafo.envolventes_activas.remove(tipo)
+}
+
+-- Control de capa de perfiles (investigadores)
+
+rule MostrarPerfiles {
+    when: TogglePerfiles(grafo)
+    requires: config_superficie(grafo.superficie).permite_perfiles
+    requires: not grafo.mostrar_perfiles
+
+    ensures: grafo.mostrar_perfiles = true
+    ensures: grafo.aristas_activas.add(coautoria)
+
+    @guidance
+        -- Al activar perfiles se activa automáticamente la arista de coautoría
+        -- para que los investigadores tengan ancla visual en el grafo.
+}
+
+rule OcultarPerfiles {
+    when: TogglePerfiles(grafo)
+    requires: grafo.mostrar_perfiles
+
+    ensures: grafo.mostrar_perfiles = false
+}
+
+-- Filtrado multidimensional
+
+rule AplicarFiltro {
+    when: SetFiltro(grafo, dimension, valores)
+
+    ensures: grafo.filtros = filtros_actualizados(grafo.filtros, dimension, valores)
+
+    @guidance
+        -- Lógica de filtrado: OR dentro de una dimensión, AND entre dimensiones.
+        -- Un nodo es visible si, para cada dimensión con valores activos, al menos
+        -- uno de sus valores pertenece a la dimensión.
+        -- filtros_actualizados es una función de dominio (black box).
+}
+
+rule LimpiarFiltros {
+    when: LimpiarFiltros(grafo)
+
+    ensures: grafo.filtros = FiltrosActivos{}
+    ensures: grafo.busqueda = null
+}
+
+-- Búsqueda
+
+rule ActualizarBusqueda {
+    when: SetBusqueda(grafo, query)
+
+    ensures: grafo.busqueda = query
+
+    @guidance
+        -- La búsqueda no oculta nodos; los atenúa.
+        -- Un nodo coincide si su nombre o descripción contiene la cadena (sin distinción
+        -- de mayúsculas). Los nodos que no coinciden se marcan como atenuados.
+        -- Si el query es vacío, se limpian todas las atenuaciones.
+}
+
+-- Selección de nodo
+
+rule SeleccionarNodo {
+    when: ClickNodo(grafo, nodo)
+    requires: nodo.visible
+
+    ensures: grafo.nodo_seleccionado = nodo
+}
+
+rule DeseleccionarNodo {
+    when: ClickFondo(grafo)
+
+    ensures: grafo.nodo_seleccionado = null
+}
+
+-- Presets (solo en superficie Narrativa)
+
+rule AplicarPreset {
+    when: AplicarPreset(grafo, preset)
+    requires: grafo.superficie = narrativa
+
+    ensures: grafo.aristas_activas = aristas_preset(preset)
+    ensures: grafo.envolventes_activas = envolventes_preset(preset)
+    ensures: grafo.mostrar_perfiles = perfiles_preset(preset)
+
+    @guidance
+        -- Un preset reemplaza completamente el estado actual de aristas, envolventes
+        -- y perfiles. No acumula sobre el estado previo.
+        -- aristas_preset, envolventes_preset, perfiles_preset son funciones de dominio.
+        -- Preset 'cobertura_por_linea': oculta investigadores, muestra estructura.
+        -- Preset 'perfiles_por_area': muestra investigadores agrupados por área.
+}
+
+------------------------------------------------------------
+-- Actor Declarations
+------------------------------------------------------------
+
+actor Postulante {
+    identified_by: User where role = postulante
+}
+
+actor Evaluador {
+    identified_by: User where role = evaluador
+}
+
+actor EquipoInterno {
+    identified_by: User where role = equipo_interno
+}
+
+------------------------------------------------------------
+-- Surfaces
+------------------------------------------------------------
+
+-- CARTOGRAFÍA: superficie pública para postulantes
+surface Cartografia {
+    facing visitante: Postulante
+
+    exposes:
+        grafo.aristas_activas
+        grafo.envolventes_activas
+        grafo.busqueda
+        grafo.nodo_seleccionado
+
+    provides:
+        ToggleArista(grafo, tipo_relacion)
+            when tipo_relacion in { jerarquica, proximidad_semantica }
+        ToggleEnvolvente(grafo, tipo)
+        SetBusqueda(grafo, query)
+        ClickNodo(grafo, nodo) when nodo.tipo in { linea, sublinea }
+        ClickFondo(grafo)
+
+    @guarantee NuncaMuestraInvestigadores
+        -- Los investigadores no se muestran ni son seleccionables en esta superficie.
+        -- La capa de perfiles está permanentemente desactivada.
+
+    @guarantee FiltracionNoDisponible
+        -- No hay controles de filtro expuestos. El visitante no puede restringir
+        -- el grafo por ninguna dimensión.
+}
+
+-- NARRATIVA: superficie para evaluadores y organismos de acreditación
+surface Narrativa {
+    facing evaluador: Evaluador
+
+    exposes:
+        grafo.aristas_activas
+        grafo.envolventes_activas
+        grafo.mostrar_perfiles
+        grafo.filtros
+        grafo.busqueda
+        grafo.nodo_seleccionado
+
+    provides:
+        ToggleArista(grafo, tipo_relacion)
+            when tipo_relacion in { jerarquica, proximidad_semantica, coautoria, coinvestigacion, sosten_lab }
+        ToggleEnvolvente(grafo, tipo)
+        TogglePerfiles(grafo)
+        SetFiltro(grafo, dimension, valores)
+            when dimension in { linea, area, modo }
+        SetBusqueda(grafo, query)
+        AplicarPreset(grafo, preset)
+        ClickNodo(grafo, nodo)
+        ClickFondo(grafo)
+
+    @guarantee PresetsSoloEnNarrativa
+        -- Los presets de configuración (cobertura_por_linea, perfiles_por_area)
+        -- solo están disponibles en esta superficie.
+}
+
+-- EXPLORACIÓN: superficie interna para el equipo de curaduría
+surface Exploracion {
+    facing editor: EquipoInterno
+
+    exposes:
+        grafo.aristas_activas
+        grafo.envolventes_activas
+        grafo.mostrar_perfiles
+        grafo.filtros
+        grafo.busqueda
+        grafo.nodo_seleccionado
+
+    provides:
+        ToggleArista(grafo, tipo_relacion)    -- todas las 7 aristas disponibles
+        ToggleEnvolvente(grafo, tipo)
+        TogglePerfiles(grafo)
+        SetFiltro(grafo, dimension, valores)  -- las 6 dimensiones disponibles
+        LimpiarFiltros(grafo)
+        SetBusqueda(grafo, query)
+        ClickNodo(grafo, nodo)
+        ClickFondo(grafo)
+
+    @guarantee AccesoCompleto
+        -- El equipo interno tiene acceso a todos los tipos de arista, todas las
+        -- dimensiones de filtro y todos los controles de la visualización.
+        -- No hay presets; el estado es completamente granular.
+}
+
+------------------------------------------------------------
+-- Open Questions
+------------------------------------------------------------
+
+open question "¿Debería la búsqueda incluir el texto de temas (Tema.descripcion) además del nombre del nodo?"
+open question "¿Debería el estado del grafo (aristas activas, filtros) serializarse en la URL para compartir vistas?"
+open question "¿Se necesita un preset 'gaps del programa' que resalte sublíneas sin investigadores asignados?"
+open question "¿La atenuación (search) debe aplicarse también a las aristas, o solo a los nodos?"
+open question "¿Debería existir exportación SVG/PNG desde alguna superficie?"
