@@ -201,6 +201,9 @@ function buildDataFromTabs(tabs) {
     linea: resolveName(r['línea'], lineaN2I, `02_Sublineas[${r.id}].línea`),
     area: resolveName(r['área'], areaN2I, `02_Sublineas[${r.id}].área`),
     notas: r.notas || '',
+    // Polo de la sublínea dentro de su línea (teórico | proyectual).
+    // Columna opcional agregada en la migración a dos líneas (sept. 2026).
+    polo: (r.polo || '').toString().trim().toLowerCase(),
   })).filter(s => s.id);
 
   const subN2I = buildNameToIdMap(sublineas, '02_Sublineas');

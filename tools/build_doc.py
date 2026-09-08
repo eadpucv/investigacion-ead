@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Genera lineas-investigacion.md leyendo mad-map-data-v2.xlsx directamente.
 
-Documento institucional formal para presentar y fundamentar las cuatro
+Documento institucional formal para presentar y fundamentar las dos
 líneas de investigación del Doctorado en Arquitectura y Diseño. No expone
 codificaciones internas (LIN-XX, SUB-XX, INV-XX) ni el mapeo específico
 profesor↔sublínea: documenta y justifica la consolidación y sostenibilidad
@@ -34,92 +34,70 @@ OUT = ROOT / "lineas-investigacion.md"
 # planilla porque es texto editorial cuidado.
 LINE_CONTEXT = {
     "LIN-01": {
-        "condicion": "de quién habita",
+        "condicion": "investigación acerca del proyecto: cómo se forma, cómo se ejerce y desde dónde se piensa",
+        "origen": "Educación, Espacio y Aprendizaje",
         "pregunta_nuclear": (
-            "Cómo el diseño puede sostener la vida independiente, la "
-            "comunicación, la participación y la autonomía de personas con "
-            "condiciones diversas, incluida la pregunta cívica por la democracia "
-            "y la comunicación ciudadana."
+            "Qué tradición, qué oficio y qué teoría sostienen el proyecto de "
+            "arquitectura y de diseño, cómo se actualizan sus categorías, y con "
+            "qué espacios, métodos y medios se enseña y se aprende a proyectar."
         ),
         "alcance_prosa": (
-            "Esta línea concentra la investigación que se ocupa del sujeto que "
-            "habita y de los sistemas que lo sostienen. Acoge la accesibilidad "
-            "—cognitiva, sensorial, comunicacional— como condición de igualdad; "
-            "la inclusión como horizonte ético y operativo del diseño; la "
-            "comunicación aumentativa y alternativa como vía de participación; "
-            "el diseño de interacción, los servicios y la experiencia de usuario "
-            "como mediación cotidiana entre personas y sistemas; la vida "
-            "independiente como capacidad cuya autonomía el diseño puede "
-            "ampliar; y, en escala cívica, el diseño para la democracia y las "
-            "plataformas de comunicación ciudadana."
+            "Esta línea prolonga el área Educación, Espacio y Aprendizaje del "
+            "Magíster y se hace cargo de la investigación acerca del proyecto de "
+            "arquitectura y de diseño: cómo se forma quien proyecta, cómo se "
+            "ejerce el oficio y desde qué teoría e historia se piensa. Su polo "
+            "teórico e histórico acoge el acervo de Ciudad Abierta y de la "
+            "Escuela, la historia y la crítica de la arquitectura moderna y "
+            "latinoamericana y la historia del diseño, la teoría del proyecto y "
+            "sus categorías propias (la hospitalidad, el vacío, la palabra "
+            "poética y la poética del oficio), la relación entre arte, "
+            "arquitectura y diseño, la reforma escolar y la enseñanza de la "
+            "arquitectura, y la techné como reflexión epistemológica del diseño. "
+            "Su polo proyectual acoge los espacios del aprendizaje (la "
+            "arquitectura como medio didáctico, los espacios educativos y "
+            "escolares, la estimulación temprana y los contextos vulnerables), "
+            "los métodos y medios del diseño (comunicación visual, fabricación "
+            "digital, máquinas expresivas, saberes técnicos, transferencia "
+            "tecnológica) y el diseño de interacción, la accesibilidad y los "
+            "sistemas inteligentes como mediación entre las personas y sus "
+            "entornos. Es la línea que forma a quienes enseñarán arquitectura y "
+            "diseño, desde el habitar poético que funda a la Escuela."
         ),
+        "polo_teorico": "historia, crítica, acervo y teoría del proyecto en arquitectura y diseño",
+        "polo_proyectual": "espacios, métodos y medios del aprendizaje del proyecto en arquitectura y diseño",
     },
     "LIN-02": {
-        "condicion": "de dónde se habita",
+        "condicion": "investigación a través del proyecto: la ciudad, el territorio y sus ecologías",
+        "origen": "Extensión, Ciudad y Habitabilidad",
         "pregunta_nuclear": (
-            "Cómo el territorio se construye, se habita, se sostiene y se "
-            "piensa políticamente, en sus dimensiones urbana, ecológica, "
-            "patrimonial y comunitaria."
+            "Cómo la ciudad y el territorio se construyen, se habitan, se "
+            "sostienen y se piensan políticamente, y qué proyectos de "
+            "arquitectura y de diseño (urbanos, de equipamiento, de objetos y "
+            "servicios) los transforman."
         ),
         "alcance_prosa": (
-            "Esta línea articula la investigación sobre el lugar del habitar. "
-            "Cubre la ciudad y el territorio, las dinámicas de urbanización, la "
-            "ecología política y los modos de adaptación frente a la "
-            "vulnerabilidad —especialmente costera—, los riesgos y los desastres. "
-            "Incluye la habitabilidad de la vivienda y sus crisis contemporáneas "
-            "—financiarización, acceso, reuso—, el patrimonio arquitectónico y "
-            "natural junto a sus prácticas de rehabilitación, la infraestructura "
-            "urbana y la movilidad, y las prácticas colectivas, decoloniales y "
-            "afectivas que operan sobre el territorio: urbanismo afectivo, deriva, "
-            "geopoética, investigación-acción. Aborda también la evaluación social "
-            "de políticas públicas de inversión y el confort, el bienestar y la "
-            "habitabilidad personal como condiciones del habitar."
+            "Esta línea prolonga el área Extensión, Ciudad y Habitabilidad del "
+            "Magíster y se hace cargo de la investigación a través del proyecto de "
+            "arquitectura y de diseño, con la ciudad, el territorio y sus "
+            "ecologías como campo. Su polo teórico acoge la teoría urbana, la "
+            "urbanización y la ecología política, la vivienda y sus crisis "
+            "contemporáneas (financiarización, acceso, políticas habitacionales), "
+            "los comunes y las resiliencias socioecológicas, las perspectivas "
+            "decoloniales y la evaluación social de las políticas públicas de "
+            "inversión. Su polo proyectual acoge la creación de obra sobre el "
+            "territorio: la adaptación ante riesgos costeros y desastres, la "
+            "infraestructura, la movilidad y el equipamiento, el patrimonio "
+            "arquitectónico y natural y su rehabilitación, el urbanismo afectivo, "
+            "la deriva y la investigación-acción, las prácticas colectivas y "
+            "escénicas sobre el espacio público, el mobiliario y la materialidad "
+            "de la obra, el diseño social y territorial, y el confort y el "
+            "espacio habitable de las personas. Toma la región de Valparaíso y "
+            "el continente americano como laboratorio y prolonga el legado de "
+            "las travesías, donde la obra de arquitectura y de diseño es el modo "
+            "de conocer el territorio."
         ),
-    },
-    "LIN-03": {
-        "condicion": "desde dónde se piensa",
-        "pregunta_nuclear": (
-            "Qué tradición y qué pensamiento sostienen la disciplina, cómo se "
-            "actualizan, y qué categorías —del oficio, de la teoría, de la "
-            "historia— articulan el proyecto contemporáneo."
-        ),
-        "alcance_prosa": (
-            "Esta línea sostiene la investigación que actualiza la tradición "
-            "disciplinar y opera sobre los pensamientos y las categorías del "
-            "proyecto. Acoge el acervo histórico de Ciudad Abierta y de la "
-            "Escuela de Arquitectura y Diseño, y dialoga con la teoría y la "
-            "historia de la arquitectura —particularmente la moderna y "
-            "latinoamericana— y del diseño. Trabaja en torno a categorías propias "
-            "del oficio: el sentido de la hospitalidad, el vacío arquitectónico, "
-            "la palabra poética como fundamento del proyecto y la poética del "
-            "oficio. Aborda la relación entre arte y arquitectura, entre "
-            "tecnología y sociedad, y la techné como reflexión epistemológica "
-            "del proyecto."
-        ),
-    },
-    "LIN-04": {
-        "condicion": "con qué se hace y cómo se transmite",
-        "pregunta_nuclear": (
-            "Cómo la disciplina se hace, se enseña y se reproduce: con qué "
-            "métodos, qué medios técnicos, qué oficio, y a través de qué "
-            "espacios y dispositivos de enseñanza-aprendizaje."
-        ),
-        "alcance_prosa": (
-            "Esta línea reúne las investigaciones que indagan en cómo la "
-            "disciplina se hace, se transmite y se reproduce. Acoge los métodos "
-            "del diseño y los saberes técnicos análogos junto a la fabricación "
-            "digital, el modelado paramétrico y las prácticas de fablab; los "
-            "medios de la comunicación visual, el diseño editorial y la "
-            "exposición material; las máquinas expresivas, los algoritmos y el "
-            "arte tecnológico; el mobiliario y la materialidad de la obra; la "
-            "transferencia tecnológica orientada al emprendimiento local. Cubre "
-            "también la enseñanza-aprendizaje del proyecto en sus distintas "
-            "escalas: la arquitectura como medio didáctico, el diseño de "
-            "espacios educativos —incluyendo contextos vulnerables y de "
-            "estimulación temprana—, la formación en pensamiento y acción "
-            "creativa, los programas y proyectos de arquitectura escolar, y la "
-            "reforma de la enseñanza disciplinar."
-        ),
+        "polo_teorico": "teoría urbana, ecología política y vivienda",
+        "polo_proyectual": "creación de obra urbana, arquitectónica y de diseño sobre el territorio",
     },
 }
 
@@ -175,24 +153,25 @@ def main():
         "El programa forma investigadores para quienes la obra es origen y "
         "prueba de la tesis. La pregunta común que esa obra está llamada a "
         "argumentar es **cómo reinventar el habitar humano**. Cada una de las "
-        "cuatro líneas troncales del doctorado responde a una de las "
-        "condiciones que esa pregunta convoca: la de *quién habita*, la de "
-        "*dónde se habita*, la de *desde dónde se piensa* la disciplina, y la "
-        "de *con qué medios se hace y cómo se transmite* el oficio.\n"
+        "dos líneas de investigación del doctorado responde a esa pregunta desde "
+        "el habitar poético que funda a la Escuela, y en ambas caben por igual la "
+        "arquitectura y el diseño: una investiga *acerca del proyecto* (su "
+        "formación, su oficio, su teoría); la otra investiga *a través del "
+        "proyecto* (la ciudad, el territorio, sus ecologías). Cada línea lleva "
+        "dentro su contraparte: un polo teórico y un polo proyectual.\n"
     )
     out.append(
-        "La estructura preserva continuidad institucional con las áreas del "
-        "postgrado —Extensión, Ciudad y Habitabilidad; Educación, Espacio y "
-        "Aprendizaje; Forma, Cultura y Tecnología— y las articula como ejes "
-        "ortogonales: los profesores afilian a una de las áreas como marco "
-        "amplio, y las líneas concentran la pregunta de investigación. La "
-        "interpretación de cada área se actualiza para acoger sin violencia "
-        "los perfiles emergentes de las nuevas generaciones académicas.\n"
+        "Las dos líneas prolongan las áreas Educación, Espacio y Aprendizaje y "
+        "Extensión, Ciudad y Habitabilidad del Magíster en Arquitectura y "
+        "Diseño, de modo que el tránsito entre ambos niveles sea legible. El "
+        "área Forma, Cultura y Tecnología no origina línea: sus temas se "
+        "distribuyen entre los polos proyectuales de ambas. Las áreas se "
+        "conservan como marco amplio de afiliación de los profesores.\n"
     )
 
-    out.append("## Resumen de las cuatro líneas\n")
-    out.append("| Línea | Condición que aborda | Sublíneas | Profesores |")
-    out.append("|---|---|---:|---:|")
+    out.append("## Resumen de las dos líneas\n")
+    out.append("| Línea | Prolonga el área | Modo de investigar | Sublíneas | Profesores |")
+    out.append("|---|---|---|---:|---:|")
     for l in lineas:
         ctx = LINE_CONTEXT.get(l["id"], {})
         subs_de_linea = [s for s in sublineas if s["linea"] == l["id"]]
@@ -200,7 +179,7 @@ def main():
         for s in subs_de_linea:
             invs_de_linea |= sub_to_invs[s["id"]]
         out.append(
-            f"| {l['nombre']} | *{ctx.get('condicion', '')}* "
+            f"| {l['nombre']} | {ctx.get('origen', '')} | *{ctx.get('condicion', '')}* "
             f"| {len(subs_de_linea)} | {len(invs_de_linea)} |"
         )
     out.append("")
@@ -230,7 +209,9 @@ def main():
         )
 
         out.append(f"## {l['nombre']}\n")
-        out.append(f"*Condición que aborda:* {ctx.get('condicion', '')}.\n")
+        out.append(f"*Modo de investigar:* {ctx.get('condicion', '')}.\n")
+        out.append(f"*Prolonga el área del Magíster:* {ctx.get('origen', '')}.\n")
+        out.append(f"*Polo teórico:* {ctx.get('polo_teorico', '')}. *Polo proyectual:* {ctx.get('polo_proyectual', '')}.\n")
 
         out.append("### Alcance\n")
         out.append(ctx.get("alcance_prosa", l["descripcion"]))
@@ -297,8 +278,8 @@ def main():
     out.append(
         f"De los **{invs_total} profesores** del cuerpo académico, "
         f"**{invs_con_mapeo}** tienen al menos una sublínea de investigación "
-        f"explícitamente declarada. El conjunto cubre las cuatro líneas "
-        f"troncales del doctorado, con la siguiente distribución de "
+        f"explícitamente declarada. El conjunto cubre las dos líneas "
+        f"de investigación del doctorado, con la siguiente distribución de "
         f"profesores por línea (las afiliaciones pueden cruzarse: un mismo "
         f"profesor puede sostener sublíneas en más de una línea):\n"
     )

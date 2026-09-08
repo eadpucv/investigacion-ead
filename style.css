@@ -69,6 +69,14 @@ a:hover { text-decoration: underline; }
   line-height: 1.4;
   color: var(--accent);
 }
+.portada .lineas-resumen {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin-top: 0.4rem;
+}
+.portada .lineas-resumen a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); }
+.portada .lineas-resumen a:hover { color: var(--accent); border-color: var(--accent); }
 
 .tarjetas {
   display: grid;
@@ -268,6 +276,9 @@ main.canvas svg {
 }
 .node.linea circle { fill: var(--accent); }
 .node.sublinea circle { fill: #333; }
+/* Polo de la sublínea: el proyectual va relleno, el teórico va hueco */
+.node.sublinea.polo-teórico circle,
+.node.sublinea.polo-teorico circle { fill: #fff; stroke: #333; stroke-width: 2px; }
 .node.investigador rect { fill: #888; }
 .node.attenuated { opacity: 0.18; }
 .node.highlighted circle, .node.highlighted rect {

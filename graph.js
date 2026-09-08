@@ -220,7 +220,7 @@ class MadMapGraph {
     // Force-directed orgánico con calibración por tipo.
     //
     // Lógica de los parámetros:
-    //   - Las 4 líneas tienen carga moderada (no son anclas equidistantes:
+    //   - Las 2 líneas tienen carga moderada (no son anclas equidistantes:
     //     su posición emerge de las relaciones reales — sublíneas compartidas,
     //     proximidad cruzada entre sus sublíneas, labs en común). Líneas con
     //     muchas afinidades cruzadas se acercarán; líneas con pocas se
@@ -361,7 +361,9 @@ class MadMapGraph {
     nodeSel.exit().remove();
 
     const nodeEnter = nodeSel.enter().append('g')
-      .attr('class', d => `node ${d.kind}`)
+      // Las sublíneas llevan además la clase de su polo (teórico | proyectual)
+      // para distinguir visualmente la contraparte interna de cada línea.
+      .attr('class', d => `node ${d.kind}${d.kind === 'sublinea' && d.data.polo ? ' polo-' + d.data.polo : ''}`)
       .call(d3.drag()
         .on('start', (event, d) => {
           if (!event.active) this.simulation.alphaTarget(0.3).restart();
@@ -398,6 +400,7 @@ class MadMapGraph {
     this.gNodes.selectAll('g.node')
       .attr('class', d => {
         let cls = `node ${d.kind}`;
+        if (d.kind === 'sublinea' && d.data.polo) cls += ' polo-' + d.data.polo;
         if (this._isAttenuated(d)) cls += ' attenuated';
         if (this._isHighlighted(d)) cls += ' highlighted';
         if (this.state.selectedNode && this.state.selectedNode.id === d.id) cls += ' selected';
@@ -656,7 +659,7 @@ class MadMapGraph {
 
   _renderDetailPanel(n) {
     const d = n.data;
-    const kindLabel = { linea: 'Línea troncal', sublinea: 'Sublínea', investigador: 'Investigador/a' }[n.kind];
+    const kindLabel = { linea: 'Línea de investigación', sublinea: 'Sublínea', investigador: 'Investigador/a' }[n.kind];
     let html = `<button class="close" aria-label="Cerrar">×</button>
                 <div class="kind">${kindLabel}</div>
                 <h2>${d.nombre}</h2>`;
@@ -666,7 +669,8 @@ class MadMapGraph {
     if (n.kind === 'sublinea') {
       const linea = this.data.lineas.find(l => l.id === d.linea);
       const area = this.data.areas.find(a => a.id === d.area);
-      if (linea) html += `<dt>Línea madre</dt><dd>${linea.nombre}</dd>`;
+      if (linea) html += `<dt>Línea</dt><dd>${linea.nombre}</dd>`;
+      if (d.polo) html += `<dt>Polo</dt><dd>${d.polo === 'teorico' || d.polo === 'teórico' ? 'Teórico' : 'Proyectual'}</dd>`;
       if (area) html += `<dt>Área</dt><dd>${area.nombre}</dd>`;
       if (n.investigadores && n.investigadores.size) {
         const names = Array.from(n.investigadores)
@@ -675,7 +679,10 @@ class MadMapGraph {
       }
     } else if (n.kind === 'linea') {
       const subs = this.data.sublineas.filter(s => s.linea === d.id);
-      html += `<dt>Sublíneas</dt><dd><ul>${subs.map(s=>`<li>${s.nombre}</li>`).join('')}</ul></dd>`;
+      const teo = subs.filter(s => s.polo && s.polo.startsWith('te'));
+      const pro = subs.filter(s => !(s.polo && s.polo.startsWith('te')));
+      if (teo.length) html += `<dt>Polo teórico</dt><dd><ul>${teo.map(s=>`<li>${s.nombre}</li>`).join('')}</ul></dd>`;
+      html += `<dt>${teo.length ? 'Polo proyectual' : 'Sublíneas'}</dt><dd><ul>${pro.map(s=>`<li>${s.nombre}</li>`).join('')}</ul></dd>`;
       const labs = Array.from(n.labs).map(id => this.data.laboratorios.find(l => l.id === id)?.nombre).filter(Boolean);
       if (labs.length) html += `<dt>Laboratorios que la sostienen</dt><dd>${labs.join(', ')}</dd>`;
     } else if (n.kind === 'investigador') {

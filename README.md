@@ -1,6 +1,6 @@
 # Investigación e[ad]
 
-Mapa dinámico del cuerpo investigativo del **Doctorado en Arquitectura y Diseño** de la e[ad] PUCV. Las cuatro líneas troncales del programa, sus sublíneas y los profesores que las cultivan, en una visualización interactiva que se alimenta directamente de un único archivo Excel commiteado en el repositorio.
+Mapa dinámico del cuerpo investigativo del **Doctorado en Arquitectura y Diseño** de la e[ad] PUCV. Las dos líneas de investigación del programa (Formación, oficio y teoría del proyecto; Proyecto, ciudad y ecologías del territorio), cada una con un polo teórico y uno proyectual, sus sublíneas y los profesores que las cultivan, en una visualización interactiva que se alimenta directamente de un único archivo Excel commiteado en el repositorio.
 
 > *La obra como argumento.* El doctorado forma investigadores para quienes la obra es origen y prueba de la tesis. La pregunta que esa obra está llamada a argumentar: **cómo reinventar el habitar humano**.
 
@@ -34,7 +34,7 @@ La segunda consecuencia es que el layout cambia entre cargas. El motor force-dir
 
 ## Las tres superficies
 
-Las tres páginas comparten el mismo motor (`graph.js`) pero exponen controles, aristas y nodos distintos según su audiencia. *Cartografía* es la vista pública para postulantes: muestra las cuatro líneas y sus sublíneas como territorio temático, sin perfiles individuales. *Narrativa* está pensada para evaluadores y CNA: activa la capa de profesores y dos vistas predefinidas, *cobertura por línea* y *perfiles por área*. *Exploración* es la herramienta interna del equipo del doctorado, con todos los controles disponibles, los siete tipos de aristas como toggles y filtros completos por línea, área, modo, salida, laboratorio e investigador.
+Las tres páginas comparten el mismo motor (`graph.js`) pero exponen controles, aristas y nodos distintos según su audiencia. *Cartografía* es la vista pública para postulantes: muestra las dos líneas, sus polos y sus sublíneas como territorio temático, sin perfiles individuales. *Narrativa* está pensada para evaluadores y CNA: activa la capa de profesores y dos vistas predefinidas, *cobertura por línea* y *perfiles por área*. *Exploración* es la herramienta interna del equipo del doctorado, con todos los controles disponibles, los siete tipos de aristas como toggles y filtros completos por línea, área, modo, salida, laboratorio e investigador.
 
 Cada superficie tiene una columna lateral de controles y una zona principal con el grafo. Click en cualquier nodo abre el panel de detalle al lado derecho. Hover muestra tooltip con el nombre. Drag reposiciona temporalmente; al soltar las fuerzas reacomodan.
 
@@ -87,7 +87,7 @@ Este script reconfigura los rangos con nombre dinámicos (`LineaNombres`, `Subli
 
 El layout es un **grafo force-directed** (biblioteca D3 v7). No hay coordenadas fijas: cada nodo tiene una masa y cada arista actúa como un resorte. El motor de física corre hasta que el sistema se estabiliza.
 
-Hay tres tipos de nodo. Las **líneas troncales** se dibujan como círculos rojos grandes y reciben repulsión muy alta (−1 000); con sólo cuatro líneas y esa carga, ocupan naturalmente las cuatro esquinas del espacio. Las **sublíneas** son círculos negros medianos con repulsión media (−180); orbitan alrededor de su línea-madre y crecen en tamaño con el número de investigadores que las cultivan. Los **investigadores** son cuadrados grises ligeros (−60); cuando la capa de perfiles está activa, se interponen entre las sublíneas que cultivan.
+Hay tres tipos de nodo. Las **líneas troncales** se dibujan como círculos rojos grandes y reciben repulsión muy alta (−1 000); con sólo dos líneas y esa carga, se ubican en extremos opuestos del espacio y sus polos teórico y proyectual se leen como hemisferios. Las **sublíneas** son círculos negros medianos con repulsión media (−180); orbitan alrededor de su línea-madre y crecen en tamaño con el número de investigadores que las cultivan. Los **investigadores** son cuadrados grises ligeros (−60); cuando la capa de perfiles está activa, se interponen entre las sublíneas que cultivan.
 
 Cada tipo de arista es un resorte con distancia natural y rigidez propias. Activar un tipo de arista equivale a añadir una fuerza de atracción entre los nodos que cumplen esa relación: esos nodos se acercan en pantalla.
 
@@ -107,7 +107,7 @@ Dos sublíneas cercanas en pantalla comparten muchas aristas activas. La distanc
 
 | Hoja | Qué controla | Efecto al refrescar |
 |---|---|---|
-| `01_Lineas` | Nombres y descripciones de las 4 líneas | Etiquetas y panel de detalle de los 4 nodos rojos |
+| `01_Lineas` | Nombres y descripciones de las 2 líneas | Etiquetas y panel de detalle de los 2 nodos rojos |
 | `02_Sublineas` | Sublíneas con su línea y área (referenciadas por nombre) | Aristas jerárquicas (a) y los 4 clusters |
 | `03_Areas` | Las 3 áreas del programa (ECH, EAA, FCT) | Qué sublíneas caben bajo cada envolvente de área |
 | `04_Modos` | Modos de investigar | Envolventes de modo; aristas (f) si se activan |

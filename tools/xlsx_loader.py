@@ -253,6 +253,7 @@ def load(xlsx_path):
             "area": _resolve(r.get("área"), area_n2i,
                              f"02_Sublineas[{r['id']}].área"),
             "notas": r.get("notas") or "",
+            "polo": (r.get("polo") or "").strip().lower(),
         })
     sub_n2i = _build_name_to_id(sublineas, "02_Sublineas")
 
