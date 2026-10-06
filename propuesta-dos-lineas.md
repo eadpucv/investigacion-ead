@@ -141,8 +141,8 @@ flowchart LR
         FCT[Forma, Cultura y Tecnología]
     end
     subgraph DOC[Líneas del Doctorado]
-        LA[Línea A: Proyecto, ciudad y ecologías del territorio]
-        LB[Línea B: Formación, oficio y teoría del proyecto]
+        LA[Línea A: Prácticas proyectuales]
+        LB[Línea B: Fundamentos disciplinares]
     end
     ECH --> LA
     EAA --> LB
@@ -153,11 +153,11 @@ flowchart LR
 
 ### Nombres adoptados
 
-Tras la discusión del 8 de septiembre de 2026 se adoptaron dos nombres que expresan el modo de investigar de cada línea y no sólo su campo. La línea A, Proyecto, ciudad y ecologías del territorio, es investigación *a través* del proyecto de arquitectura y de diseño: la ciudad, el territorio y sus ecologías son el campo, y la obra es el modo de conocerlo. La línea B, Formación, oficio y teoría del proyecto, es investigación *acerca* del proyecto: cómo se forma quien proyecta, cómo se ejerce el oficio y desde qué teoría e historia se piensa. Ambas prolongan su área del Magíster de manera reconocible (Extensión, Ciudad y Habitabilidad en la A; Educación, Espacio y Aprendizaje en la B, con "formación" en lugar de "educación" para no rozar a la Facultad de Educación), en ambas caben por igual la arquitectura y el diseño, y el habitar poético que funda a la Escuela permea las dos por la vía del sello y de las definiciones, no de los nombres[^nombres].
+Los nombres de las líneas son **Prácticas proyectuales** (línea A) y **Fundamentos disciplinares** (línea B). Son simétricos: cada uno es un plural que engloba y un adjetivo que sitúa. Los fundamentos engloban lo que sostiene a la disciplina (su historia, su teoría, su filosofía y sus métodos); las prácticas engloban todo lo que se proyecta y se pone a prueba. La línea A es investigación *a través* del proyecto de arquitectura y de diseño: obra nueva (un edificio, un espacio público, un objeto, un servicio, un sistema) que se inscribe en un contexto y lo modifica, con la ciudad, el territorio y sus ecologías como campo principal. El nombre recoge además el marco de investigación basada en la práctica que adopta el programa. La línea B es investigación *acerca* del proyecto: los fundamentos de la disciplina y el modo en que se dominan y se transmiten en la formación. La dimensión formativa, que la línea B hereda del área Educación, Espacio y Aprendizaje y que distingue al programa como el que forma a quienes enseñarán arquitectura y diseño, se declara en la definición y no en el título, para que éste no se recargue. En ambas caben por igual la arquitectura y el diseño, y el habitar poético que funda a la Escuela permea las dos por la vía del sello y de las definiciones, no de los nombres[^nombres].
 
-[^nombres]: Alternativas descartadas en la discusión: para la A, "Ciudad, territorio y habitabilidad" (sin el proyecto como modo) y "Creación, ciudad y ecologías del territorio"; para la B, "Espacio, aprendizaje y pensamiento del proyecto" y "Educación, espacio y teoría del proyecto" (por la colisión con la Facultad de Educación). "Espacio habitable" se prefiere a "habitabilidad" en las definiciones.
+[^nombres]: Historia de los nombres. Tras la discusión del 8 de septiembre de 2026 se adoptaron "Proyecto, ciudad y ecologías del territorio" (A) y "Formación, oficio y teoría del proyecto" (B), que luego se consideraron demasiado largos y enumerativos; en esa discusión se habían descartado "Ciudad, territorio y habitabilidad" y "Creación, ciudad y ecologías del territorio" para la A, y "Espacio, aprendizaje y pensamiento del proyecto" y "Educación, espacio y teoría del proyecto" para la B (por la colisión con la Facultad de Educación). En la reunión del 29 de septiembre se propusieron "Prácticas proyectuales" (A) y "Fundamentos disciplinares" (B); para la B se barajaron también "Fundamentación disciplinar", "Formación y fundamentos disciplinarios" y "Fundamentación disciplinar para la formación". El 6 de octubre "Prácticas proyectuales" se reemplazó por "Prácticas proyectuales", porque "intervención" connota una acción impuesta sobre algo existente y no una propuesta nueva, y porque se buscaba un plural simétrico con "fundamentos". Se descartaron entonces "Acción proyectual" e "Invención proyectual" (singulares, sin la simetría buscada), "Proyecto situado", "Proyecto y territorio" (demasiado arquitectónico) y "Proyecto y habitar" (el habitar es la pregunta de todo el programa, no de una línea). Un benchmark rápido de programas en España y Latinoamérica mostró que "proyecto" es frecuente como núcleo de líneas y programas (UC Chile: *Experimentación y Proyecto*; FAU USP: *Projeto*; UPM y UPC: *Proyectos Arquitectónicos*), mientras que "proyectual" aparece casi sólo asociado a la enseñanza. "Espacio habitable" se prefiere a "habitabilidad" en las definiciones.
 
-## Línea A: Proyecto, ciudad y ecologías del territorio
+## Línea A: Prácticas proyectuales
 
 *Se hace cargo de:* la investigación proyectual y urbana. Problemas urbanos, planificación, ecología política, vivienda, intervenciones arquitectónicas y de equipamiento, patrimonio y borde costero, prácticas colectivas sobre el territorio.
 
@@ -186,7 +186,7 @@ Los grupos reúnen a académicos del claustro con otros del cuerpo académico qu
 
 Ivelic (afinidad 2,05 con Di Felice y 2,1 con Mercado) y Garcés están a un capítulo del umbral. Cualquiera de los dos ampliaría el claustro de la línea sin cambiar su fisonomía. Ivelic reforzaría el polo proyectual (equipamiento e intervención arquitectónica, que hoy sólo cubre indirectamente Di Felice). La planificación urbana, que el enunciado de la línea menciona explícitamente, no tiene hoy a nadie elegible en el claustro: Baeriswyl, que la encarna, es profesor externo, y su aporte queda en el grupo de estudio. Es una brecha que la línea debería declarar y cubrir, sea con producción de Marín y Mercado en esa dirección o con una contratación futura.
 
-## Línea B: Formación, oficio y teoría del proyecto
+## Línea B: Fundamentos disciplinares
 
 *Se hace cargo de:* lo teórico, lo histórico y lo formativo. Historia y crítica de la arquitectura moderna, acervo de la Escuela y Ciudad Abierta, categorías del oficio (hospitalidad, vacío, poética), métodos y medios del diseño, espacios y dispositivos del aprendizaje del proyecto. Forma a quienes enseñarán arquitectura y diseño.
 
@@ -221,20 +221,20 @@ Todas las configuraciones parten de los siete académicos que cumplen hoy. Difie
 
 | Línea | Polo teórico | Polo proyectual | Proyecto externo | Fondecyt |
 |---|---|---|---:|---:|
-| Proyecto, ciudad y ecologías del territorio | Mercado, Marín | Di Felice, Salgado | 3 de 4 (75%) | 3 de 4 (75%) |
-| Formación, oficio y teoría del proyecto | Braghini, Reyes | K. Exss | 2 de 3 (67%) | 1 de 3 (33%) |
+| Prácticas proyectuales | Mercado, Marín | Di Felice, Salgado | 3 de 4 (75%) | 3 de 4 (75%) |
+| Fundamentos disciplinares | Braghini, Reyes | K. Exss | 2 de 3 (67%) | 1 de 3 (33%) |
 
 La línea A queda con su bloque afín completo y con dos por polo. La línea B cumple el mínimo con holgura y el 60% de proyectos externos, y su polo proyectual queda representado por K. Exss, con Spencer, Chicano, Jeldes y Araya en el grupo de estudio. Es la configuración que mejor responde al enunciado de las dos líneas (la B forma a quienes enseñan arquitectura y diseño, y K. Exss es la única del claustro que enseña diseño). Su punto débil es que la línea B se sostiene por función y no por afinidad temática, y que su polo proyectual tiene una sola persona del claustro. Refuerzos: U. Exss y Chicano, ambos a un capítulo.
 
 ```mermaid
 flowchart TB
-    subgraph LA[Línea A: Proyecto, ciudad y ecologías del territorio]
+    subgraph LA[Línea A: Prácticas proyectuales]
         direction LR
         AT[Polo teórico<br/>Mercado, Marín]
         AP[Polo proyectual<br/>Di Felice, Salgado]
         AT <--> AP
     end
-    subgraph LB[Línea B: Formación, oficio y teoría del proyecto]
+    subgraph LB[Línea B: Fundamentos disciplinares]
         direction LR
         BT[Polo histórico-teórico<br/>Braghini, Reyes]
         BP[Polo proyectual<br/>K. Exss<br/>grupo: Spencer, Chicano, Jeldes, Araya]
@@ -248,8 +248,8 @@ flowchart TB
 
 | Línea | Polo teórico | Polo proyectual | Proyecto externo | Fondecyt |
 |---|---|---|---:|---:|
-| Proyecto, ciudad y ecologías del territorio | Mercado, Marín | Di Felice, Salgado, K. Exss | 4 de 5 (80%) | 4 de 5 (80%) |
-| Formación, oficio y teoría del proyecto | Braghini, Reyes | (grupo de estudio) | 1 de 2 (50%) | 0 de 2 |
+| Prácticas proyectuales | Mercado, Marín | Di Felice, Salgado, K. Exss | 4 de 5 (80%) | 4 de 5 (80%) |
+| Fundamentos disciplinares | Braghini, Reyes | (grupo de estudio) | 1 de 2 (50%) | 0 de 2 |
 
 Sigue la matriz al pie de la letra: K. Exss va donde están sus afinidades (Marín por Métodos de diseño, Salgado por el Núcleo de Accesibilidad), y la línea B queda con el par histórico más denso del claustro. La línea A resulta muy robusta en producción y proyectos; el diseño de interacción y la accesibilidad se leen como intervención sobre la ciudad y la habitabilidad (confort y habitabilidad personal, equipamiento inclusivo, plataformas ciudadanas). La línea B queda en el mínimo de dos, sin Fondecyt y sin polo proyectual en el claustro, lo que contradice el enunciado de la línea como contraparte teoría y proyecto. Sólo es defendible si U. Exss completa su capítulo antes de la presentación, con lo que B pasaría a tres con 2 de 3 en proyectos externos. En el conjunto del claustro, el criterio grupal se sigue cumpliendo (5 de 7).
 
@@ -259,8 +259,8 @@ La configuración A más los "en vía" a un paso, condicionada a que completen l
 
 | Línea | Polo teórico | Polo proyectual | Proyecto externo |
 |---|---|---|---:|
-| Proyecto, ciudad y ecologías del territorio | Mercado, Marín | Di Felice, Salgado, Ivelic | 3 de 5 (60%) |
-| Formación, oficio y teoría del proyecto | Braghini, Reyes, U. Exss | K. Exss, Chicano | 3 de 5 (60%) |
+| Prácticas proyectuales | Mercado, Marín | Di Felice, Salgado, Ivelic | 3 de 5 (60%) |
+| Fundamentos disciplinares | Braghini, Reyes, U. Exss | K. Exss, Chicano | 3 de 5 (60%) |
 
 Es la configuración que mejor cubre el enunciado de ambas líneas (intervención arquitectónica y equipamiento en A; espacio educativo y epistemología del diseño en B) y la más coherente con la afinidad (U. Exss cierra el núcleo histórico; Chicano tiende el puente entre métodos y teoría; Ivelic se suma al bloque urbano). Su costo es que depende de tres publicaciones que hoy no existen, y que Ivelic y Chicano, sin proyecto externo, dejan a ambas líneas justo en el 60%. Sobre el claustro completo queda en 6 de 10 (60%), en el límite de la orientación. Las variantes más seguras son incorporar sólo a U. Exss y Chicano (claustro de nueve, 6 de 9, 67%) o sólo a U. Exss (claustro de ocho, 6 de 8, 75%).
 

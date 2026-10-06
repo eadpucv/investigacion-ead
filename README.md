@@ -1,6 +1,6 @@
 # Investigación e[ad]
 
-Mapa dinámico del cuerpo investigativo del **Doctorado en Arquitectura y Diseño** de la e[ad] PUCV. Las dos líneas de investigación del programa (Formación, oficio y teoría del proyecto; Proyecto, ciudad y ecologías del territorio), cada una con un polo teórico y uno proyectual, sus sublíneas y los profesores que las cultivan, en una visualización interactiva que se alimenta directamente de un único archivo Excel commiteado en el repositorio.
+Mapa dinámico del cuerpo investigativo del **Doctorado en Arquitectura y Diseño** de la e[ad] PUCV. Las dos líneas de investigación del programa (Fundamentos disciplinares y Prácticas proyectuales), cada una con un polo teórico y uno proyectual, sus sublíneas y los profesores que las cultivan, en una visualización interactiva que se alimenta directamente de un único archivo Excel commiteado en el repositorio.
 
 > *La obra como argumento.* El doctorado forma investigadores para quienes la obra es origen y prueba de la tesis. La pregunta que esa obra está llamada a argumentar: **cómo reinventar el habitar humano**.
 
@@ -8,6 +8,7 @@ Mapa dinámico del cuerpo investigativo del **Doctorado en Arquitectura y Diseñ
 |---|---|
 | **Visualización** | [eadpucv.github.io/investigacion-ead](https://eadpucv.github.io/investigacion-ead/) |
 | **Documento institucional** | [lineas-investigacion.md](./lineas-investigacion.md) |
+| **Comparación de las líneas** | [comparacion-lineas.md](./comparacion-lineas.md) |
 | **Fuente de datos** | [`mad-map-data-v2.xlsx`](./mad-map-data-v2.xlsx) en la raíz del repo |
 
 ## Cómo funciona
@@ -50,13 +51,21 @@ python3 tools/build_doc.py
 
 (Sólo es necesario regenerar cuando cambia el cuerpo académico, las sublíneas o las descripciones de las líneas; no para cada edición menor del archivo.)
 
+[`comparacion-lineas.md`](./comparacion-lineas.md) compara las dos líneas: definición, focos por polo, formas de investigar, tipo de contribución, claustro, sublíneas con sus profesores y proyectos, y productividad del cuerpo académico. Combina texto editorial (en el script) con datos de las hojas `02_Sublineas`, `08_Temas`, `19_Proyectos` y `20_Productividad`. Se regenera con:
+
+```bash
+python3 tools/build_comparacion.py
+```
+
+Los proyectos y la productividad provienen del levantamiento 2014-2026 del equipo y se incorporaron a la planilla con `tools/import_productividad.py`. Cada proyecto se asignó a una sublínea a partir de su título; los de confianza media o baja están marcados `revisar = sí` en `19_Proyectos`. Para corregir uno, cambiar su sublínea (menú desplegable), su línea y su polo, y regenerar el documento.
+
 ## Guía para editores de la planilla
 
 Todo lo que ves en las visualizaciones viene directamente de [`mad-map-data-v2.xlsx`](./mad-map-data-v2.xlsx). Esta sección explica cómo se construye el layout de cada vista, qué define la cercanía entre nodos y cómo cada hoja del archivo incide en lo que se ve.
 
 ### Las hojas de relación referencian por nombre, no por ID
 
-En las hojas de relación (`02_Sublineas`, `08_Temas`, `10_Lab_Linea`, `11_Lab_Salida`, `12_Investigador_Lab`, `13_Investigador_Modo`, `14_Linea_Modo`, `18_Proximidad_Tematica`) las columnas referenciales guardan el **nombre** de la entidad, no su código. Las celdas tienen **listas desplegables dinámicas** que muestran los nombres de las entidades existentes. Al editar una sublínea no escribes `LIN-01`, sino que eliges "Personas, interacción y sistemas inclusivos" del menú; al asignar un investigador a un laboratorio eliges "Herbert Spencer González" en vez de `INV-HSG`.
+En las hojas de relación (`02_Sublineas`, `08_Temas`, `10_Lab_Linea`, `11_Lab_Salida`, `12_Investigador_Lab`, `13_Investigador_Modo`, `14_Linea_Modo`, `18_Proximidad_Tematica`) las columnas referenciales guardan el **nombre** de la entidad, no su código. Las celdas tienen **listas desplegables dinámicas** que muestran los nombres de las entidades existentes. Al editar una sublínea no escribes `LIN-01`, sino que eliges "Fundamentos disciplinares" del menú; al asignar un investigador a un laboratorio eliges "Herbert Spencer González" en vez de `INV-HSG`.
 
 Las hojas primarias (`01_Lineas`, `03_Areas`, `04_Modos`, `05_Salidas`, `06_Laboratorios`, `07_Investigadores`) **conservan** una columna `id` interna (clave estable que el motor del grafo usa internamente). Esa columna existe pero el editor humano no la necesita para armar referencias: solo la verá si pone atención. El loader de la visualización resuelve los nombres a IDs internos al cargar.
 
@@ -122,6 +131,8 @@ Dos sublíneas cercanas en pantalla comparten muchas aristas activas. La distanc
 | `14_Linea_Modo` | Modos por línea | Aristas (f) sólo nivel `predominante` |
 | `17_Sello` | Variante del sello formativo (marcar `ELEGIDO`) | Texto de carga y encabezado de la portada |
 | `18_Proximidad_Tematica` | Pares de sublíneas con afinidad temática | Aristas (g), las más expresivas después de la jerarquía |
+| `19_Proyectos` | Proyectos 2014-2026 con sublínea, línea y polo | No afecta el layout; alimenta `comparacion-lineas.md` |
+| `20_Productividad` | Publicaciones y proyectos por profesor | No afecta el layout; alimenta `comparacion-lineas.md` |
 
 Para la hoja `18_Proximidad_Tematica`: las filas con columna `estado = DESCARTADO` se ignoran. Las demás deben estar en pares simétricos (A↔B y B↔A con el mismo valor de `afinidad`).
 
@@ -160,11 +171,15 @@ El estado del sistema, los próximos pasos accionables y las invariantes que se 
 ├── d3.v7.min.js                ← biblioteca D3
 ├── mad-map-data-v2.xlsx        ← fuente única de verdad (datos del mapa)
 ├── lineas-investigacion.md     ← documento institucional formal
+├── comparacion-lineas.md       ← comparación de las dos líneas (generado)
 ├── roadmap.md                  ← roadmap accionable
 ├── mad-map.allium              ← especificación formal (Allium v3)
 └── tools/
     ├── xlsx_loader.py              ← equivalente Python del xlsx-loader.js
     ├── build_doc.py                ← regenera lineas-investigacion.md desde el .xlsx
+    ├── build_comparacion.py        ← regenera comparacion-lineas.md desde el .xlsx
+    ├── import_productividad.py     ← incorpora proyectos y productividad del levantamiento
+    ├── migrate_dos_lineas.py       ← migración de cuatro a dos líneas (sep 2026)
     ├── seed_xlsx.py                ← (sólo siembra inicial) reconstruye el .xlsx desde código
     ├── apply_dropdowns.py          ← reaplica selectores desplegables sin tocar los datos
     ├── rename_investigador_ids.py  ← migra IDs INV-NN a iniciales del nombre

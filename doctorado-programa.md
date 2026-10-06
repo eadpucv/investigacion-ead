@@ -17,21 +17,21 @@ El objetivo general es formar investigadoras e investigadores con autonomía int
 
 Los objetivos específicos son cuatro. El primero es desarrollar en las y los doctorandos la conducción autónoma de la creación-investigación, articulando la observación, la obra y el estudio colectivo como medios de producción de conocimiento, para sostener una pregunta abierta como operación central del trabajo doctoral y fundamentar un posicionamiento disciplinar propio, verificable en una tesis o exégesis. El segundo es fortalecer capacidades de investigación avanzada, a través del dominio crítico de múltiples enfoques teórico-epistemológicos, para configurar y justificar marcos metodológicos pertinentes y situados, abordando con rigor los problemas complejos del habitar. El tercero es articular la investigación doctoral con comunidades, territorios e instituciones mediante el trabajo de campo y proyectos de investigación aplicada con contrapartes públicas, sociales o productivas, para su incidencia documentada en las prácticas del habitar y en las políticas públicas del entorno construido. El cuarto es consolidar la productividad académica y la proyección internacional de las y los graduados mediante cotutelas, pasantías internacionales y la publicación de sus resultados en medios de corriente principal, para su incorporación como pares a las comunidades del campo disciplinar.
 
-Las dos líneas de investigación responden a estos objetivos de manera diferenciada. La línea Proyecto, ciudad y ecologías del territorio, que investiga a través del proyecto, es el cauce principal del tercer objetivo, la articulación con comunidades, territorios e instituciones; la línea Formación, oficio y teoría del proyecto, que investiga acerca del proyecto, es el cauce principal del énfasis docente y formativo del objetivo general y del posicionamiento disciplinar del primero. Ambas comparten el segundo y el cuarto, y en ambas caben por igual la arquitectura y el diseño.
+Las dos líneas de investigación responden a estos objetivos de manera diferenciada. La línea Prácticas proyectuales, que investiga a través del proyecto, es el cauce principal del tercer objetivo, la articulación con comunidades, territorios e instituciones; la línea Fundamentos disciplinares, que investiga acerca del proyecto, es el cauce principal del énfasis docente y formativo del objetivo general y del posicionamiento disciplinar del primero. Ambas comparten el segundo y el cuarto, y en ambas caben por igual la arquitectura y el diseño.
 
 ## Sello: la obra como argumento
 
 El programa forma investigadores para quienes la obra es origen y prueba de la tesis. Esa obra, sea edificada, fabricada, escrita o dibujada, vale como argumento por sí misma, y el discurso doctoral se construye para hacerla legible y discutible. La pregunta que esa obra está llamada a argumentar es la que el programa hace suya: cómo reinventar el habitar humano.
 
-El programa responde a esa pregunta desde el habitar poético que funda a la Escuela: la palabra poética como origen del proyecto, la observación como modo de aprehender, la travesía y la Ciudad Abierta como obra. Ese fundamento no es propiedad de una línea sino del programa entero, y permea por igual a la arquitectura y al diseño. Las dos líneas del doctorado investigan ese habitar de dos maneras: una acerca del proyecto, su formación, su oficio y su teoría; la otra a través del proyecto, sobre la ciudad, el territorio y sus ecologías. Cada línea lleva dentro su contraparte, teórica o proyectual. Doctorarse aquí es haber producido una obra capaz de sostener esos principios al ponerse a prueba y, en su mejor versión, capaz de reformularlos.
+El programa responde a esa pregunta desde el habitar poético que funda a la Escuela: la palabra poética como origen del proyecto, la observación como modo de aprehender, la travesía y la Ciudad Abierta como obra. Ese fundamento no es propiedad de una línea sino del programa entero, y permea por igual a la arquitectura y al diseño. Las dos líneas del doctorado investigan ese habitar de dos maneras: Fundamentos disciplinares, acerca del proyecto: su historia, su teoría, sus métodos y su transmisión; Prácticas proyectuales, a través del proyecto, como obra nueva (un edificio, un espacio público, un objeto, un servicio, un sistema) que se inscribe en un contexto y lo modifica. Cada línea lleva dentro su contraparte, teórica o proyectual. Doctorarse aquí es haber producido una obra capaz de sostener esos principios al ponerse a prueba y, en su mejor versión, capaz de reformularlos.
 
 ## Las dos líneas de investigación
 
 El programa cuenta con dos líneas de investigación, en coherencia con sus objetivos, su perfil de graduación y la productividad de su claustro. Cada una prolonga un área del Magíster en Arquitectura y Diseño, de modo que el tránsito entre ambos niveles sea legible para el estudiante y para el evaluador, y cada una se sustenta en académicos con grado de doctor, trayectoria activa en proyectos y vinculación con laboratorios y redes[^claustro]. El área Forma, Cultura y Tecnología del Magíster no origina línea: sus temas (diseño de interacción, accesibilidad, métodos, fabricación, diseño social y territorial) se distribuyen entre los polos proyectuales de ambas líneas.
 
-[^claustro]: La composición del claustro, el cotejo de productividad contra los criterios del área y las configuraciones alternativas están en `propuesta-dos-lineas.md`. La configuración recomendada sostiene la línea Proyecto, ciudad y ecologías del territorio con Mercado y Marín (polo teórico) y Di Felice y Salgado (polo proyectual), y la línea Formación, oficio y teoría del proyecto con Braghini y Reyes (polo teórico) y K. Exss (polo proyectual), con Ursula Exss y Chicano como incorporaciones próximas.
+[^claustro]: La composición del claustro, el cotejo de productividad contra los criterios del área y las configuraciones alternativas están en `propuesta-dos-lineas.md`. La configuración recomendada sostiene la línea Prácticas proyectuales con Mercado y Marín (polo teórico) y Di Felice y Salgado (polo proyectual), y la línea Fundamentos disciplinares con Braghini y Reyes (polo teórico) y K. Exss (polo proyectual), con Ursula Exss y Chicano como incorporaciones próximas.
 
-Las dos líneas se distinguen por la posición del proyecto en la investigación. Formación, oficio y teoría del proyecto investiga acerca del proyecto de arquitectura y de diseño: el proyecto es su objeto. Proyecto, ciudad y ecologías del territorio investiga a través del proyecto: el proyecto es su método y la ciudad y el territorio son su objeto. Se relacionan como el yin y el yang: la primera es de vocación teórica, histórica y formativa, pero contiene un polo proyectual; la segunda es de vocación proyectual y territorial, pero contiene un polo teórico. En ambas caben la arquitectura y el diseño, porque el proyecto (el edificio, el objeto, el sistema, la intervención) es lo que las dos disciplinas tienen en común en la e[ad]. La contraparte no es un apéndice sino la condición de que la línea produzca obra y argumento a la vez, que es lo que el sello exige.
+Las dos líneas se distinguen por la posición del proyecto en la investigación. La línea Fundamentos disciplinares investiga acerca del proyecto de arquitectura y de diseño: el proyecto es su objeto. La línea Prácticas proyectuales investiga a través del proyecto: el proyecto es su método y la ciudad y el territorio son su objeto. Se relacionan como el yin y el yang: la primera es de vocación teórica, histórica y formativa, pero contiene un polo proyectual; la segunda es de vocación proyectual y territorial, pero contiene un polo teórico. En ambas caben la arquitectura y el diseño, porque el proyecto (el edificio, el objeto, el sistema, la intervención) es lo que las dos disciplinas tienen en común en la e[ad]. La contraparte no es un apéndice sino la condición de que la línea produzca obra y argumento a la vez, que es lo que el sello exige.
 
 ```mermaid
 flowchart LR
@@ -42,8 +42,8 @@ flowchart LR
     end
     subgraph DOC[Líneas del Doctorado]
         direction TB
-        L1[Formación, oficio y teoría del proyecto]
-        L2[Proyecto, ciudad y ecologías del territorio]
+        L1[Fundamentos disciplinares]
+        L2[Prácticas proyectuales]
     end
     EAA --> L1
     ECH --> L2
@@ -51,13 +51,13 @@ flowchart LR
     FCT -. diseño social y territorial .-> L2
 ```
 
-### Formación, oficio y teoría del proyecto
+### Fundamentos disciplinares
 
 *Modo de investigar:* investigación acerca del proyecto.
 
 *Prolonga:* el área Educación, Espacio y Aprendizaje del Magíster.
 
-*Definición.* Esta línea toma el proyecto de arquitectura y de diseño como objeto de investigación: cómo se forma quien proyecta, cómo se ejerce el oficio y desde qué teoría e historia se piensa. Investiga la tradición y el pensamiento que sostienen ambas disciplinas, cómo se actualizan sus categorías y con qué espacios, métodos y medios se enseña y se aprende a proyectar. Es la línea que forma a quienes enseñarán arquitectura y diseño: académicos del oficio capaces de fundar su docencia en una investigación propia, desde el habitar poético que funda a la Escuela. Su nombre prolonga el área Educación, Espacio y Aprendizaje con "formación" en lugar de "educación", para no confundirse con el campo de la Facultad de Educación.
+*Definición.* Esta línea toma el proyecto de arquitectura y de diseño como objeto de investigación: los fundamentos sobre los que se funda la disciplina, su historia, su teoría, su filosofía y sus métodos, y el modo en que se dominan y se transmiten en la formación. Investiga la tradición y el pensamiento que sostienen ambas disciplinas, cómo se actualizan sus categorías y con qué espacios, métodos y medios se enseña y se aprende a proyectar. Es la línea que forma a quienes enseñarán arquitectura y diseño: académicos del oficio capaces de fundar su docencia en una investigación propia, desde el habitar poético que funda a la Escuela. Su nombre dice lo que investiga: aquello sobre lo que se funda la disciplina y que se entrega en la formación. La dimensión formativa, heredada del área Educación, Espacio y Aprendizaje, es parte de la definición y no del título: la línea forma investigadores que dominan esos fundamentos y saben transmitirlos académicamente.
 
 *Pregunta nuclear.* Qué tradición, qué oficio y qué teoría sostienen el proyecto de arquitectura y de diseño, cómo se actualizan sus categorías, y con qué espacios, métodos y medios se enseña y se aprende a proyectar.
 
@@ -71,13 +71,13 @@ flowchart LR
 
 *Perfil de tesis.* Tesis monográficas de historia, crítica o teoría del proyecto en arquitectura o en diseño a partir de archivos y obras; exégesis cuyo objeto es un dispositivo, un espacio, un sistema o un medio de aprendizaje producido y puesto a prueba; investigaciones sobre pedagogía del proyecto con obra docente como evidencia.
 
-### Proyecto, ciudad y ecologías del territorio
+### Prácticas proyectuales
 
 *Modo de investigar:* investigación a través del proyecto.
 
 *Prolonga:* el área Extensión, Ciudad y Habitabilidad del Magíster.
 
-*Definición.* Esta línea toma el proyecto de arquitectura y de diseño como método de investigación, y la ciudad, el territorio y sus ecologías como objeto. Investiga cómo la ciudad y el territorio se construyen, se habitan, se sostienen y se piensan políticamente, y qué proyectos (urbanos, arquitectónicos, de equipamiento, de objetos y de servicios) los transforman. Toma la región de Valparaíso y el continente americano como laboratorio y prolonga el legado de las travesías, donde la obra de arquitectura y de diseño es el modo de conocer el territorio, y de la observación como fundamento del habitar poético. Es la línea por la que el programa interlocuta con el Estado, los gobiernos regionales, los municipios y las organizaciones de la sociedad civil.
+*Definición.* Esta línea toma el proyecto de arquitectura y de diseño como método de investigación: obra nueva (un edificio, un espacio público, un objeto, un servicio, un sistema) que se inscribe en un contexto y lo modifica, con la ciudad, el territorio y sus ecologías como campo principal. Su nombre es simétrico al de la otra línea: así como los fundamentos engloban lo que sostiene a la disciplina, las prácticas engloban todo lo que se proyecta y se pone a prueba, en arquitectura y en diseño por igual, en coherencia con el marco de investigación basada en la práctica que adopta el programa. Investiga cómo la ciudad y el territorio se construyen, se habitan, se sostienen y se piensan políticamente, y qué proyectos (urbanos, arquitectónicos, de equipamiento, de objetos y de servicios) los transforman. Toma la región de Valparaíso y el continente americano como laboratorio y prolonga el legado de las travesías, donde la obra de arquitectura y de diseño es el modo de conocer el territorio, y de la observación como fundamento del habitar poético. Es la línea por la que el programa interlocuta con el Estado, los gobiernos regionales, los municipios y las organizaciones de la sociedad civil.
 
 *Pregunta nuclear.* Cómo la ciudad y el territorio se construyen, se habitan, se sostienen y se piensan políticamente, y qué proyectos de arquitectura y de diseño los transforman.
 
@@ -93,13 +93,13 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-    subgraph L1[Formación, oficio y teoría del proyecto]
+    subgraph L1[Fundamentos disciplinares]
         direction LR
         T1[Polo teórico e histórico<br/>acervo, historia y crítica de<br/>arquitectura y diseño, teoría del proyecto]
         P1[Polo proyectual<br/>espacios del aprendizaje,<br/>métodos y medios, interacción]
         T1 <--> P1
     end
-    subgraph L2[Proyecto, ciudad y ecologías del territorio]
+    subgraph L2[Prácticas proyectuales]
         direction LR
         T2[Polo teórico<br/>teoría urbana, ecología política,<br/>vivienda, comunes]
         P2[Polo proyectual<br/>obra urbana, arquitectónica y de diseño:<br/>equipamiento, urbanismo afectivo, diseño territorial]
@@ -145,13 +145,13 @@ El programa declara cinco competencias, formuladas en el arco propio del hacer i
 | C4. Praxis y configuración proyectual | Configura obras, modelos e intervenciones a través de una praxis crítica y reflexiva, que articula decisiones formales, técnicas y materiales para constituir evidencia verificable y publicable. |
 | C5. Evaluación e impacto en las comunidades | Rinde cuenta del valor y la pertinencia de su investigación con integridad científica en las comunidades, instituciones y ecosistemas que la reciben, mediante procesos reflexivos, participativos y transparentes, para que su conocimiento incida en las prácticas del habitar y movilice los debates disciplinares y públicos. |
 
-Las dos líneas exigen las cinco competencias, pero con acentos distintos. En Formación, oficio y teoría del proyecto el peso recae en C1 y C3, porque investigar acerca del proyecto se juega en el posicionamiento frente a una tradición y en la conceptualización del aporte; en Proyecto, ciudad y ecologías del territorio el peso recae en C4 y C5, porque investigar a través del proyecto se juega en la configuración de una obra y en la rendición de cuenta ante quienes la reciben.
+Las dos líneas exigen las cinco competencias, pero con acentos distintos. En Fundamentos disciplinares el peso recae en C1 y C3, porque investigar acerca del proyecto se juega en el posicionamiento frente a una tradición y en la conceptualización del aporte; en Prácticas proyectuales el peso recae en C4 y C5, porque investigar a través del proyecto se juega en la configuración de una obra y en la rendición de cuenta ante quienes la reciben.
 
 ## Estrategias formativas
 
 El programa opera con cuatro estrategias didácticas activas. El estudio en ronda y el seminario crítico gobiernan el tramo de fundamentación y fundan la capacidad de situar la propia investigación en las tradiciones del campo. El aprendizaje basado en proyectos y la investigación basada en la práctica constituyen la estrategia central: el doctorando conduce su investigación produciendo obra, prototipos o intervenciones que documenta críticamente. Los estudios de caso y el trabajo de campo (estudios longitudinales, etnografías proyectuales, análisis fenomenológicos del lugar, prácticas de codiseño) son la vía por la que el programa realiza la vinculación con el medio como relación recíproca. El coloquio doctoral es la instancia formal en que el doctorando expone su avance ante el claustro y su comité, recibe crítica de pares y la recoge en acta.
 
-Los tipos de actividad son la cátedra, el taller (columna vertebral del programa), el seminario (con el Seminario Central recorriendo cinco semestres como hilo longitudinal que articula poesía, oficio e investigación) y el coloquio doctoral. Dos actividades optativas y presenciales completan el trayecto sin ser asignaturas: la travesía de investigación, estadía de campo de dos a cuatro semanas en territorios y comunidades del continente americano, y la práctica docente supervisada, mediante ayudantías en el pregrado y el magíster de la Escuela. La travesía es especialmente afín a la línea Proyecto, ciudad y ecologías del territorio; la práctica docente lo es a Formación, oficio y teoría del proyecto, aunque ninguna de las dos queda reservada a una línea.
+Los tipos de actividad son la cátedra, el taller (columna vertebral del programa), el seminario (con el Seminario Central recorriendo cinco semestres como hilo longitudinal que articula poesía, oficio e investigación) y el coloquio doctoral. Dos actividades optativas y presenciales completan el trayecto sin ser asignaturas: la travesía de investigación, estadía de campo de dos a cuatro semanas en territorios y comunidades del continente americano, y la práctica docente supervisada, mediante ayudantías en el pregrado y el magíster de la Escuela. La travesía es especialmente afín a la línea Prácticas proyectuales; la práctica docente lo es a Fundamentos disciplinares, aunque ninguna de las dos queda reservada a una línea.
 
 El programa se imparte en modalidad semipresencial sincrónica, en jornada parcial equivalente a tres cuartos de jornada completa, en régimen semestral de ocho semestres con 20 créditos PUCV (30 SCT) por semestre. Los talleres, seminarios, travesías, trabajo de campo y coloquios son presenciales; los seminarios disciplinares avanzados, las cátedras de invitados, las tutorías y las sesiones de comité operan en sincronía remota, lo que hace viable la cotutela y la incorporación de doctorandos de otras regiones. La wiki Casiopea recibe el trabajo doctoral en curso y aporta la evidencia del proceso proyectual que un informe escrito no recoge por completo.
 
@@ -170,7 +170,7 @@ El sistema de seguimiento se organiza en hitos formales, cada uno situado en una
 
 El trabajo final admite dos formas. La tesis es un documento monográfico que expone la investigación completa y sostiene por escrito la contribución original. La exégesis corresponde a la investigación basada en la práctica: la contribución se constituye por una obra, prototipo o intervención producida durante el trayecto, acompañada de un documento crítico-reflexivo que la sitúa en el campo, explicita el método proyectual, interpreta las decisiones formales, técnicas y materiales, y formula el conocimiento que la obra pone a prueba; obra y documento se entregan y evalúan como una unidad. Ambas modalidades responden a la misma exigencia de originalidad, rigor y contribución, y ambas están disponibles en las dos líneas, aunque la tesis monográfica sea la forma más frecuente en el polo teórico y la exégesis en el proyectual.
 
-La graduación exige, además de los hitos, acreditar el nivel B2 en lengua extranjera, contar con un artículo aceptado en una revista indexada de corriente principal, tener completas las actas semestrales de avance y haber sometido la tesis o exégesis a la revisión de similitud y de uso de herramientas de inteligencia artificial. La aprobación bioética se obtiene antes de iniciar el trabajo de campo intensivo cuando la investigación involucra personas, lo que en la línea Proyecto, ciudad y ecologías del territorio será la regla y no la excepción.
+La graduación exige, además de los hitos, acreditar el nivel B2 en lengua extranjera, contar con un artículo aceptado en una revista indexada de corriente principal, tener completas las actas semestrales de avance y haber sometido la tesis o exégesis a la revisión de similitud y de uso de herramientas de inteligencia artificial. La aprobación bioética se obtiene antes de iniciar el trabajo de campo intensivo cuando la investigación involucra personas, lo que en la línea Prácticas proyectuales será la regla y no la excepción.
 
 ## Integridad académica
 

@@ -34,7 +34,7 @@ OUT = ROOT / "lineas-investigacion.md"
 # planilla porque es texto editorial cuidado.
 LINE_CONTEXT = {
     "LIN-01": {
-        "condicion": "investigación acerca del proyecto: cómo se forma, cómo se ejerce y desde dónde se piensa",
+        "condicion": "investigación acerca del proyecto: los fundamentos de la disciplina y su transmisión",
         "origen": "Educación, Espacio y Aprendizaje",
         "pregunta_nuclear": (
             "Qué tradición, qué oficio y qué teoría sostienen el proyecto de "
@@ -44,8 +44,9 @@ LINE_CONTEXT = {
         "alcance_prosa": (
             "Esta línea prolonga el área Educación, Espacio y Aprendizaje del "
             "Magíster y se hace cargo de la investigación acerca del proyecto de "
-            "arquitectura y de diseño: cómo se forma quien proyecta, cómo se "
-            "ejerce el oficio y desde qué teoría e historia se piensa. Su polo "
+            "arquitectura y de diseño: los fundamentos sobre los que se funda la "
+            "disciplina (su historia, su teoría, su filosofía y sus métodos) y el "
+            "modo en que se dominan y se transmiten en la formación. Su polo "
             "teórico e histórico acoge el acervo de Ciudad Abierta y de la "
             "Escuela, la historia y la crítica de la arquitectura moderna y "
             "latinoamericana y la historia del diseño, la teoría del proyecto y "
@@ -67,7 +68,7 @@ LINE_CONTEXT = {
         "polo_proyectual": "espacios, métodos y medios del aprendizaje del proyecto en arquitectura y diseño",
     },
     "LIN-02": {
-        "condicion": "investigación a través del proyecto: la ciudad, el territorio y sus ecologías",
+        "condicion": "investigación a través del proyecto: obra nueva que se inscribe en un contexto y lo modifica",
         "origen": "Extensión, Ciudad y Habitabilidad",
         "pregunta_nuclear": (
             "Cómo la ciudad y el territorio se construyen, se habitan, se "
@@ -78,8 +79,10 @@ LINE_CONTEXT = {
         "alcance_prosa": (
             "Esta línea prolonga el área Extensión, Ciudad y Habitabilidad del "
             "Magíster y se hace cargo de la investigación a través del proyecto de "
-            "arquitectura y de diseño, con la ciudad, el territorio y sus "
-            "ecologías como campo. Su polo teórico acoge la teoría urbana, la "
+            "arquitectura y de diseño: obra nueva (un edificio, un espacio "
+            "público, un objeto, un servicio, un sistema) que se inscribe en un "
+            "contexto y lo modifica, con la ciudad, el territorio y sus ecologías "
+            "como campo principal. Su polo teórico acoge la teoría urbana, la "
             "urbanización y la ecología política, la vivienda y sus crisis "
             "contemporáneas (financiarización, acceso, políticas habitacionales), "
             "los comunes y las resiliencias socioecológicas, las perspectivas "
@@ -155,9 +158,10 @@ def main():
         "argumentar es **cómo reinventar el habitar humano**. Cada una de las "
         "dos líneas de investigación del doctorado responde a esa pregunta desde "
         "el habitar poético que funda a la Escuela, y en ambas caben por igual la "
-        "arquitectura y el diseño: una investiga *acerca del proyecto* (su "
-        "formación, su oficio, su teoría); la otra investiga *a través del "
-        "proyecto* (la ciudad, el territorio, sus ecologías). Cada línea lleva "
+        "arquitectura y el diseño: la línea Fundamentos disciplinares investiga "
+        "*acerca del proyecto* (su historia, su teoría, sus métodos y su "
+        "transmisión); la línea Prácticas proyectuales investiga *a través del "
+        "proyecto* (obra nueva que se inscribe en un contexto y lo modifica). Cada línea lleva "
         "dentro su contraparte: un polo teórico y un polo proyectual.\n"
     )
     out.append(
