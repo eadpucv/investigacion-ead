@@ -4,6 +4,8 @@
 *Escuela de Arquitectura y Diseño, Pontificia Universidad Católica de Valparaíso*
 Documento de trabajo, septiembre de 2026
 
+> **Actualización 7 de octubre de 2026.** Las sublíneas se redistribuyeron según el tipo de contribución: las de interacción, accesibilidad, comunicación aumentativa, sistemas inteligentes, fabricación digital, máquinas expresivas, comunicación visual, transferencia tecnológica e industrias creativas, cuya contribución es una herramienta, un servicio o una obra, pasaron a Prácticas proyectuales. En consecuencia, Katherine Exss pasa al claustro de Prácticas proyectuales y Arturo Chicano se incorpora al de Fundamentos disciplinares (aún a un capítulo con referato del umbral). Las configuraciones de este documento describen el estado anterior; la referencia vigente es la hoja Profesores de `investigacion-ead.xlsx`.
+
 ## Propósito
 
 Este documento coteja el cuerpo académico contra los criterios de pertenencia al claustro y, sobre esa base, propone la reducción de las cuatro líneas troncales vigentes[^lineas4] a dos líneas de investigación que prolongan las áreas Extensión, Ciudad y Habitabilidad y Educación, Espacio y Aprendizaje del Magíster. Para cada línea se proponen nombres, se identifican los académicos que la sostienen, los grupos de estudio por afinidad y los modos de investigar que cada grupo emplea. La afinidad temática entre los miembros del claustro se calcula desde los datos del mapa de investigación y se usa para justificar las configuraciones alternativas que el comité deberá elegir.

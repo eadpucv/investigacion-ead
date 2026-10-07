@@ -1,7 +1,7 @@
 # Doctorado en Arquitectura y Diseño: definiciones conceptuales
 
 **Escuela de Arquitectura y Diseño, Pontificia Universidad Católica de Valparaíso**
-Documento de trabajo, septiembre de 2026. Toma del Programa Formativo (Entrega 3, 7 de septiembre de 2026)[^fuente] la caracterización del grado, los objetivos, el perfil de ingreso, el perfil de graduación y sus competencias, las estrategias formativas y el sistema de seguimiento, y reemplaza sus cuatro líneas de investigación por las dos que aquí se definen.
+Documento de trabajo, septiembre de 2026 (actualizado el 7 de octubre de 2026 con la redistribución de sublíneas por tipo de contribución). Toma del Programa Formativo (Entrega 3, 7 de septiembre de 2026)[^fuente] la caracterización del grado, los objetivos, el perfil de ingreso, el perfil de graduación y sus competencias, las estrategias formativas y el sistema de seguimiento, y reemplaza sus cuatro líneas de investigación por las dos que aquí se definen.
 
 [^fuente]: "Programa Formativo Doctorado en Arquitectura y Diseño, Entrega 3, 070926", formato de la Dirección de Desarrollo Curricular y Formativo de la PUCV. Las secciones 2.1, 2.2, 2.4, 2.5, 2.7, 2.8, 3.1, 3.4, 3.5 y 4.1 se resumen o citan aquí; la sección 2.3 (líneas de investigación) se reemplaza íntegramente. Los datos de sublíneas, laboratorios, modos y cuerpo académico provienen de `mad-map-data-v2.xlsx`, migrado al régimen de dos líneas con `tools/migrate_dos_lineas.py`.
 
@@ -27,9 +27,9 @@ El programa responde a esa pregunta desde el habitar poético que funda a la Esc
 
 ## Las dos líneas de investigación
 
-El programa cuenta con dos líneas de investigación, en coherencia con sus objetivos, su perfil de graduación y la productividad de su claustro. Cada una prolonga un área del Magíster en Arquitectura y Diseño, de modo que el tránsito entre ambos niveles sea legible para el estudiante y para el evaluador, y cada una se sustenta en académicos con grado de doctor, trayectoria activa en proyectos y vinculación con laboratorios y redes[^claustro]. El área Forma, Cultura y Tecnología del Magíster no origina línea: sus temas (diseño de interacción, accesibilidad, métodos, fabricación, diseño social y territorial) se distribuyen entre los polos proyectuales de ambas líneas.
+El programa cuenta con dos líneas de investigación, en coherencia con sus objetivos, su perfil de graduación y la productividad de su claustro. Cada una prolonga un área del Magíster en Arquitectura y Diseño, de modo que el tránsito entre ambos niveles sea legible para el estudiante y para el evaluador, y cada una se sustenta en académicos con grado de doctor, trayectoria activa en proyectos y vinculación con laboratorios y redes[^claustro]. El área Forma, Cultura y Tecnología del Magíster no origina línea: sus temas se distribuyen según el tipo de contribución: los métodos de diseño y la formación van a Fundamentos disciplinares; el diseño de interacción, la accesibilidad, la fabricación y el diseño social y territorial, cuya contribución es una herramienta, un servicio o una obra, van a Prácticas proyectuales.
 
-[^claustro]: La composición del claustro, el cotejo de productividad contra los criterios del área y las configuraciones alternativas están en `propuesta-dos-lineas.md`. La configuración recomendada sostiene la línea Prácticas proyectuales con Mercado y Marín (polo teórico) y Di Felice y Salgado (polo proyectual), y la línea Fundamentos disciplinares con Braghini y Reyes (polo teórico) y K. Exss (polo proyectual), con Ursula Exss y Chicano como incorporaciones próximas.
+[^claustro]: La composición del claustro y el cotejo de productividad contra los criterios del área están en `propuesta-dos-lineas.md`. Tras la redistribución del 7 de octubre de 2026, el claustro de Fundamentos disciplinares lo integran Braghini, Reyes y Chicano, y el de Prácticas proyectuales Mercado, Marín, Di Felice, Salgado y K. Exss. La planilla `investigacion-ead.xlsx` (hoja Profesores) es la referencia vigente.
 
 Las dos líneas se distinguen por la posición del proyecto en la investigación. La línea Fundamentos disciplinares investiga acerca del proyecto de arquitectura y de diseño: el proyecto es su objeto. La línea Prácticas proyectuales investiga a través del proyecto: el proyecto es su método y la ciudad y el territorio son su objeto. Se relacionan como el yin y el yang: la primera es de vocación teórica, histórica y formativa, pero contiene un polo proyectual; la segunda es de vocación proyectual y territorial, pero contiene un polo teórico. En ambas caben la arquitectura y el diseño, porque el proyecto (el edificio, el objeto, el sistema, la intervención) es lo que las dos disciplinas tienen en común en la e[ad]. La contraparte no es un apéndice sino la condición de que la línea produzca obra y argumento a la vez, que es lo que el sello exige.
 
@@ -47,8 +47,8 @@ flowchart LR
     end
     EAA --> L1
     ECH --> L2
-    FCT -. interacción, métodos, fabricación .-> L1
-    FCT -. diseño social y territorial .-> L2
+    FCT -. métodos de diseño .-> L1
+    FCT -. interacción, accesibilidad, fabricación, diseño social .-> L2
 ```
 
 ### Fundamentos disciplinares
@@ -63,13 +63,13 @@ flowchart LR
 
 *Polo teórico e histórico.* Acoge el acervo de Ciudad Abierta y de la Escuela, la historia y la crítica de la arquitectura moderna y latinoamericana y la historia del diseño, la teoría del proyecto y sus categorías propias (la hospitalidad, el vacío arquitectónico, la palabra poética y la poética del oficio), la relación entre arte, arquitectura y diseño, la reforma escolar y la enseñanza de la arquitectura, y la techné como reflexión epistemológica del diseño. Sus modos de investigar predominantes son la historiografía (fuentes, archivo, genealogías de obra) y la teoría crítica (producción conceptual, ensayo, lectura crítica de prácticas y discursos). Su sostén asociativo es el laboratorio Patrimonio moderno y el Archivo Histórico José Vial Armstrong.
 
-*Polo proyectual.* Acoge los espacios del aprendizaje (la arquitectura como medio didáctico, los espacios educativos y escolares, la estimulación temprana y los contextos vulnerables), los métodos y medios del diseño (métodos de diseño, comunicación visual y exposición material, fabricación digital y modelado paramétrico, máquinas expresivas, saberes técnicos análogos, transferencia tecnológica), y el diseño de interacción, la accesibilidad, la comunicación aumentativa y los sistemas inteligentes como mediación entre las personas y sus entornos. Su modo de investigar predominante es la investigación proyectual: el proyecto, el prototipo o el dispositivo como generador de conocimiento, documentado críticamente. Su sostén asociativo son el Núcleo de Accesibilidad e Inclusión y el Aconcagua Fablab.
+*Polo proyectual.* Acoge la formación y la enseñanza del proyecto: los espacios del aprendizaje (la arquitectura como medio didáctico, los espacios educativos y escolares, la estimulación temprana y los contextos vulnerables), los medios de aprendizaje en arquitectura y diseño, los métodos de diseño y la formación en pensamiento y acción creativa. Su modo de investigar predominante es la investigación proyectual aplicada a la enseñanza: el dispositivo, el espacio o el medio de aprendizaje puesto a prueba con estudiantes y documentado críticamente.
 
 *Puente entre los polos.* Las sublíneas Métodos de diseño, Formación en pensamiento y acción creativa y Reforma escolar y enseñanza de la arquitectura son las que reúnen a historiadores, teóricos y proyectistas en torno a la pregunta por cómo se forma un arquitecto o un diseñador.
 
-*Sublíneas.* Treinta y cuatro, once en el polo teórico y veintitrés en el proyectual, registradas en `02_Sublineas` con la columna `polo`.
+*Sublíneas.* Veintiuna, once en el polo teórico y diez en el proyectual, registradas en la hoja Sublíneas de `investigacion-ead.xlsx`.
 
-*Perfil de tesis.* Tesis monográficas de historia, crítica o teoría del proyecto en arquitectura o en diseño a partir de archivos y obras; exégesis cuyo objeto es un dispositivo, un espacio, un sistema o un medio de aprendizaje producido y puesto a prueba; investigaciones sobre pedagogía del proyecto con obra docente como evidencia.
+*Perfil de tesis.* Tesis monográficas de historia, crítica o teoría del proyecto en arquitectura o en diseño a partir de archivos y obras; exégesis cuyo objeto es un espacio, un dispositivo o un medio de aprendizaje producido y puesto a prueba; investigaciones sobre pedagogía del proyecto con obra docente como evidencia.
 
 ### Prácticas proyectuales
 
@@ -83,30 +83,30 @@ flowchart LR
 
 *Polo teórico.* Acoge la teoría urbana, la urbanización y la ecología política, la vivienda y sus crisis contemporáneas (financiarización, acceso, políticas habitacionales), los comunes y las resiliencias socioecológicas, las perspectivas decoloniales y la evaluación social de las políticas públicas de inversión. Su modo de investigar predominante es la teoría crítica, con investigación de campo y especulativa (futuros posibles). Su sostén asociativo es el laboratorio Personas y territorios.
 
-*Polo proyectual.* Acoge la intervención sobre el territorio: la adaptabilidad urbana ante riesgos costeros y la adaptación formal ante desastres, la infraestructura, la movilidad y el equipamiento, el patrimonio arquitectónico y natural y su rehabilitación, el urbanismo afectivo, la deriva y la investigación-acción, las prácticas colectivas y la apropiación escénica del espacio público, el mobiliario y la materialidad de la obra, el diseño social y territorial, y el confort y el espacio habitable de las personas. Su modo de investigar predominante es la investigación proyectual con investigación-acción y creación de obra, en arquitectura y en diseño por igual. Su sostén asociativo son los laboratorios Urbanismo afectivo y Personas y territorios.
+*Polo proyectual.* Reúne dos frentes de obra. El primero es la ciudad y el territorio: la adaptabilidad urbana ante riesgos costeros y desastres, la infraestructura, la movilidad y el equipamiento, el patrimonio arquitectónico y natural y su rehabilitación, el urbanismo afectivo, la deriva y la investigación-acción, las prácticas colectivas y la apropiación escénica del espacio público, el mobiliario, el diseño social y territorial y las travesías. El segundo son las herramientas y los sistemas para las personas: la accesibilidad cognitiva y la inclusión, el diseño de interacción y de servicios, la comunicación aumentativa y alternativa, el diseño para la vida independiente y para la democracia, los sistemas inteligentes, la fabricación digital, las máquinas expresivas y la comunicación visual. Su modo de investigar predominante es la investigación proyectual, con investigación-acción, creación de obra y desarrollo de herramientas, en arquitectura y en diseño por igual. Su sostén asociativo son los laboratorios Urbanismo afectivo, Personas y territorios, Núcleo de Accesibilidad e Inclusión y Aconcagua Fablab.
 
 *Puente entre los polos.* Las sublíneas Perspectivas decoloniales y Prácticas colectivas reúnen a teóricos y proyectistas, y son además el puente con la otra línea a través del acervo de las travesías.
 
-*Sublíneas.* Diecinueve, cinco en el polo teórico y catorce en el proyectual.
+*Sublíneas.* Treinta y dos, cinco en el polo teórico y veintisiete en el proyectual.
 
-*Perfil de tesis.* Tesis de teoría urbana, ecología política o vivienda con trabajo de campo; exégesis cuyo objeto es una intervención urbana, un equipamiento, un objeto o servicio de diseño territorial, o un proceso de investigación-acción con comunidades; investigaciones con incidencia documentada en instrumentos de política pública.
+*Perfil de tesis.* Tesis de teoría urbana, ecología política o vivienda con trabajo de campo; exégesis cuyo objeto es una intervención urbana, un equipamiento, un objeto, un servicio, un sistema o una herramienta tecnológica puesta a prueba con sus usuarios; procesos de investigación-acción con comunidades; investigaciones con incidencia documentada en instrumentos de política pública.
 
 ```mermaid
 flowchart TB
     subgraph L1[Fundamentos disciplinares]
         direction LR
         T1[Polo teórico e histórico<br/>acervo, historia y crítica de<br/>arquitectura y diseño, teoría del proyecto]
-        P1[Polo proyectual<br/>espacios del aprendizaje,<br/>métodos y medios, interacción]
+        P1[Polo proyectual<br/>formación: espacios y medios<br/>del aprendizaje, métodos de diseño]
         T1 <--> P1
     end
     subgraph L2[Prácticas proyectuales]
         direction LR
         T2[Polo teórico<br/>teoría urbana, ecología política,<br/>vivienda, comunes]
-        P2[Polo proyectual<br/>obra urbana, arquitectónica y de diseño:<br/>equipamiento, urbanismo afectivo, diseño territorial]
+        P2[Polo proyectual<br/>obra: ciudad y territorio;<br/>herramientas y sistemas para las personas]
         T2 <--> P2
     end
     T1 -. travesías, decolonialidad, prácticas colectivas .-> T2
-    P1 -. métodos de diseño, accesibilidad, confort .-> P2
+    P1 -. métodos de diseño .-> P2
 ```
 
 ### Continuidad y aseguramiento de calidad de las líneas

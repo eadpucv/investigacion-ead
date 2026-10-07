@@ -1,189 +1,79 @@
 # Investigación e[ad]
 
-Mapa dinámico del cuerpo investigativo del **Doctorado en Arquitectura y Diseño** de la e[ad] PUCV. Las dos líneas de investigación del programa (Fundamentos disciplinares y Prácticas proyectuales), cada una con un polo teórico y uno proyectual, sus sublíneas y los profesores que las cultivan, en una visualización interactiva que se alimenta directamente de un único archivo Excel commiteado en el repositorio.
-
-> *La obra como argumento.* El doctorado forma investigadores para quienes la obra es origen y prueba de la tesis. La pregunta que esa obra está llamada a argumentar: **cómo reinventar el habitar humano**.
+Mapa de la investigación del **Doctorado en Arquitectura y Diseño** de la e[ad] PUCV: las dos líneas, sus polos, sus sublíneas, los profesores que las cultivan y los proyectos 2014-2026, en una sola página.
 
 | | |
 |---|---|
-| **Visualización** | [eadpucv.github.io/investigacion-ead](https://eadpucv.github.io/investigacion-ead/) |
-| **Documento institucional** | [lineas-investigacion.md](./lineas-investigacion.md) |
-| **Comparación de las líneas** | [comparacion-lineas.md](./comparacion-lineas.md) |
-| **Fuente de datos** | [`mad-map-data-v2.xlsx`](./mad-map-data-v2.xlsx) en la raíz del repo |
+| **Sitio** | [eadpucv.github.io/investigacion-ead](https://eadpucv.github.io/investigacion-ead/) |
+| **Datos** | [`investigacion-ead.xlsx`](./investigacion-ead.xlsx), la única fuente |
+| **Documentos** | [comparación de las líneas](./comparacion-lineas.md) · [líneas de investigación](./lineas-investigacion.md) · [definiciones del programa](./doctorado-programa.md) · [claustro](./propuesta-dos-lineas.md) |
 
-## Cómo funciona
+![Matriz de líneas y polos](docs/captura.png)
 
-Toda la información del mapa vive en un único archivo `mad-map-data-v2.xlsx` versionado en este repositorio. La visualización lo carga **directamente en el navegador** usando SheetJS, sin pasos intermedios: no hay JSON precomputado, no hay scripts Python que ejecutar, no hay servicios externos.
+## Las dos líneas
 
-```mermaid
-flowchart LR
-    A[mad-map-data-v2.xlsx<br/>fuente unica de verdad] --> B[xlsx-loader.js<br/>SheetJS en el navegador]
-    B --> C[graph.js<br/>D3 force-directed]
-    C --> D[superficies HTML]
-    A -.commit.-> E[git]
-```
+Las líneas se distinguen por el **tipo de contribución**:
 
-Para actualizar la visualización el flujo completo es: editar el `.xlsx` en Excel/Numbers/LibreOffice, guardar, hacer commit y push, refrescar el navegador. La página descarga el archivo, lo parsea, deriva las relaciones y dibuja el grafo.
+- **Fundamentos disciplinares** investiga *acerca del* proyecto. Su contribución es teórico-disciplinar: lo que sostiene a la disciplina (su historia, su teoría, su filosofía y sus métodos) y cómo se domina y se transmite en la formación.
+- **Prácticas proyectuales** investiga *a través del* proyecto. Su contribución es obra nueva (un edificio, un espacio público, un objeto, un servicio, un sistema, una herramienta) que se inscribe en un contexto y lo modifica.
 
-## Trade-offs de esta arquitectura[^1]
+Cada línea tiene un **polo teórico** y un **polo proyectual**.
 
-[^1]: Decisión deliberada: simplicidad y portabilidad sobre edición concurrente.
+## Cómo se lee la página
 
-El precio de tener un archivo Excel commiteado como base de datos es que dos personas no pueden editarlo a la vez sin generar conflicto de merge en git. A cambio se obtiene un repositorio totalmente autocontenido: cualquiera con `git clone` tiene la versión completa de los datos y puede levantar el sitio localmente con un servidor HTTP estático. Cero servicios externos, cero credenciales, cero dependencias de red en tiempo de visualización.
+La página es una matriz: dos columnas (las líneas) y dos filas (los polos). Cada tarjeta es una sublínea, con el número de profesores que la cultivan (**p**) y de proyectos (**pr**); la barra bajo la tarjeta crece con los proyectos.
 
-La segunda consecuencia es que el layout cambia entre cargas. El motor force-directed parte de posiciones aleatorias y converge a un equilibrio que no es único; al recargar la página los nodos quedan reacomodados de forma similar pero no idéntica. Esto se eligió a propósito frente a la alternativa de un embedding estructural por PCA, que añadía complejidad inorgánica sin producir lecturas significativamente mejores.
+- **Clic en una tarjeta**: se abre el panel con sus profesores, sus temas y sus proyectos.
+- **Elegir un profesor** en el menú (agrupado por línea): se iluminan sus sublíneas y el panel muestra sus temas y proyectos.
+- **Buscar**: filtra por sublínea, profesor, tema o título de proyecto.
+- **Clic en el nombre de una línea**: definición, pregunta, alcance, claustro y cifras.
 
-## Las tres superficies
+Cada vista tiene su propia dirección (por ejemplo `#prof=Anna Braghini`), que se puede copiar y compartir.
 
-Las tres páginas comparten el mismo motor (`graph.js`) pero exponen controles, aristas y nodos distintos según su audiencia. *Cartografía* es la vista pública para postulantes: muestra las dos líneas, sus polos y sus sublíneas como territorio temático, sin perfiles individuales. *Narrativa* está pensada para evaluadores y CNA: activa la capa de profesores y dos vistas predefinidas, *cobertura por línea* y *perfiles por área*. *Exploración* es la herramienta interna del equipo del doctorado, con todos los controles disponibles, los siete tipos de aristas como toggles y filtros completos por línea, área, modo, salida, laboratorio e investigador.
+## Cómo editar los datos
 
-Cada superficie tiene una columna lateral, encabezada por la leyenda de las dos líneas (nombre, modo de investigar, definición breve y cifras, tomados de `01_Lineas`), y una zona principal con el grafo. El panel de detalle muestra, además, los proyectos 2014-2026 de cada línea, sublínea e investigador (hoja `19_Proyectos`). Click en cualquier nodo abre el panel de detalle al lado derecho. Hover muestra tooltip con el nombre. Drag reposiciona temporalmente; al soltar las fuerzas reacomodan.
+Todo vive en `investigacion-ead.xlsx`. Se edita en Excel, Numbers o LibreOffice; al guardar, hacer commit y push, el sitio se actualiza solo. La primera hoja (*Léeme*) explica las reglas.
 
-## Documento institucional
-
-[`lineas-investigacion.md`](./lineas-investigacion.md) describe formalmente cada línea: alcance temático, pregunta nuclear, cuerpo académico que la sostiene y argumentación de su consolidación y sostenibilidad. Pensado para audiencia institucional (CNA, comité doctoral, autoridades).
-
-Para regenerarlo después de una edición significativa de la planilla:
-
-```bash
-python3 tools/build_doc.py
-```
-
-(Sólo es necesario regenerar cuando cambia el cuerpo académico, las sublíneas o las descripciones de las líneas; no para cada edición menor del archivo.)
-
-[`comparacion-lineas.md`](./comparacion-lineas.md) compara las dos líneas: definición, focos por polo, formas de investigar, tipo de contribución, claustro, sublíneas con sus profesores y proyectos, y productividad del cuerpo académico. Combina texto editorial (en el script) con datos de las hojas `02_Sublineas`, `08_Temas`, `19_Proyectos` y `20_Productividad`. Se regenera con:
-
-```bash
-python3 tools/build_comparacion.py
-```
-
-Los proyectos y la productividad provienen del levantamiento 2014-2026 del equipo y se incorporaron a la planilla con `tools/import_productividad.py`. Cada proyecto se asignó a una sublínea a partir de su título; los de confianza media o baja están marcados `revisar = sí` en `19_Proyectos`. Para corregir uno, cambiar su sublínea (menú desplegable), su línea y su polo, y regenerar el documento.
-
-## Guía para editores de la planilla
-
-Todo lo que ves en las visualizaciones viene directamente de [`mad-map-data-v2.xlsx`](./mad-map-data-v2.xlsx). Esta sección explica cómo se construye el layout de cada vista, qué define la cercanía entre nodos y cómo cada hoja del archivo incide en lo que se ve.
-
-### Las hojas de relación referencian por nombre, no por ID
-
-En las hojas de relación (`02_Sublineas`, `08_Temas`, `10_Lab_Linea`, `11_Lab_Salida`, `12_Investigador_Lab`, `13_Investigador_Modo`, `14_Linea_Modo`, `18_Proximidad_Tematica`) las columnas referenciales guardan el **nombre** de la entidad, no su código. Las celdas tienen **listas desplegables dinámicas** que muestran los nombres de las entidades existentes. Al editar una sublínea no escribes `LIN-01`, sino que eliges "Fundamentos disciplinares" del menú; al asignar un investigador a un laboratorio eliges "Herbert Spencer González" en vez de `INV-HSG`.
-
-Las hojas primarias (`01_Lineas`, `03_Areas`, `04_Modos`, `05_Salidas`, `06_Laboratorios`, `07_Investigadores`) **conservan** una columna `id` interna (clave estable que el motor del grafo usa internamente). Esa columna existe pero el editor humano no la necesita para armar referencias: solo la verá si pone atención. El loader de la visualización resuelve los nombres a IDs internos al cargar.
-
-Si dos entidades tuvieran el mismo nombre (no debería suceder), el loader emite un warning en la consola del navegador y usa la primera ocurrencia. Si una celda referencial guarda un nombre que ya no existe en la hoja entidad, el loader lo reporta y omite la fila para no propagar referencias rotas a la visualización.
-
-### IDs internos de investigadores
-
-La columna `id` de `07_Investigadores` usa iniciales del nombre completo: `INV-HSG` para Herbert Spencer González, `INV-MWU` para Michèle Wilkomirsky Uribe. Es la única hoja primaria donde el ID no es totalmente opaco. Los editores no necesitan tocar esta columna para armar referencias en otras hojas (eso ya se hace por nombre con dropdowns), pero si en algún momento aparece, el código identifica a la persona sin ambigüedad.
-
-Al agregar un nuevo investigador, asígnale un ID con iniciales siguiendo la misma convención. Si dudas sobre cómo construir el ID o quieres regenerar uno antiguo, ejecuta:
-
-```bash
-python3 tools/rename_investigador_ids.py --dry-run    # muestra el mapping
-python3 tools/rename_investigador_ids.py              # aplica el mapping
-```
-
-El script solo migra IDs con formato antiguo `INV-NN`; respeta los IDs ya en formato de iniciales. En caso de colisión (dos personas con mismas iniciales), agrega sufijo numérico (`INV-XYZ2`, `INV-XYZ3`).
-
-Si en algún momento el `.xlsx` se reabre y los dropdowns se pierden (algunas conversiones a otros formatos los borran), se pueden volver a aplicar sin tocar los datos:
-
-```bash
-python3 tools/apply_dropdowns.py
-```
-
-Este script reconfigura los rangos con nombre dinámicos (`LineaNombres`, `SublineaNombres`, `AreaNombres`, `ModoNombres`, `SalidaNombres`, `LabNombres`, `InvestigadorNombres`) y reaplica la validación de datos a las columnas referenciales. Es idempotente: se puede correr cuantas veces sea necesario.
-
-### Cómo se construye el layout espacial
-
-El layout es un **grafo force-directed** (biblioteca D3 v7). No hay coordenadas fijas: cada nodo tiene una masa y cada arista actúa como un resorte. El motor de física corre hasta que el sistema se estabiliza.
-
-Hay tres tipos de nodo. Las **dos líneas** (Fundamentos disciplinares y Prácticas proyectuales) se dibujan como círculos rojos grandes con su nombre siempre visible y reciben repulsión alta; se ubican en extremos opuestos del espacio y sus polos se distinguen por el relleno de las sublíneas: hueco para el polo teórico, lleno para el proyectual. Las **sublíneas** son círculos negros medianos con repulsión media (−180); orbitan alrededor de su línea-madre y crecen en tamaño con el número de investigadores que las cultivan. Los **investigadores** son cuadrados grises ligeros (−60); cuando la capa de perfiles está activa, se interponen entre las sublíneas que cultivan.
-
-Cada tipo de arista es un resorte con distancia natural y rigidez propias. Activar un tipo de arista equivale a añadir una fuerza de atracción entre los nodos que cumplen esa relación: esos nodos se acercan en pantalla.
-
-| Letra | Nombre | Qué la genera | Distancia | Rigidez | Lectura |
-|---|---|---|---|---|---|
-| a | Jerárquica | `02_Sublineas` → `línea` | 45 px | 0.85 | Pega cada sublínea a su línea-madre. Define los 4 clusters base. |
-| b | Coautoría | `08_Temas` (sublínea ↔ investigador ↔ tema) | 70 px | 0.35 | Une investigador con sublínea. Los perfiles se enclavan entre sus sublíneas. |
-| c | Coinvestigación | Derivada de (b) | 130 px | 0.15 | Atrae sublíneas que comparten investigador. Revela cuerpos transversales. |
-| d | Sostén de lab | `10_Lab_Linea` | 130 px | 0.35 | Une laboratorio con línea. |
-| e | Afinidad por lab | Derivada de (d) | 200 px | 0.04 | Señal suave entre sublíneas con lab compartido. |
-| f | Coincidencia de modo | `14_Linea_Modo` (`predominante`) | 220 px | 0.02 | Atracción casi imperceptible entre sublíneas con mismo modo predominante. |
-| g | Proximidad semántica | `18_Proximidad_Tematica` | 90 px | 0.45 | La más expresiva después de la jerárquica. |
-
-Dos sublíneas cercanas en pantalla comparten muchas aristas activas. La distancia no es semántica en sentido estricto: es gravitacional, más resortes implican mayor atracción.
-
-### Lo que cada hoja afecta en el layout
-
-| Hoja | Qué controla | Efecto al refrescar |
+| Hoja | Una fila por… | Columnas |
 |---|---|---|
-| `01_Lineas` | Nombres y descripciones de las 2 líneas | Etiquetas y panel de detalle de los 2 nodos rojos |
-| `02_Sublineas` | Sublíneas con su línea y área (referenciadas por nombre) | Aristas jerárquicas (a) y los 4 clusters |
-| `03_Areas` | Las 3 áreas del programa (ECH, EAA, FCT) | Qué sublíneas caben bajo cada envolvente de área |
-| `04_Modos` | Modos de investigar | Envolventes de modo; aristas (f) si se activan |
-| `05_Salidas` | Salidas (industria / academia / estado) | Envolventes de salida; filtro en Exploración |
-| `06_Laboratorios` | Laboratorios del programa | Aristas (d) y (e) |
-| `07_Investigadores` | Cuerpo académico | Nodos cuadrados; tamaño de sublíneas que cultivan |
-| `08_Temas` | Temas atribuidos: cada fila vincula sublínea + investigador + texto del tema | Base de las aristas (b) coautoría y (c) coinvestigación |
-| `10_Lab_Linea` | Lab que sostiene cada línea | Aristas (d); base de (e) |
-| `11_Lab_Salida` | Salidas que produce cada lab | Filtros de salida en Exploración |
-| `12_Investigador_Lab` | Vínculo investigador con lab | Filtros de lab en Exploración |
-| `13_Investigador_Modo` | Modo de cada investigador | Filtros de modo en Exploración |
-| `14_Linea_Modo` | Modos por línea | Aristas (f) sólo nivel `predominante` |
-| `17_Sello` | Variante del sello formativo (marcar `ELEGIDO`) | Texto de carga y encabezado de la portada |
-| `18_Proximidad_Tematica` | Pares de sublíneas con afinidad temática | Aristas (g), las más expresivas después de la jerarquía |
-| `19_Proyectos` | Proyectos 2014-2026 con sublínea, línea y polo | No afecta el layout; alimenta `comparacion-lineas.md` |
-| `20_Productividad` | Publicaciones y proyectos por profesor | No afecta el layout; alimenta `comparacion-lineas.md` |
+| Programa | campo | pregunta, título y texto del sello |
+| Líneas | línea | nombre, modo, definición breve, pregunta, área del Magíster que prolonga, laboratorios, descripción |
+| Sublíneas | sublínea | nombre, **línea** y **polo** (menús), notas |
+| Profesores | profesor | nombre, **línea** según su contribución, **claustro** (sí/no), perfil |
+| Temas | vínculo profesor ↔ sublínea | profesor y sublínea (menús), tema |
+| Proyectos | proyecto | año, título, profesores (separados por `;`), sublínea (menú), revisar |
 
-Para la hoja `18_Proximidad_Tematica`: las filas con columna `estado = DESCARTADO` se ignoran. Las demás deben estar en pares simétricos (A↔B y B↔A con el mismo valor de `afinidad`).
+No hay códigos internos: todo se referencia por nombre. **Para mover una sublínea de línea o de polo basta cambiar sus dos menús.** La línea y el polo de un proyecto se deducen de su sublínea. Si un nombre no coincide entre hojas, la página lo avisa al pie («avisos de la planilla»).
 
-## Correr el sitio localmente
+## Documentos generados
+
+`lineas-investigacion.md` y `comparacion-lineas.md` se regeneran desde la planilla:
 
 ```bash
-python3 -m http.server 8765
-# abrir http://localhost:8765/
+cd tools
+python3 build_doc.py
+python3 build_comparacion.py
 ```
 
-No requiere instalar nada: SheetJS y D3 se cargan desde CDN/local, y el archivo `.xlsx` está en el repo.
+La productividad por profesor (publicaciones y proyectos 2014-2026) está en `data/productividad.csv` y sólo se usa en la comparación.
 
-## Roadmap y contrato del sistema
+## Ver el sitio localmente
 
-El estado del sistema, los próximos pasos accionables y las invariantes que se garantizan están en [`roadmap.md`](./roadmap.md). Reemplaza al spec formal anterior (`mad-map.allium`) y se mantiene en Markdown para edición cotidiana.
-
-## Versiones
-
-| Branch | Modelo de datos | Estado |
-|---|---|---|
-| `xlsx` | Excel commiteado, parseo en navegador | **Activa** |
-| `v2` | Iteración previa con pipeline Python local | Histórica |
-| `v1` | Mapa MAD legacy del Magíster | Histórica |
-
-## Estructura del proyecto
-
-```
-.
-├── index.html                  ← portada con sello + 3 tarjetas
-├── cartografia.html            ← superficie pública (postulantes)
-├── narrativa.html              ← superficie evaluadores · CNA
-├── exploracion.html            ← superficie equipo del doctorado
-├── graph.js                    ← motor de visualización (D3 force-directed)
-├── xlsx-loader.js              ← carga el .xlsx directo con SheetJS
-├── style.css                   ← estilos compartidos
-├── d3.v7.min.js                ← biblioteca D3
-├── mad-map-data-v2.xlsx        ← fuente única de verdad (datos del mapa)
-├── lineas-investigacion.md     ← documento institucional formal
-├── comparacion-lineas.md       ← comparación de las dos líneas (generado)
-├── roadmap.md                  ← roadmap accionable
-├── mad-map.allium              ← especificación formal (Allium v3)
-└── tools/
-    ├── xlsx_loader.py              ← equivalente Python del xlsx-loader.js
-    ├── build_doc.py                ← regenera lineas-investigacion.md desde el .xlsx
-    ├── build_comparacion.py        ← regenera comparacion-lineas.md desde el .xlsx
-    ├── import_productividad.py     ← incorpora proyectos y productividad del levantamiento
-    ├── migrate_dos_lineas.py       ← migración de cuatro a dos líneas (sep 2026)
-    ├── seed_xlsx.py                ← (sólo siembra inicial) reconstruye el .xlsx desde código
-    ├── apply_dropdowns.py          ← reaplica selectores desplegables sin tocar los datos
-    ├── rename_investigador_ids.py  ← migra IDs INV-NN a iniciales del nombre
-    └── migrate_to_names.py         ← migra hojas de relación de IDs a nombres legibles
+```bash
+python3 -m http.server 8000
+# abrir http://localhost:8000
 ```
 
-`tools/seed_xlsx.py` solo se usa si hay que reconstruir la planilla desde cero. Una vez sembrada, el `.xlsx` se edita a mano y ese script no debe volver a correrse: sobrescribe los cambios manuales.
+## Estructura
+
+```
+index.html                 página única
+app.js                     lee la planilla (SheetJS) y dibuja la matriz
+style.css                  estilos
+investigacion-ead.xlsx     datos
+data/productividad.csv     productividad por profesor (para la comparación)
+tools/                     generadores de documentos (datos.py, build_doc.py, build_comparacion.py)
+archivo/                   versión anterior: grafo con tres vistas, planilla de 20 hojas, specs, scripts
+```
+
+La versión anterior (grafo de fuerzas con tres superficies y la planilla `mad-map-data-v2.xlsx`) quedó en `archivo/` y en el historial de git.

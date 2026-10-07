@@ -5,114 +5,71 @@
 
 ## Marco general
 
-El programa forma investigadores para quienes la obra es origen y prueba de la tesis. La pregunta común que esa obra está llamada a argumentar es **cómo reinventar el habitar humano**. Cada una de las dos líneas de investigación del doctorado responde a esa pregunta desde el habitar poético que funda a la Escuela, y en ambas caben por igual la arquitectura y el diseño: la línea Fundamentos disciplinares investiga *acerca del proyecto* (su historia, su teoría, sus métodos y su transmisión); la línea Prácticas proyectuales investiga *a través del proyecto* (obra nueva que se inscribe en un contexto y lo modifica). Cada línea lleva dentro su contraparte: un polo teórico y un polo proyectual.
+El doctorado forma investigadores para quienes la obra es origen y prueba de la tesis. Esa obra, sea edificada, fabricada, escrita o dibujada, vale como argumento por sí misma, y el discurso doctoral se construye para hacerla legible y discutible. La pregunta que esa obra está llamada a argumentar es la que el programa hace suya: cómo reinventar el habitar humano, y la responde desde el habitar poético que funda a la Escuela. Las dos líneas del doctorado investigan ese habitar en arquitectura y en diseño: Fundamentos disciplinares investiga acerca del proyecto, lo que sostiene a la disciplina y cómo se transmite; Prácticas proyectuales investiga a través del proyecto, como obra nueva que se inscribe en un contexto y lo modifica. Cada línea lleva dentro su contraparte, teórica o proyectual. Doctorarse aquí es haber producido una obra capaz de sostener esos principios al ponerse a prueba y, en su mejor versión, capaz de reformularlos.
 
-Las dos líneas prolongan las áreas Educación, Espacio y Aprendizaje y Extensión, Ciudad y Habitabilidad del Magíster en Arquitectura y Diseño, de modo que el tránsito entre ambos niveles sea legible. El área Forma, Cultura y Tecnología no origina línea: sus temas se distribuyen entre los polos proyectuales de ambas. Las áreas se conservan como marco amplio de afiliación de los profesores.
+## Resumen
 
-## Resumen de las dos líneas
-
-| Línea | Prolonga el área | Modo de investigar | Sublíneas | Profesores |
-|---|---|---|---:|---:|
-| Fundamentos disciplinares | Educación, Espacio y Aprendizaje | *investigación acerca del proyecto: los fundamentos de la disciplina y su transmisión* | 34 | 20 |
-| Prácticas proyectuales | Extensión, Ciudad y Habitabilidad | *investigación a través del proyecto: obra nueva que se inscribe en un contexto y lo modifica* | 19 | 14 |
+| Línea | Modo de investigar | Prolonga el área del Magíster | Sublíneas (teóricas / proyectuales) | Profesores | Claustro | Proyectos 2014-2026 |
+|---|---|---|---|---:|---:|---:|
+| Fundamentos disciplinares | Investigación acerca del proyecto | Educación, Espacio y Aprendizaje | 21 (11 / 10) | 9 | 3 | 50 |
+| Prácticas proyectuales | Investigación a través del proyecto | Extensión, Ciudad y Habitabilidad | 32 (5 / 27) | 18 | 5 | 102 |
 
 ## Fundamentos disciplinares
 
-*Modo de investigar:* investigación acerca del proyecto: los fundamentos de la disciplina y su transmisión.
+*Investigación acerca del proyecto.* Lo que sostiene a la disciplina (su historia, su teoría, su filosofía y sus métodos) y cómo se domina y se transmite en la formación.
 
-*Prolonga el área del Magíster:* Educación, Espacio y Aprendizaje.
-
-*Polo teórico:* historia, crítica, acervo y teoría del proyecto en arquitectura y diseño. *Polo proyectual:* espacios, métodos y medios del aprendizaje del proyecto en arquitectura y diseño.
+**Pregunta:** Qué tradición, qué oficio y qué teoría sostienen el proyecto de arquitectura y de diseño, cómo se actualizan sus categorías, y con qué espacios, métodos y medios se enseña y se aprende a proyectar.
 
 ### Alcance
 
-Esta línea prolonga el área Educación, Espacio y Aprendizaje del Magíster y se hace cargo de la investigación acerca del proyecto de arquitectura y de diseño: los fundamentos sobre los que se funda la disciplina (su historia, su teoría, su filosofía y sus métodos) y el modo en que se dominan y se transmiten en la formación. Su polo teórico e histórico acoge el acervo de Ciudad Abierta y de la Escuela, la historia y la crítica de la arquitectura moderna y latinoamericana y la historia del diseño, la teoría del proyecto y sus categorías propias (la hospitalidad, el vacío, la palabra poética y la poética del oficio), la relación entre arte, arquitectura y diseño, la reforma escolar y la enseñanza de la arquitectura, y la techné como reflexión epistemológica del diseño. Su polo proyectual acoge los espacios del aprendizaje (la arquitectura como medio didáctico, los espacios educativos y escolares, la estimulación temprana y los contextos vulnerables), los métodos y medios del diseño (comunicación visual, fabricación digital, máquinas expresivas, saberes técnicos, transferencia tecnológica) y el diseño de interacción, la accesibilidad y los sistemas inteligentes como mediación entre las personas y sus entornos. Es la línea que forma a quienes enseñarán arquitectura y diseño, desde el habitar poético que funda a la Escuela.
+Investigación acerca del proyecto de arquitectura y de diseño: los fundamentos sobre los que se funda la disciplina (su historia, su teoría, su filosofía y sus métodos) y el modo en que se dominan y se transmiten en la formación. Su polo teórico acoge el acervo de la e[ad] y de Ciudad Abierta, la historia y la crítica de la arquitectura moderna y latinoamericana y la historia del diseño, la teoría del proyecto y sus categorías (hospitalidad, vacío, palabra poética), la poesía y el oficio, y la techné. Su polo proyectual acoge la formación: espacios educativos, arquitectura como medio didáctico, medios de aprendizaje, métodos de diseño y formación en pensamiento y acción creativa. Forma a quienes enseñarán arquitectura y diseño.
 
-**Pregunta nuclear:** Qué tradición, qué oficio y qué teoría sostienen el proyecto de arquitectura y de diseño, cómo se actualizan sus categorías, y con qué espacios, métodos y medios se enseña y se aprende a proyectar.
+### Polo teórico (11 sublíneas)
 
-### Cuerpo académico que la sostiene
+Acervo histórico de Ciudad Abierta y de la Escuela de Arquitectura y Diseño; Arquitectura moderna y habitar latinoamericano; Arte y arquitectura; Diseño arquitectónico; El sentido de la hospitalidad; El vacío arquitectónico; Fundamentos poéticos y artísticos del diseño; Poesía y oficio; Reforma escolar y enseñanza de la arquitectura; Tecnología, sociedad y techné; Teoría e historia de la arquitectura.
 
-Esta línea es cultivada por **20 profesores** del cuerpo académico de la Escuela de Arquitectura y Diseño:
+### Polo proyectual (10 sublíneas)
 
-- Herbert Spencer González (Forma, Cultura y Tecnología)
-- Ursula Exss Cid (Educación, Espacio y Aprendizaje)
-- Arturo Chicano Jiménez (Forma, Cultura y Tecnología)
-- Juan Carlos Jeldes Pontio (Forma, Cultura y Tecnología)
-- Rodrigo Saavedra Venegas (Educación, Espacio y Aprendizaje)
-- Anna Braghini (Educación, Espacio y Aprendizaje)
-- Katherine Exss Cid (Forma, Cultura y Tecnología)
-- Sylvia Arriagada Cordero (Forma, Cultura y Tecnología)
-- Óscar Andrade Castro (Educación, Espacio y Aprendizaje)
-- Jaime Reyes Gil (Educación, Espacio y Aprendizaje)
-- Marcelo Araya Aravena (Forma, Cultura y Tecnología)
-- Alejandro Garretón (Forma, Cultura y Tecnología)
-- Leonardo Aravena (Forma, Cultura y Tecnología)
-- Michèle Wilkomirsky Uribe (Educación, Espacio y Aprendizaje)
-- Adriana Marín Toro (Extensión, Ciudad y Habitabilidad)
-- Daniela Salgado Cofré (Forma, Cultura y Tecnología)
-- David Luza Cornejo (Extensión, Ciudad y Habitabilidad)
-- Erick Caro (Extensión, Ciudad y Habitabilidad)
-- Iván Ivelic Yanes (Extensión, Ciudad y Habitabilidad)
-- Manuel Sanfuentes (Forma, Cultura y Tecnología)
+Arquitectura como medio didáctico; Diseño de espacios educativos; Espacios de aprendizaje en contextos vulnerables; Espacios de estimulación temprana; Espacios educativos en contextos vulnerables; Formación en pensamiento y acción creativa; Medios de aprendizaje en arquitectura y diseño; Métodos de diseño; Programas educativos y espacios escolares; Proyecto de arquitectura escolar.
 
-### Consolidación y sostenibilidad
+### Cuerpo académico
 
-La línea está consolidada por la convergencia de **20 profesores** activos que cultivan **34 sublíneas** diferenciadas, lo que asegura masa crítica e indica una distribución temática suficientemente amplia para acoger nuevas tesis sin colapsar en un único objeto de estudio.
+**Claustro:** Anna Braghini, Arturo Chicano Jiménez, Jaime Reyes Gil.
 
-El cuerpo académico se distribuye entre **3 áreas** del postgrado (Educación, Espacio y Aprendizaje, Extensión, Ciudad y Habitabilidad, Forma, Cultura y Tecnología), lo que da soporte transversal a la línea y abre puentes con otras líneas del programa.
+**Profesores que aportan a la línea:** Juan Carlos Jeldes Pontio, Manuel Sanfuentes, Rodrigo Saavedra Venegas, Sylvia Arriagada Cordero, Ursula Exss Cid, Óscar Andrade Castro.
 
-La línea cuenta con vínculos directos a **3 laboratorios** (Aconcagua Fablab, Núcleo de Accesibilidad e Inclusión, Patrimonio moderno), que operacionalizan la investigación, la transferencia y la formación, garantizando continuidad y proyección institucional.
+### Consolidación
+
+La línea reúne 21 sublíneas, 9 profesores (de ellos 3 en el claustro) y 50 proyectos de investigación y creación entre 2014 y 2026, 26 de ellos desde 2022. La sostienen los laboratorios Patrimonio moderno; Archivo Histórico José Vial Armstrong.
 
 ## Prácticas proyectuales
 
-*Modo de investigar:* investigación a través del proyecto: obra nueva que se inscribe en un contexto y lo modifica.
+*Investigación a través del proyecto.* Obra nueva (un edificio, un espacio público, un objeto, un servicio, un sistema) que se inscribe en un contexto y lo modifica.
 
-*Prolonga el área del Magíster:* Extensión, Ciudad y Habitabilidad.
-
-*Polo teórico:* teoría urbana, ecología política y vivienda. *Polo proyectual:* creación de obra urbana, arquitectónica y de diseño sobre el territorio.
+**Pregunta:** Cómo la ciudad y el territorio se construyen, se habitan, se sostienen y se piensan políticamente, y qué proyectos de arquitectura y de diseño (urbanos, de equipamiento, de objetos, servicios y sistemas) los transforman.
 
 ### Alcance
 
-Esta línea prolonga el área Extensión, Ciudad y Habitabilidad del Magíster y se hace cargo de la investigación a través del proyecto de arquitectura y de diseño: obra nueva (un edificio, un espacio público, un objeto, un servicio, un sistema) que se inscribe en un contexto y lo modifica, con la ciudad, el territorio y sus ecologías como campo principal. Su polo teórico acoge la teoría urbana, la urbanización y la ecología política, la vivienda y sus crisis contemporáneas (financiarización, acceso, políticas habitacionales), los comunes y las resiliencias socioecológicas, las perspectivas decoloniales y la evaluación social de las políticas públicas de inversión. Su polo proyectual acoge la creación de obra sobre el territorio: la adaptación ante riesgos costeros y desastres, la infraestructura, la movilidad y el equipamiento, el patrimonio arquitectónico y natural y su rehabilitación, el urbanismo afectivo, la deriva y la investigación-acción, las prácticas colectivas y escénicas sobre el espacio público, el mobiliario y la materialidad de la obra, el diseño social y territorial, y el confort y el espacio habitable de las personas. Toma la región de Valparaíso y el continente americano como laboratorio y prolonga el legado de las travesías, donde la obra de arquitectura y de diseño es el modo de conocer el territorio.
+Investigación a través del proyecto de arquitectura y de diseño: obra nueva (un edificio, un espacio público, un objeto, un servicio, un sistema, una herramienta) que se inscribe en un contexto y lo modifica. Su polo teórico acoge la teoría urbana, la ecología política, la vivienda, los comunes y las perspectivas decoloniales. Su polo proyectual reúne dos frentes: la ciudad y el territorio (urbanismo afectivo, movilidad, equipamiento, patrimonio, ciudad-teatro, diseño social y territorial, travesías) y las herramientas y sistemas para las personas (accesibilidad e inclusión, diseño de interacción y servicios, comunicación aumentativa, inteligencia artificial, fabricación digital, comunicación visual).
 
-**Pregunta nuclear:** Cómo la ciudad y el territorio se construyen, se habitan, se sostienen y se piensan políticamente, y qué proyectos de arquitectura y de diseño (urbanos, de equipamiento, de objetos y servicios) los transforman.
+### Polo teórico (5 sublíneas)
 
-### Cuerpo académico que la sostiene
+Comunes, comunalidad y resiliencias socioecológicas; Evaluación social y políticas públicas de inversión; Perspectivas decoloniales; Urbanización, urbanismo y ecología política; Vivienda, financiarización y políticas habitacionales.
 
-Esta línea es cultivada por **14 profesores** del cuerpo académico de la Escuela de Arquitectura y Diseño:
+### Polo proyectual (27 sublíneas)
 
-- Emanuela Di Felice (Extensión, Ciudad y Habitabilidad)
-- Jorge Ferrada Herrera (Extensión, Ciudad y Habitabilidad)
-- Álvaro Mercado Jara (Extensión, Ciudad y Habitabilidad)
-- Iván Ivelic Yanes (Extensión, Ciudad y Habitabilidad)
-- Adriana Marín Toro (Extensión, Ciudad y Habitabilidad)
-- Daniela Salgado Cofré (Forma, Cultura y Tecnología)
-- Marcelo Araya Aravena (Forma, Cultura y Tecnología)
-- Alfred Thiers Jusan (Extensión, Ciudad y Habitabilidad)
-- Andrés Garcés Alzamora (Extensión, Ciudad y Habitabilidad)
-- David Luza Cornejo (Extensión, Ciudad y Habitabilidad)
-- Isabel M. Reyes (Forma, Cultura y Tecnología)
-- Katherine Exss Cid (Forma, Cultura y Tecnología)
-- Lorena Herrera Ponce (Extensión, Ciudad y Habitabilidad)
-- Manuel Sanfuentes (Forma, Cultura y Tecnología)
+Accesibilidad cognitiva y codiseño; Accesibilidad e inclusión; Adaptabilidad urbana ante riesgos costeros; Adaptación formal ante desastres; Ciudad-teatro y apropiación escénica del espacio público; Comunicación aumentativa y alternativa; Comunicación visual, diseño editorial y exposición material; Confort, bienestar y habitabilidad personal; Diseño de interacción, servicios y experiencia de usuario; Diseño para la democracia y comunicación ciudadana; Diseño social, territorial y patrimonio cultural; Diseño y vida independiente; Fabricación digital, modelado paramétrico y fablabs; Industrias creativas e innovación social para el desarrollo local; Investigación-acción y artes urbanas; Mobiliario, vida cotidiana y materialidad de la obra; Movilidad, infraestructura urbana y equipamiento; Máquinas expresivas, algoritmos y arte tecnológico; Naturaleza, paisaje y patrimonio natural; Patrimonio arquitectónico y rehabilitación; Prácticas colectivas; Saberes técnicos análogos; Sistemas inteligentes e IA en diseño; Transferencia de medios tecnológicos con aplicación al emprendimiento local; Travesías y geopoética; Urbanismo afectivo, deriva y reuso del patrimonio; Vulnerabilidad física de asentamientos costeros.
 
-### Consolidación y sostenibilidad
+### Cuerpo académico
 
-La línea está consolidada por la convergencia de **14 profesores** activos que cultivan **19 sublíneas** diferenciadas, lo que asegura masa crítica e indica una distribución temática suficientemente amplia para acoger nuevas tesis sin colapsar en un único objeto de estudio.
+**Claustro:** Adriana Marín Toro, Daniela Salgado Cofré, Emanuela Di Felice, Katherine Exss Cid, Álvaro Mercado Jara.
 
-El cuerpo académico se distribuye entre **2 áreas** del postgrado (Extensión, Ciudad y Habitabilidad, Forma, Cultura y Tecnología), lo que da soporte transversal a la línea y abre puentes con otras líneas del programa.
+**Profesores que aportan a la línea:** Alejandro Garretón, Alfred Thiers Jusan, Andrés Garcés Alzamora, David Luza Cornejo, Erick Caro, Herbert Spencer González, Isabel M. Reyes, Iván Ivelic Yanes, Jorge Ferrada Herrera, Leonardo Aravena, Lorena Herrera Ponce, Marcelo Araya Aravena, Michèle Wilkomirsky Uribe.
 
-La línea cuenta con vínculos directos a **2 laboratorios** (Personas y territorios, Urbanismo afectivo), que operacionalizan la investigación, la transferencia y la formación, garantizando continuidad y proyección institucional.
+### Consolidación
 
-## Cobertura del cuerpo académico
-
-De los **27 profesores** del cuerpo académico, **27** tienen al menos una sublínea de investigación explícitamente declarada. El conjunto cubre las dos líneas de investigación del doctorado, con la siguiente distribución de profesores por línea (las afiliaciones pueden cruzarse: un mismo profesor puede sostener sublíneas en más de una línea):
-
-| Línea | Profesores que la sostienen |
-|---|---:|
-| Fundamentos disciplinares | 20 |
-| Prácticas proyectuales | 14 |
+La línea reúne 32 sublíneas, 18 profesores (de ellos 5 en el claustro) y 102 proyectos de investigación y creación entre 2014 y 2026, 42 de ellos desde 2022. La sostienen los laboratorios Personas y territorios; Urbanismo afectivo; Núcleo de Accesibilidad e Inclusión; Aconcagua Fablab.
 
 ## Procedencia
 
-Documento generado automáticamente desde mad-map-data-v2.xlsx, la fuente única de verdad del programa. Las relaciones investigador↔sublínea provienen de los temas declarados por cada profesor en su perfil Casiopea o ANID, consolidados y curados por el equipo del doctorado. Para regenerar este documento tras editar la planilla, ejecutar `python3 tools/build_doc.py`.
+Documento generado desde `investigacion-ead.xlsx` con `python3 tools/build_doc.py`. La línea de cada profesor se asigna por el tipo de su contribución (teórico-disciplinar o proyectual).
