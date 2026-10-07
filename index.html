@@ -21,19 +21,28 @@
   </header>
 
   <div class="barra" role="search">
-    <input type="search" id="buscar" placeholder="Buscar sublínea, profesor, tema o proyecto…" aria-label="Buscar">
+    <input type="search" id="buscar" placeholder="Buscar eje temático, persona, tema o proyecto…" aria-label="Buscar">
     <select id="profesor" aria-label="Ver un profesor">
-      <option value="">Todos los profesores</option>
+      <option value="">Todas las personas</option>
     </select>
     <button type="button" id="limpiar" hidden>Limpiar</button>
     <span class="estado" id="estado" aria-live="polite"></span>
   </div>
 
   <main>
-    <div class="matriz" id="matriz">
+    <div class="mapa" id="mapa">
       <p class="cargando">Cargando la planilla…</p>
     </div>
-    <p class="leyenda">Cada tarjeta es una sublínea: <b>p</b> profesores que la cultivan · <b>pr</b> proyectos 2014-2026 (la barra crece con los proyectos). Haz clic en una tarjeta o elige un profesor.</p>
+    <div class="tip" id="tip" hidden></div>
+    <div class="leyenda">
+      <span><i class="c-linea l0"></i>Fundamentos disciplinares</span>
+      <span><i class="c-linea l1"></i>Prácticas proyectuales</span>
+      <span><i class="c-polo teo"></i>polo teórico</span>
+      <span><i class="c-polo pro"></i>polo proyectual</span>
+      <span><i class="c-eje"></i>eje temático</span>
+      <span><i class="c-per l0"></i><i class="c-per l1"></i>persona, en el color de la línea a la que aporta</span>
+      <span><i class="c-per claustro"></i>claustro</span>
+    </div>
   </main>
 
   <aside class="panel" id="panel" aria-hidden="true">
@@ -51,6 +60,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

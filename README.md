@@ -1,6 +1,6 @@
 # Investigación e[ad]
 
-Mapa de la investigación del **Doctorado en Arquitectura y Diseño** de la e[ad] PUCV: las dos líneas, sus polos, sus sublíneas, los profesores que las cultivan y los proyectos 2014-2026, en una sola página.
+Mapa de la investigación del **Doctorado en Arquitectura y Diseño** de la e[ad] PUCV: las dos líneas, sus polos, sus ejes temáticos (sublíneas), las personas que los cultivan y los proyectos 2014-2026, en una sola página.
 
 | | |
 |---|---|
@@ -8,7 +8,7 @@ Mapa de la investigación del **Doctorado en Arquitectura y Diseño** de la e[ad
 | **Datos** | [`investigacion-ead.xlsx`](./investigacion-ead.xlsx), la única fuente |
 | **Documentos** | [comparación de las líneas](./comparacion-lineas.md) · [líneas de investigación](./lineas-investigacion.md) · [definiciones del programa](./doctorado-programa.md) · [claustro](./propuesta-dos-lineas.md) |
 
-![Matriz de líneas y polos](docs/captura.png)
+![Líneas, polos, ejes temáticos y personas](docs/captura.png)
 
 ## Las dos líneas
 
@@ -21,14 +21,19 @@ Cada línea tiene un **polo teórico** y un **polo proyectual**.
 
 ## Cómo se lee la página
 
-La página es una matriz: dos columnas (las líneas) y dos filas (los polos). Cada tarjeta es una sublínea, con el número de profesores que la cultivan (**p**) y de proyectos (**pr**); la barra bajo la tarjeta crece con los proyectos.
+La página es un grafo de envolventes anidadas:
 
-- **Clic en una tarjeta**: se abre el panel con sus profesores, sus temas y sus proyectos.
-- **Elegir un profesor** en el menú (agrupado por línea): se iluminan sus sublíneas y el panel muestra sus temas y proyectos.
-- **Buscar**: filtra por sublínea, profesor, tema o título de proyecto.
-- **Clic en el nombre de una línea**: definición, pregunta, alcance, claustro y cifras.
+- **Las dos líneas** son las grandes envolventes de color (rojo: Fundamentos disciplinares; verde azulado: Prácticas proyectuales).
+- Dentro de cada línea, **los polos**: arriba el teórico (borde punteado) y abajo el proyectual.
+- Dentro de cada polo, **los ejes temáticos** (sublíneas): las envolventes blancas.
+- Dentro de cada eje, **las personas** que lo cultivan. El color de cada persona es el de la línea a la que aporta por su contribución, y el borde negro marca a quienes integran el claustro. Una persona que cultiva varios ejes aparece en cada uno.
 
-Cada vista tiene su propia dirección (por ejemplo `#prof=Anna Braghini`), que se puede copiar y compartir.
+Interacción:
+
+- **Pasar el cursor** sobre una persona o un eje muestra su nombre. Sobre una persona, además, se iluminan todas sus apariciones y se unen con una línea punteada.
+- **Clic** en un eje, una persona o una línea abre el panel con el detalle: personas y temas, proyectos, claustro.
+- **Elegir una persona** en el menú, o **buscar** por eje, persona, tema o título de proyecto, deja visible sólo lo que coincide.
+- Rueda o pellizco para acercar; arrastrar para moverse. Cada detalle tiene su propia dirección (por ejemplo `#prof=Anna Braghini`), que se puede compartir.
 
 ## Cómo editar los datos
 
@@ -68,7 +73,7 @@ python3 -m http.server 8000
 
 ```
 index.html                 página única
-app.js                     lee la planilla (SheetJS) y dibuja la matriz
+app.js                     lee la planilla (SheetJS) y dibuja el grafo (D3)
 style.css                  estilos
 investigacion-ead.xlsx     datos
 data/productividad.csv     productividad por profesor (para la comparación)

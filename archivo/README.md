@@ -1,6 +1,6 @@
 # Archivo
 
-Versión anterior del mapa (hasta el 7 de octubre de 2026), reemplazada por la página única con la matriz de líneas × polos y la planilla `investigacion-ead.xlsx`.
+Versión anterior del mapa (hasta el 7 de octubre de 2026), reemplazada por una página única (grafo de envolventes anidadas: líneas › polos › ejes › personas) y la planilla `investigacion-ead.xlsx`.
 
 - `vistas-grafo/`: las tres superficies (Cartografía, Narrativa, Exploración), el grafo D3 y su portada. No funcionan desde esta carpeta porque buscan la planilla en la raíz.
 - `mad-map-data-v2.xlsx`: la planilla de 20 hojas con códigos internos (incluye laboratorios, modos, salidas, proximidad temática).
