@@ -68,12 +68,17 @@ rule GenerarDocumento {
         --      build_doc.py como constantes Python (no en el XLSX)
         --
         -- El documento incluye:
-        --   - Para cada una de las 4 líneas: condición, pregunta nuclear, alcance,
-        --     cuerpo docente (recuento y nombres), sublíneas (recuento y listado),
-        --     laboratorios, justificación de sustentabilidad
-        --   - Tabla de cobertura: 22 investigadores × 4 líneas
+        --   - Para cada una de las 2 líneas: modo de investigar, pregunta nuclear,
+        --     alcance, polos, cuerpo docente (recuento y nombres), laboratorios,
+        --     justificación de sustentabilidad
+        --   - Tabla de cobertura: investigadores × 2 líneas
         --
         -- Invocación: python3 tools/build_doc.py
+        --
+        -- Documento complementario comparacion-lineas.md (tools/build_comparacion.py):
+        -- tabla comparativa de las dos líneas, sublíneas por polo con profesores
+        -- y proyectos, proyectos por sublínea (19_Proyectos) y productividad por
+        -- profesor (20_Productividad).
 }
 
 rule MarcarDocumentoDesactualizado {

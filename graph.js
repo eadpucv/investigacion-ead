@@ -58,6 +58,7 @@ class MadMapGraph {
   _initWithData() {
     this._setupDOM();
     this._buildNodesAndEdges();
+    this._indexProyectos();
     this._renderControls();
     this._populateFilters();
     this._initSimulation();
@@ -392,6 +393,11 @@ class MadMapGraph {
       } else {
         g.append('circle');
       }
+      if (d.kind === 'linea') {
+        // Las líneas llevan su nombre siempre visible bajo el círculo.
+        g.append('text').attr('class', 'linea-label')
+          .attr('text-anchor', 'middle').attr('dy', 32).text(d.label);
+      }
     });
 
     this.gNodes.selectAll('g.node circle')
@@ -585,9 +591,52 @@ class MadMapGraph {
   }
 
   // ====== Controles laterales ======
+  _indexProyectos() {
+    // Proyectos 2014-2026 (hoja 19_Proyectos) indexados por sublínea, línea
+    // e investigador para el panel de detalle y la leyenda.
+    this.proyBySub = {}; this.proyByLinea = {}; this.proyByInv = {};
+    const push = (m, k, p) => { if (k) (m[k] = m[k] || []).push(p); };
+    for (const p of (this.data.proyectos || [])) {
+      push(this.proyBySub, p.sublinea, p);
+      push(this.proyByLinea, p.linea, p);
+      for (const i of p.investigadores) push(this.proyByInv, i, p);
+    }
+  }
+
+  _proyStats(list) {
+    const all = list || [];
+    return { total: all.length, recientes: all.filter(p => (p.anio || 0) >= 2022).length };
+  }
+
   _renderControls() {
-    // No-op: cada HTML cablea su propia barra lateral.
-    // Aquí sólo nos aseguramos que los toggles ya activos coincidan con el estado.
+    // Cada HTML cablea su propia barra lateral; aquí se antepone la leyenda
+    // de las dos líneas (nombre, modo de investigar y definición breve),
+    // que viene de 01_Lineas, y se sincronizan los toggles con el estado.
+    const aside = document.querySelector('aside.controls');
+    if (aside && !aside.querySelector('.lineas-leyenda')) {
+      const box = document.createElement('section');
+      box.className = 'lineas-leyenda';
+      let html = '<h3>Líneas de investigación</h3>';
+      for (const l of this.data.lineas) {
+        const st = this._proyStats(this.proyByLinea[l.id]);
+        const nsub = this.data.sublineas.filter(s => s.linea === l.id).length;
+        html += `<button class="linea-item" data-linea="${l.id}">
+            <span class="linea-nombre">${l.nombre}</span>
+            ${l.modo ? `<span class="linea-modo">${l.modo}</span>` : ''}
+            ${l.bajada ? `<span class="linea-bajada">${l.bajada}</span>` : ''}
+            <span class="linea-cifras">${nsub} sublíneas${st.total ? ` · ${st.total} proyectos` : ''}</span>
+          </button>`;
+      }
+      html += '<p class="polos-nota"><span class="polo-icono teorico"></span> polo teórico <span class="polo-icono proyectual"></span> polo proyectual</p>';
+      box.innerHTML = html;
+      aside.prepend(box);
+      box.querySelectorAll('.linea-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const n = this.nodes.find(x => x.id === btn.dataset.linea);
+          if (n) this._selectNode(n);
+        });
+      });
+    }
     this._syncControlState();
   }
 
@@ -629,7 +678,12 @@ class MadMapGraph {
   // ====== Tooltip y panel de detalle ======
   _showTooltip(event, n) {
     if (!this.tooltip) return;
-    this.tooltip.style('display', 'block').text(n.label);
+    if (n.kind === 'linea' && n.data.bajada) {
+      this.tooltip.style('display', 'block')
+        .html(`<strong>${n.label}</strong><br><span class="tt-bajada">${n.data.modo ? n.data.modo + ': ' : ''}${n.data.bajada}</span>`);
+    } else {
+      this.tooltip.style('display', 'block').text(n.label);
+    }
     this._moveTooltip(event);
   }
   _moveTooltip(event) {
@@ -663,7 +717,16 @@ class MadMapGraph {
     let html = `<button class="close" aria-label="Cerrar">×</button>
                 <div class="kind">${kindLabel}</div>
                 <h2>${d.nombre}</h2>`;
+    if (n.kind === 'linea' && (d.modo || d.bajada)) {
+      html += `<div class="linea-def">${d.modo ? `<div class="linea-modo">${d.modo}</div>` : ''}${d.bajada ? `<div class="linea-bajada">${d.bajada}</div>` : ''}</div>`;
+    }
     if (d.descripcion) html += `<div class="descripcion">${d.descripcion}</div>`;
+    const listaProy = (arr, max = 12) => {
+      const s = (arr || []).slice().sort((a, b) => (b.anio || 0) - (a.anio || 0));
+      const items = s.slice(0, max).map(p => `<li><span class="anio">${p.anio || ''}</span> ${p.titulo}</li>`).join('');
+      const resto = s.length > max ? `<li class="resto">y ${s.length - max} más</li>` : '';
+      return `<ul class="proyectos">${items}${resto}</ul>`;
+    };
 
     html += '<dl>';
     if (n.kind === 'sublinea') {
@@ -677,6 +740,11 @@ class MadMapGraph {
           .map(id => this.data.investigadores.find(i => i.id === id)?.nombre).filter(Boolean);
         if (names.length) html += `<dt>Investigadores que la cultivan</dt><dd><ul>${names.map(x=>`<li>${x}</li>`).join('')}</ul></dd>`;
       }
+      const ps = this.proyBySub[d.id];
+      if (ps && ps.length) {
+        const st = this._proyStats(ps);
+        html += `<dt>Proyectos 2014-2026 (${st.total}; ${st.recientes} desde 2022)</dt><dd>${listaProy(ps)}</dd>`;
+      }
     } else if (n.kind === 'linea') {
       const subs = this.data.sublineas.filter(s => s.linea === d.id);
       const teo = subs.filter(s => s.polo && s.polo.startsWith('te'));
@@ -685,6 +753,12 @@ class MadMapGraph {
       html += `<dt>${teo.length ? 'Polo proyectual' : 'Sublíneas'}</dt><dd><ul>${pro.map(s=>`<li>${s.nombre}</li>`).join('')}</ul></dd>`;
       const labs = Array.from(n.labs).map(id => this.data.laboratorios.find(l => l.id === id)?.nombre).filter(Boolean);
       if (labs.length) html += `<dt>Laboratorios que la sostienen</dt><dd>${labs.join(', ')}</dd>`;
+      const pl = this.proyByLinea[d.id];
+      if (pl && pl.length) {
+        const st = this._proyStats(pl);
+        const teoP = pl.filter(p => teo.some(s => s.id === p.sublinea)).length;
+        html += `<dt>Proyectos 2014-2026</dt><dd>${st.total} proyectos (${st.recientes} desde 2022): ${teoP} en el polo teórico y ${st.total - teoP} en el proyectual</dd>`;
+      }
     } else if (n.kind === 'investigador') {
       if (d.area_principal) {
         const area = this.data.areas.find(a => a.id === d.area_principal);
@@ -694,6 +768,11 @@ class MadMapGraph {
         const names = Array.from(n.sublineas)
           .map(id => this.data.sublineas.find(s => s.id === id)?.nombre).filter(Boolean);
         html += `<dt>Sublíneas que cultiva</dt><dd><ul>${names.map(x=>`<li>${x}</li>`).join('')}</ul></dd>`;
+      }
+      const pi = this.proyByInv[d.id];
+      if (pi && pi.length) {
+        const st = this._proyStats(pi);
+        html += `<dt>Proyectos 2014-2026 (${st.total}; ${st.recientes} desde 2022)</dt><dd>${listaProy(pi, 8)}</dd>`;
       }
       if (d.perfil_url) html += `<dt>Perfil Casiopea</dt><dd><a href="${d.perfil_url}" target="_blank" rel="noopener">${d.perfil_url}</a></dd>`;
     }

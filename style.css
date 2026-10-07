@@ -450,3 +450,33 @@ main.canvas svg {
   background: white;
   cursor: pointer;
 }
+
+
+/* ===== Leyenda de líneas (barra lateral) ===== */
+.lineas-leyenda { margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--line); }
+.lineas-leyenda .linea-item {
+  display: block; width: 100%; text-align: left; cursor: pointer;
+  background: none; border: none; border-left: 3px solid var(--accent);
+  padding: 0.35rem 0 0.45rem 0.6rem; margin: 0 0 0.6rem 0; font: inherit; color: var(--fg);
+}
+.lineas-leyenda .linea-item:hover { background: var(--accent-soft); }
+.lineas-leyenda .linea-nombre { display: block; font-weight: 700; font-size: 1rem; }
+.linea-modo { display: block; font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin: 0.1rem 0 0.2rem; }
+.linea-bajada { display: block; font-size: 0.85rem; line-height: 1.35; color: var(--fg); }
+.lineas-leyenda .linea-cifras { display: block; font-family: var(--sans); font-size: 0.72rem; color: var(--muted); margin-top: 0.25rem; }
+.polos-nota { font-family: var(--sans); font-size: 0.75rem; color: var(--muted); margin: 0.2rem 0 0; display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap; }
+.polo-icono { display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 2px solid #333; }
+.polo-icono.teorico { background: #fff; }
+.polo-icono.proyectual { background: #333; margin-left: 0.4rem; }
+
+/* Etiqueta siempre visible de los nodos-línea */
+.node text.linea-label { font-family: var(--sans); font-size: 13px; font-weight: 700; fill: var(--accent); paint-order: stroke; stroke: var(--bg); stroke-width: 4px; }
+
+/* Definición de la línea y proyectos en el panel de detalle */
+.detail-panel .linea-def { margin: -0.3rem 0 0.9rem; padding-left: 0.6rem; border-left: 3px solid var(--accent); }
+.detail-panel .linea-def .linea-bajada { font-size: 1rem; }
+.detail-panel ul.proyectos { list-style: none; padding-left: 0; }
+.detail-panel ul.proyectos li { margin-bottom: 0.35rem; line-height: 1.3; }
+.detail-panel ul.proyectos .anio { font-family: var(--sans); font-size: 0.75rem; color: var(--muted); margin-right: 0.25rem; }
+.detail-panel ul.proyectos .resto { color: var(--muted); font-style: italic; }
+.tooltip .tt-bajada { display: inline-block; max-width: 320px; white-space: normal; opacity: 0.85; font-size: 0.8rem; }

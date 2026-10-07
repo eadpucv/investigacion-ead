@@ -35,7 +35,15 @@ Documento institucional `lineas-investigacion.md` regenerable con `python3 tools
 
 Modulación de fuerza por afinidad declarada en `18_Proximidad_Tematica`. La fuerza del resorte para `proximidad_semantica` se calcula desde el campo `weight` (afinidad 0..1): pares con afinidad 0.9 se atraen casi tanto como una jerárquica; con 0.5 quedan en baseline; con 0.0 apenas se unen. La curaduría de la matriz se traduce visualmente en distancia.
 
-Repulsión de las líneas troncales reducida de −1000 a −350. Las 4 líneas dejan de ser polos artificiales equidistantes; su posición ahora emerge de las atracciones reales (sublíneas compartidas, proximidad cruzada, investigadores y labs en común). Ejemplo: *Habitar* y *Teoría e historia* quedarán visualmente más cerca que *Personas* y *Habitar*, porque el primer par tiene 9 pares de proximidad cruzada con afinidad acumulada 4.60 mientras el segundo apenas 1 par con 0.45.
+Repulsión de las líneas reducida de −1000 a −350 (en el régimen de cuatro líneas, anterior a septiembre de 2026). Las líneas dejan de ser polos artificiales equidistantes; su posición ahora emerge de las atracciones reales (sublíneas compartidas, proximidad cruzada, investigadores y labs en común). Ejemplo: *Habitar* y *Teoría e historia* quedarán visualmente más cerca que *Personas* y *Habitar*, porque el primer par tiene 9 pares de proximidad cruzada con afinidad acumulada 4.60 mientras el segundo apenas 1 par con 0.45.
+
+### Listo (octubre 2026)
+
+Régimen de dos líneas con nombres definitivos: **Fundamentos disciplinares** (acerca del proyecto) y **Prácticas proyectuales** (a través del proyecto), cada una con polo teórico y polo proyectual. `01_Lineas` agrega las columnas `modo` y `bajada`.
+
+La visualización muestra en la barra lateral de las tres superficies una leyenda de las dos líneas (nombre, modo de investigar, definición breve, sublíneas y proyectos), rotula siempre los nodos-línea en el grafo, y en el panel de detalle muestra la definición de la línea y los proyectos 2014-2026 de cada línea, sublínea e investigador (hoja `19_Proyectos`).
+
+Documento generado `comparacion-lineas.md` con la comparación de ambas líneas, y hojas `19_Proyectos` y `20_Productividad` desde el levantamiento de productividad 2014-2026.
 
 ### Próximos pasos prioritarios
 
@@ -75,7 +83,7 @@ Esta sección reemplaza al spec `mad-map.allium`. Documenta las invariantes y re
 
 ### Invariantes del modelo
 
-Toda sublínea pertenece a exactamente una línea troncal. Las sublíneas sin línea madre no existen en el modelo y serían filtradas por el loader.
+Toda sublínea pertenece a exactamente una de las dos líneas (Fundamentos disciplinares o Prácticas proyectuales) y a uno de sus polos (teórico o proyectual). Las sublíneas sin línea madre no existen en el modelo y serían filtradas por el loader.
 
 La proximidad temática es simétrica: para cada par (A, B) con afinidad x debe existir el par (B, A) con la misma afinidad. Esto es responsabilidad del editor; el loader respeta lo que encuentre.
 

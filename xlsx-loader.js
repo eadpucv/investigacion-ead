@@ -89,6 +89,7 @@ const SHEET_NAMES = [
   '14_Linea_Modo',
   '17_Sello',
   '18_Proximidad_Tematica',
+  '19_Proyectos',
 ];
 
 // Lee todas las hojas relevantes del workbook y devuelve un dict
@@ -156,6 +157,10 @@ function buildDataFromTabs(tabs) {
     id: r.id, nombre: r.nombre,
     descripcion: r['descripción'] || r.descripcion,
     estado: r.estado || '',
+    // Modo de investigar ("acerca de" / "a través del" proyecto) y definición
+    // breve que la visualización muestra en la leyenda y en el panel.
+    modo: r.modo || '',
+    bajada: r.bajada || '',
   })).filter(l => l.id);
 
   const areas = (tabs['03_Areas'] || []).map(r => ({
@@ -207,6 +212,25 @@ function buildDataFromTabs(tabs) {
   })).filter(s => s.id);
 
   const subN2I = buildNameToIdMap(sublineas, '02_Sublineas');
+
+  // Proyectos 2014-2026 (hoja 19_Proyectos, opcional). La sublínea viene por
+  // nombre; los investigadores, como lista de nombres separada por comas.
+  // Los nombres que no están en 07_Investigadores se conservan como texto.
+  const proyectos = (tabs['19_Proyectos'] || []).map(r => {
+    const sub = subN2I.get ? subN2I.get(r['sublínea']) : subN2I[r['sublínea']];
+    const subObj = sublineas.find(s => s.id === sub);
+    const nombres = (r.investigadores || '').toString().split(',').map(x => x.trim()).filter(Boolean);
+    return {
+      id: r.id,
+      anio: parseInt(r['año'], 10) || null,
+      titulo: (r['título'] || '').toString(),
+      sublinea: sub || null,
+      linea: subObj ? subObj.linea : null,
+      investigadores: nombres.map(n => (invN2I.get ? invN2I.get(n) : invN2I[n])).filter(Boolean),
+      participantes: nombres,
+      revisar: (r.revisar || '').toString().toLowerCase().startsWith('s'),
+    };
+  }).filter(p => p.id && p.titulo);
 
   // 4) 08_Temas en formato nuevo: cada fila es (sublínea, investigador, tema).
   //    Generamos IDs sintéticos para los temas (TEM-NNNN) y reconstruimos
@@ -295,7 +319,7 @@ function buildDataFromTabs(tabs) {
     version: 'xlsx-direct',
     sello,
     lineas, sublineas, areas, modos, salidas, laboratorios,
-    investigadores, temas,
+    investigadores, temas, proyectos,
     relations: {
       sublinea_tema, lab_linea, lab_salida,
       inv_lab, inv_modo, linea_modo, proximidad,

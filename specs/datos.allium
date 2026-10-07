@@ -33,9 +33,15 @@ enum TipoRelacion {
 ------------------------------------------------------------
 
 entity Linea {
-    -- Las 4 líneas troncales del programa
+    -- Las dos líneas de investigación del programa:
+    -- Fundamentos disciplinares (acerca del proyecto) y
+    -- Prácticas proyectuales (a través del proyecto).
     nombre: String
     descripcion: String?
+    modo: String?      -- "Investigación acerca del proyecto" | "Investigación a través del proyecto"
+    bajada: String?    -- definición breve que muestra la visualización
+
+    proyectos: Proyecto with linea = this
 
     sublineas: Sublinea with linea = this
     laboratorios: Laboratorio with lineas = this
@@ -48,6 +54,8 @@ entity Sublinea {
     nombre: String
     descripcion: String?
     linea: Linea
+    polo: teorico | proyectual   -- contraparte interna de la línea
+    proyectos: Proyecto with sublinea = this
 
     temas: Tema with sublinea = this
     investigadores: Investigador with sublineas = this
@@ -59,6 +67,17 @@ entity Sublinea {
         -- Cada sublínea tiene un nombre único en el sistema
         not exists Sublinea{ nombre: this.nombre }
     }
+}
+
+entity Proyecto {
+    -- Proyecto de investigación o creación 2014-2026 (hoja 19_Proyectos),
+    -- deduplicado entre coautores. La línea se deriva de la sublínea.
+    anio: Integer
+    titulo: String
+    sublinea: Sublinea
+    linea: Linea                     -- = sublinea.linea
+    investigadores: Set<Investigador>
+    revisar: Boolean                 -- asignación de confianza media o baja
 }
 
 entity Investigador {
